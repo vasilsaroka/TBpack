@@ -1,0 +1,1464 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     69633,       1456]
+NotebookOptionsPosition[     66185,       1395]
+NotebookOutlinePosition[     66529,       1410]
+CellTagsIndexPosition[     66486,       1407]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData["$Path"], "Input",
+ CellChangeTimes->{{3.7935176456354322`*^9, 3.7935176467954335`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"ee6a745f-de6f-4eb0-b067-802d782b933e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+DocumentationIndices\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Links\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Kernel\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Autoload\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Applications\"\>", ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Kernel\"\>", 
+   ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Applications\"\>", 
+   ",", "\<\".\"\>", ",", "\<\"C:\\\\Users\\\\Vasil\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Packages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Applications\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\ExtraPackages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Kernel\\\\Packages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\Documentation\\\\English\\\\System\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Data\\\\ICC\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.793517647996435*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"c2becd9c-1731-4c4a-8095-0e9a9294b02c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "[", 
+  "\"\<C:\\\\Program Files\\\\Wolfram \
+Research\\\\Mathematica\\\\12.0\\\\AddOns\\\\ExtraPackages\>\"", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7935279915585775`*^9, 3.7935279954605827`*^9}},
+ CellLabel->"In[35]:=",ExpressionUUID->"dc1f486e-66ba-4000-bb67-da7972615bae"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "[", 
+  "\"\<C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Applications\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.793517669237466*^9, 3.793517676696477*^9}, 
+   3.793517721528541*^9, 3.7935177520446033`*^9},
+ CellLabel->"In[15]:=",ExpressionUUID->"608658df-22fc-4935-9f9a-1b8f472f6823"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<TBpack`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.793517840939788*^9, 3.7935178450927944`*^9}, {
+  3.7935199110026083`*^9, 3.7935199165426235`*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"39920afb-ddb7-491d-b837-902ee636b1ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"$ContextPath", "\[IndentingNewLine]", "$Context"}], "Input",
+ CellChangeTimes->{{3.7935202560727*^9, 3.793520275732772*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"9cf4db57-2157-4ff8-a23c-46a5775982ee"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"TBpack`\"\>", ",", "\<\"DocumentationSearch`\"\>", 
+   ",", "\<\"ResourceLocator`\"\>", ",", "\<\"URLUtilities`\"\>", 
+   ",", "\<\"PacletManager`\"\>", ",", "\<\"System`\"\>", 
+   ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7935202630927362`*^9, 3.793520276860776*^9}, 
+   3.7935220550848055`*^9},
+ CellLabel->"Out[17]=",ExpressionUUID->"6d669316-9a41-4f22-afeb-9fcbd33f8dd3"],
+
+Cell[BoxData["\<\"Global`\"\>"], "Output",
+ CellChangeTimes->{{3.7935202630927362`*^9, 3.793520276860776*^9}, 
+   3.7935220550848055`*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"4172920b-32f6-4b03-b636-1ec2f7bb6bcb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "Hamiltonian4TBpack"}]], "Input",
+ CellChangeTimes->{{3.793522222729339*^9, 3.7935222333193693`*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"fbb307be-d4d6-4dd4-9f22-03e81666aca7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = True, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Constructs tight-binding Hamiltonian from the \
+atomic coordinates of the unit cell, nearest-neighbour distances and hopping \
+integrals, etc.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"Hamiltonian4TBpack", "[", 
+                    RowBox[{
+                    "TBpack`Private`unitcell_", ",", 
+                    "TBpack`Private`translationvectors_", ",", 
+                    "TBpack`Private`hoppingintegrals_", ",", 
+                    "TBpack`Private`overlappingintegrals_", ",", 
+                    RowBox[{"TBpack`Private`nnlengthlist_", "?", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"VectorQ", "[", 
+                    RowBox[{"#1", ",", "NumericQ"}], "]"}], "&"}], ")"}]}], 
+                    ",", "TBpack`Private`\[Beta]_", ",", "TBpack`Private`k_", 
+                    ",", "TBpack`Private`\[CapitalEpsilon]_", ",", 
+                    "TBpack`Private`B_", ",", 
+                    "TBpack`Private`edgecorrections_", ",", 
+                    "TBpack`Private`gflag_"}], "]"}], ":=", 
+                    RowBox[{"Catch", "[", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "TBpack`Private`tf1", ",", "TBpack`Private`tf2", ",", 
+                    "TBpack`Private`Tvec", ",", "TBpack`Private`len", ",", 
+                    "TBpack`Private`aunitcells", ",", "TBpack`Private`cnlist",
+                     ",", "TBpack`Private`aplist", ",", 
+                    "TBpack`Private`counter", ",", "TBpack`Private`v", ",", 
+                    "TBpack`Private`bondvector", ",", 
+                    "TBpack`Private`bondlength", ",", 
+                    "TBpack`Private`\[CurlyPhi]", ",", 
+                    "TBpack`Private`straining", ",", "TBpack`Private`hij", 
+                    ",", "TBpack`Private`sij", ",", 
+                    "TBpack`Private`\[CurlyEpsilon]", ",", "TBpack`Private`H",
+                     ",", "TBpack`Private`S", ",", 
+                    RowBox[{"TBpack`Private`\[Delta]", "=", "0.021`"}], ",", 
+                    "TBpack`Private`lim", ",", "TBpack`Private`r1", ",", 
+                    "TBpack`Private`r2", ",", "TBpack`Private`r12", ",", 
+                    "TBpack`Private`t", ",", "TBpack`Private`\[Delta]t", ",", 
+                    "TBpack`Private`tE", ",", "TBpack`Private`tSO", ",", 
+                    "TBpack`Private`s", ",", "TBpack`Private`\[CapitalPhi]", 
+                    ",", "TBpack`Private`\[CurlyPhi]M", ",", 
+                    RowBox[{"TBpack`Private`\[CapitalPhi]0", "=", 
+                    RowBox[{"2.067833758`", " ", 
+                    SuperscriptBox["10", "5"]}]}], ",", "TBpack`Private`U", 
+                    ",", "TBpack`Private`conjugate", ",", 
+                    "TBpack`Private`arg1", ",", "TBpack`Private`arg2", ",", 
+                    "TBpack`Private`inconsarg"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "arg1"}], 
+                    "MessageName"], 
+                    "=", "\<\"The argument `1` should be a list of points in \
+3D space.\"\>"}], ";", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "arg2"}], 
+                    "MessageName"], 
+                    "=", "\<\"The argument `1` should be a list numeric \
+vectors of 3D space or a list of lists of such vectors up to 3 ones.\"\>"}], 
+                    ";", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "inconsarg"}], 
+                    "MessageName"], 
+                    "=", "\<\"Arguments `1` , `2` must have the same lengths \
+which is less than length of `3`.\"\>"}], ";", 
+                    RowBox[{"TBpack`Private`tf1", "=", 
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{"#1", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`arg___", "?", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"VectorQ", "[", 
+                    RowBox[{"#1", ",", "NumericQ"}], "]"}], "&&", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "#1", "]"}], "\[Equal]", "3"}]}], 
+                    "&"}], ")"}]}], "}"}]}], "]"}], "&"}]}], ";", 
+                    RowBox[{"TBpack`Private`tf2", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{"#1", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`arg___", "?", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"VectorQ", "[", 
+                    RowBox[{"#1", ",", "NumericQ"}], "]"}], "&&", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "#1", "]"}], "\[Equal]", "3"}]}], 
+                    "&"}], ")"}]}], "}"}]}], "]"}], "&&", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "#1", "]"}], "\[LessEqual]", 
+                    "3"}]}], "&"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", 
+                    RowBox[{"And", "@@", 
+                    RowBox[{
+                    "TBpack`Private`tf1", "/@", 
+                    "TBpack`Private`unitcell"}]}]}], ",", 
+                    RowBox[{"Throw", "[", 
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "arg1"}], 
+                    "MessageName"], ",", "TBpack`Private`unitcell"}], "]"}], 
+                    "]"}]}], "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", 
+                    RowBox[{"And", "@@", 
+                    RowBox[{
+                    "TBpack`Private`tf2", "/@", 
+                    "TBpack`Private`translationvectors"}]}]}], ",", 
+                    RowBox[{"Throw", "[", 
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "arg2"}], 
+                    "MessageName"], ",", 
+                    "TBpack`Private`translationvectors"}], "]"}], "]"}]}], 
+                    "]"}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"!", 
+                    RowBox[{
+                    RowBox[{
+                    "Length", "[", "TBpack`Private`hoppingintegrals", "]"}], 
+                    "\[Equal]", 
+                    RowBox[{
+                    "Length", "[", "TBpack`Private`overlappingintegrals", 
+                    "]"}], "\[LessEqual]", 
+                    RowBox[{
+                    "Length", "[", "TBpack`Private`nnlengthlist", "]"}]}]}], 
+                    ",", 
+                    RowBox[{"Throw", "[", 
+                    RowBox[{"Message", "[", 
+                    RowBox[{
+                    StyleBox[
+                    RowBox[{"Hamiltonian4TBpack", "::", "inconsarg"}], 
+                    "MessageName"], ",", "TBpack`Private`hoppingintegrals", 
+                    ",", "TBpack`Private`overlappingintegrals", ",", 
+                    "TBpack`Private`nnlengthlist"}], "]"}], "]"}]}], "]"}], 
+                    ";", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`U", "[", 
+                    RowBox[{"TBpack`Private`r_", ",", "TBpack`Private`e_"}], 
+                    "]"}], ":=", 
+                    RowBox[{"-", 
+                    RowBox[{"TBpack`Private`r", ".", "TBpack`Private`e"}]}]}],
+                     ";", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`conjugate", "[", "TBpack`Private`expr_", 
+                    "]"}], ":=", 
+                    RowBox[{"TBpack`Private`expr", "/.", "\[VeryThinSpace]", 
+                    RowBox[{
+                    RowBox[{"Complex", "[", 
+                    RowBox[{"TBpack`Private`x_", ",", "TBpack`Private`y_"}], 
+                    "]"}], "\[RuleDelayed]", 
+                    RowBox[{"TBpack`Private`x", "-", 
+                    RowBox[{
+                    "\[ImaginaryI]", " ", "TBpack`Private`y"}]}]}]}]}], ";", 
+                    RowBox[{
+                    "TBpack`Private`Tvec", "=", 
+                    "TBpack`Private`translationvectors"}], ";", 
+                    RowBox[{"TBpack`Private`len", "=", 
+                    RowBox[{
+                    RowBox[{
+                    "Dimensions", "[", "TBpack`Private`unitcell", "]"}], 
+                    "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+                    ";", 
+                    RowBox[{"TBpack`Private`aunitcells", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"Switch", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Dimensions", "[", "TBpack`Private`Tvec", "]"}], 
+                    "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                    ",", "\[IndentingNewLine]", "1", ",", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"#1", "+", 
+                    RowBox[{"TBpack`Private`i", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "1"}], 
+                    "\[RightDoubleBracket]"}]}]}], "&"}], ")"}], "/@", 
+                    RowBox[{
+                    "TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`o", "\[RightDoubleBracket]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`i", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+                    "\[IndentingNewLine]", "2", ",", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"#1", "+", 
+                    RowBox[{"TBpack`Private`i", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "1"}], 
+                    "\[RightDoubleBracket]"}]}], "+", 
+                    RowBox[{"TBpack`Private`j", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "2"}], 
+                    "\[RightDoubleBracket]"}]}]}], "&"}], ")"}], "/@", 
+                    RowBox[{
+                    "TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`o", "\[RightDoubleBracket]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`i", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`j", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+                    "1"}], "]"}], ",", "\[IndentingNewLine]", "3", ",", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"#1", "+", 
+                    RowBox[{"TBpack`Private`i", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "1"}], 
+                    "\[RightDoubleBracket]"}]}], "+", 
+                    RowBox[{"TBpack`Private`j", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "2"}], 
+                    "\[RightDoubleBracket]"}]}], "+", 
+                    RowBox[{"TBpack`Private`k", " ", 
+                    RowBox[{"TBpack`Private`Tvec", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`o", ",", "3"}], 
+                    "\[RightDoubleBracket]"}]}]}], "&"}], ")"}], "/@", 
+                    RowBox[{
+                    "TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`o", "\[RightDoubleBracket]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`i", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`j", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`k", ",", 
+                    RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+                    "2"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`o", ",", "1", ",", "2"}], "}"}]}],
+                     "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`aplist", "=", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`aunitcells", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], ",", "1"}], "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`cnlist", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"TBpack`Private`counter", "=", "0"}], ";", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"TBpack`Private`v", "=", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "TBpack`Private`i"}], 
+                    "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{
+                    "TBpack`Private`aplist", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`j", "\[RightDoubleBracket]"}]}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{
+                    SqrtBox[
+                    RowBox[{"TBpack`Private`v", ".", "TBpack`Private`v"}]], 
+                    "-", 
+                    RowBox[{
+                    "TBpack`Private`nnlengthlist", "\[LeftDoubleBracket]", 
+                    "2", "\[RightDoubleBracket]"}]}], "]"}], "<", 
+                    "TBpack`Private`\[Delta]"}], ",", 
+                    RowBox[{"TBpack`Private`counter", "++"}]}], "]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`j", ",", "1", ",", 
+                    RowBox[{"Length", "[", "TBpack`Private`aplist", "]"}]}], 
+                    "}"}]}], "]"}], ";", "TBpack`Private`counter"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "TBpack`Private`i", ",", "1", ",", "TBpack`Private`len"}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`H", "=", 
+                    RowBox[{"ConstantArray", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`len", ",", "TBpack`Private`len"}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`S", "=", 
+                    RowBox[{"ConstantArray", "[", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`len", ",", "TBpack`Private`len"}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"TBpack`Private`hij", "=", "0"}], ";", 
+                    RowBox[{"TBpack`Private`sij", "=", "0"}], ";", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"TBpack`Private`r1", "=", 
+                    RowBox[{"TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    RowBox[{"1", ",", "TBpack`Private`i"}], 
+                    "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`r2", "=", 
+                    RowBox[{
+                    "TBpack`Private`aunitcells", "\[LeftDoubleBracket]", 
+                    RowBox[{
+                    "1", ",", "TBpack`Private`c", ",", "TBpack`Private`j"}], 
+                    "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`r12", "=", 
+                    RowBox[{"TBpack`Private`r1", "-", "TBpack`Private`r2"}]}],
+                     ";", 
+                    RowBox[{"Do", "[", 
+                    RowBox[{
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`nnlengthlist", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`l", "\[RightDoubleBracket]"}], "-", 
+                    SqrtBox[
+                    RowBox[{
+                    "TBpack`Private`r12", ".", "TBpack`Private`r12"}]]}], 
+                    "]"}], "<", "TBpack`Private`\[Delta]"}], ",", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`r1", "=", 
+                    RowBox[{"TBpack`Private`unitcell", "\[LeftDoubleBracket]", 
+                    RowBox[{"2", ",", "TBpack`Private`i"}], 
+                    "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`r2", "=", 
+                    RowBox[{
+                    "TBpack`Private`aunitcells", "\[LeftDoubleBracket]", 
+                    RowBox[{
+                    "2", ",", "TBpack`Private`c", ",", "TBpack`Private`j"}], 
+                    "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`t", "=", 
+                    RowBox[{
+                    "TBpack`Private`hoppingintegrals", "\[LeftDoubleBracket]",
+                     "TBpack`Private`l", "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`s", "=", 
+                    RowBox[{
+                    "TBpack`Private`overlappingintegrals", 
+                    "\[LeftDoubleBracket]", "TBpack`Private`l", 
+                    "\[RightDoubleBracket]"}]}], ";", 
+                    RowBox[{"TBpack`Private`r12", "=", 
+                    RowBox[{"TBpack`Private`r1", "-", "TBpack`Private`r2"}]}],
+                     ";", 
+                    RowBox[{"TBpack`Private`bondlength", "=", 
+                    SqrtBox[
+                    RowBox[{
+                    "TBpack`Private`r12", ".", "TBpack`Private`r12"}]]}], ";", 
+                    RowBox[{"TBpack`Private`\[CurlyEpsilon]", "=", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`l", "\[Equal]", "1"}], ",", "0", 
+                    ",", 
+                    FractionBox[
+                    RowBox[{"TBpack`Private`bondlength", "-", 
+                    RowBox[{
+                    "TBpack`Private`nnlengthlist", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`l", "\[RightDoubleBracket]"}]}], 
+                    RowBox[{
+                    "TBpack`Private`nnlengthlist", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`l", "\[RightDoubleBracket]"}]]}], "]"}]}],
+                     ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"NumberQ", "[", "TBpack`Private`B", "]"}], ",", 
+                    RowBox[{
+                    "TBpack`Private`\[CurlyPhi]M", "=", "TBpack`Private`B"}], 
+                    ",", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`\[CapitalPhi]", "=", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"TBpack`Private`r2", "+", "TBpack`Private`r1"}], 
+                    ")"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], " ", 
+                    RowBox[{
+                    "TBpack`Private`B", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"TBpack`Private`r2", "-", "TBpack`Private`r1"}], 
+                    ")"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"TBpack`Private`r2", "+", "TBpack`Private`r1"}], 
+                    ")"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], " ", 
+                    RowBox[{
+                    "TBpack`Private`B", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}]}], "-", 
+                    RowBox[{
+                    FractionBox["1", "2"], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"TBpack`Private`r2", "+", "TBpack`Private`r1"}], 
+                    ")"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], " ", 
+                    RowBox[{
+                    "TBpack`Private`B", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}]}], ")"}], " ", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"TBpack`Private`r2", "-", "TBpack`Private`r1"}], 
+                    ")"}], "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}]}]}]}], ";", 
+                    RowBox[{"TBpack`Private`\[CurlyPhi]M", "=", 
+                    FractionBox[
+                    RowBox[{"\[Pi]", " ", "TBpack`Private`\[CapitalPhi]"}], 
+                    "TBpack`Private`\[CapitalPhi]0"]}], ";"}]}], "]"}], ";", 
+                    RowBox[{"TBpack`Private`\[CurlyPhi]", "=", 
+                    RowBox[{"TBpack`Private`k", ".", "TBpack`Private`r12"}]}],
+                     ";", 
+                    RowBox[{"TBpack`Private`\[Delta]t", "=", 
+                    RowBox[{"Switch", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`cnlist", "\[LeftDoubleBracket]", 
+                    "TBpack`Private`i", "\[RightDoubleBracket]"}], ",", 
+                    "\[IndentingNewLine]", "1", ",", 
+                    RowBox[{
+                    "TBpack`Private`edgecorrections", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`l", ",", "1"}], 
+                    "\[RightDoubleBracket]"}], ",", "\[IndentingNewLine]", 
+                    "2", ",", 
+                    RowBox[{
+                    "TBpack`Private`edgecorrections", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`l", ",", "2"}], 
+                    "\[RightDoubleBracket]"}], ",", "\[IndentingNewLine]", 
+                    "3", ",", "0", ",", "\[IndentingNewLine]", "_", ",", 
+                    "0"}], "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`tE", "=", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`l", "\[Equal]", "1"}], ",", 
+                    RowBox[{"TBpack`Private`U", "[", 
+                    RowBox[{
+                    "TBpack`Private`r1", ",", 
+                    "TBpack`Private`\[CapitalEpsilon]"}], "]"}], ",", "0"}], 
+                    "]"}]}], ";", 
+                    RowBox[{"TBpack`Private`hij", "=", 
+                    RowBox[{"TBpack`Private`hij", "+", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "TBpack`Private`\[Beta]"}], " ", 
+                    "TBpack`Private`\[CurlyEpsilon]"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "TBpack`Private`t", "+", "TBpack`Private`\[Delta]t", "+", 
+                    "TBpack`Private`tE"}], ")"}], " ", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{"\[ImaginaryI]", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "TBpack`Private`\[CurlyPhi]", "-", 
+                    "TBpack`Private`\[CurlyPhi]M"}], ")"}]}], "]"}]}]}]}], 
+                    ";", 
+                    RowBox[{"TBpack`Private`sij", "=", 
+                    RowBox[{"TBpack`Private`sij", "+", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "TBpack`Private`\[Beta]"}], " ", 
+                    "TBpack`Private`\[CurlyEpsilon]"}], "]"}], " ", 
+                    "TBpack`Private`s", " ", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{"\[ImaginaryI]", " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    "TBpack`Private`\[CurlyPhi]", "-", 
+                    "TBpack`Private`\[CurlyPhi]M"}], ")"}]}], "]"}]}]}]}], 
+                    ";", 
+                    RowBox[{"Break", "[", "]"}], ";"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`l", ",", "1", ",", 
+                    RowBox[{
+                    "Length", "[", "TBpack`Private`hoppingintegrals", "]"}]}],
+                     "}"}]}], "]"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`c", ",", "1", ",", 
+                    RowBox[{"Length", "[", 
+                    RowBox[{
+                    "TBpack`Private`aunitcells", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "]"}]}], "}"}]}], "]"}], ";", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`H", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`i", ",", "TBpack`Private`j"}], 
+                    "\[RightDoubleBracket]"}], "=", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`i", "\[Equal]", "TBpack`Private`j"}], ",", 
+                    FractionBox["TBpack`Private`hij", "2"], ",", 
+                    "TBpack`Private`hij"}], "]"}]}], ";", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`S", "\[LeftDoubleBracket]", 
+                    RowBox[{"TBpack`Private`i", ",", "TBpack`Private`j"}], 
+                    "\[RightDoubleBracket]"}], "=", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "TBpack`Private`i", "\[Equal]", "TBpack`Private`j"}], ",", 
+                    FractionBox["TBpack`Private`sij", "2"], ",", 
+                    "TBpack`Private`sij"}], "]"}]}], ";"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "TBpack`Private`i", ",", "1", ",", "TBpack`Private`len"}],
+                     "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"TBpack`Private`j", ",", "TBpack`Private`i", ",", 
+                    "TBpack`Private`len"}], "}"}]}], "]"}], ";", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"TBpack`Private`H", "+", 
+                    RowBox[{"TBpack`Private`conjugate", "[", 
+                    RowBox[{"Transpose", "[", "TBpack`Private`H", "]"}], 
+                    "]"}]}], ",", 
+                    RowBox[{"TBpack`Private`S", "+", 
+                    RowBox[{"TBpack`Private`conjugate", "[", 
+                    RowBox[{"Transpose", "[", "TBpack`Private`S", "]"}], 
+                    "]"}]}]}], "}"}]}]}], "]"}], "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "Protected", "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"TBpack`Hamiltonian4TBpack\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"Constructs tight-binding Hamiltonian from the \
+atomic coordinates of the unit cell, nearest-neighbour distances and hopping \
+integrals, etc.\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {3., 7.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {3., 7.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "Constructs tight-binding Hamiltonian from the atomic coordinates of the \
+unit cell, nearest-neighbour distances and hopping integrals, etc.", 
+    "Documentation" -> None, "OwnValues" -> None, "UpValues" -> None, 
+    "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, TBpack`Hamiltonian4TBpack, {TBpack`Hamiltonian4TBpack[
+         Pattern[TBpack`Private`unitcell, 
+          Blank[]], 
+         Pattern[TBpack`Private`translationvectors, 
+          Blank[]], 
+         Pattern[TBpack`Private`hoppingintegrals, 
+          Blank[]], 
+         Pattern[TBpack`Private`overlappingintegrals, 
+          Blank[]], 
+         PatternTest[
+          Pattern[TBpack`Private`nnlengthlist, 
+           Blank[]], VectorQ[#, NumericQ]& ], 
+         Pattern[TBpack`Private`\[Beta], 
+          Blank[]], 
+         Pattern[TBpack`Private`k, 
+          Blank[]], 
+         Pattern[TBpack`Private`\[CapitalEpsilon], 
+          Blank[]], 
+         Pattern[TBpack`Private`B, 
+          Blank[]], 
+         Pattern[TBpack`Private`edgecorrections, 
+          Blank[]], 
+         Pattern[TBpack`Private`gflag, 
+          Blank[]]] :> Catch[
+         Module[{
+          TBpack`Private`tf1, TBpack`Private`tf2, TBpack`Private`Tvec, 
+           TBpack`Private`len, TBpack`Private`aunitcells, 
+           TBpack`Private`cnlist, TBpack`Private`aplist, 
+           TBpack`Private`counter, TBpack`Private`v, 
+           TBpack`Private`bondvector, TBpack`Private`bondlength, 
+           TBpack`Private`\[CurlyPhi], TBpack`Private`straining, 
+           TBpack`Private`hij, TBpack`Private`sij, 
+           TBpack`Private`\[CurlyEpsilon], TBpack`Private`H, TBpack`Private`S,
+            TBpack`Private`\[Delta] = 0.021, TBpack`Private`lim, 
+           TBpack`Private`r1, TBpack`Private`r2, TBpack`Private`r12, 
+           TBpack`Private`t, TBpack`Private`\[Delta]t, TBpack`Private`tE, 
+           TBpack`Private`tSO, TBpack`Private`s, TBpack`Private`\[CapitalPhi],
+            TBpack`Private`\[CurlyPhi]M, TBpack`Private`\[CapitalPhi]0 = 
+           2.067833758 10^5, TBpack`Private`U, TBpack`Private`conjugate, 
+           TBpack`Private`arg1, TBpack`Private`arg2, 
+           TBpack`Private`inconsarg}, 
+          MessageName[TBpack`Hamiltonian4TBpack, "arg1"] = 
+           "The argument `1` should be a list of points in 3D space."; 
+          MessageName[TBpack`Hamiltonian4TBpack, "arg2"] = 
+           "The argument `1` should be a list numeric vectors of 3D space or \
+a list of lists of such vectors up to 3 ones."; 
+          MessageName[TBpack`Hamiltonian4TBpack, "inconsarg"] = 
+           "Arguments `1` , `2` must have the same lengths which is less than \
+length of `3`."; TBpack`Private`tf1 = MatchQ[#, {
+              PatternTest[
+               Pattern[TBpack`Private`arg, 
+                BlankNullSequence[]], And[
+                VectorQ[#, NumericQ], Length[#] == 3]& ]}]& ; 
+          TBpack`Private`tf2 = And[
+             MatchQ[#, {
+               PatternTest[
+                Pattern[TBpack`Private`arg, 
+                 BlankNullSequence[]], And[
+                 VectorQ[#, NumericQ], Length[#] == 3]& ]}], Length[#] <= 
+             3]& ; If[
+            Not[
+             Apply[And, 
+              Map[TBpack`Private`tf1, TBpack`Private`unitcell]]], 
+            Throw[
+             Message[
+              MessageName[TBpack`Hamiltonian4TBpack, "arg1"], 
+              TBpack`Private`unitcell]]]; If[
+            Not[
+             Apply[And, 
+              Map[TBpack`Private`tf2, TBpack`Private`translationvectors]]], 
+            Throw[
+             Message[
+              MessageName[TBpack`Hamiltonian4TBpack, "arg2"], 
+              TBpack`Private`translationvectors]]]; If[
+            Not[
+             Inequality[
+              Length[TBpack`Private`hoppingintegrals], Equal, 
+              Length[TBpack`Private`overlappingintegrals], LessEqual, 
+              Length[TBpack`Private`nnlengthlist]]], 
+            Throw[
+             Message[
+              MessageName[TBpack`Hamiltonian4TBpack, "inconsarg"], 
+              TBpack`Private`hoppingintegrals, 
+              TBpack`Private`overlappingintegrals, 
+              TBpack`Private`nnlengthlist]]]; TBpack`Private`U[
+             Pattern[TBpack`Private`r, 
+              Blank[]], 
+             Pattern[TBpack`Private`e, 
+              Blank[]]] := -Dot[TBpack`Private`r, TBpack`Private`e]; 
+          TBpack`Private`conjugate[
+             Pattern[TBpack`Private`expr, 
+              Blank[]]] := ReplaceAll[TBpack`Private`expr, Complex[
+               Pattern[TBpack`Private`x, 
+                Blank[]], 
+               Pattern[TBpack`Private`y, 
+                Blank[]]] :> TBpack`Private`x - I TBpack`Private`y]; 
+          TBpack`Private`Tvec = TBpack`Private`translationvectors; 
+          TBpack`Private`len = Part[
+             Dimensions[TBpack`Private`unitcell], 2]; 
+          TBpack`Private`aunitcells = Table[
+             Switch[
+              Part[
+               Dimensions[TBpack`Private`Tvec], 2], 1, 
+              Table[
+               
+               Map[# + TBpack`Private`i 
+                 Part[TBpack`Private`Tvec, TBpack`Private`o, 1]& , 
+                Part[TBpack`Private`unitcell, TBpack`Private`o]], {
+               TBpack`Private`i, -1, 1}], 2, 
+              Flatten[
+               Table[
+                
+                Map[# + TBpack`Private`i 
+                  Part[TBpack`Private`Tvec, TBpack`Private`o, 1] + 
+                 TBpack`Private`j 
+                  Part[TBpack`Private`Tvec, TBpack`Private`o, 2]& , 
+                 Part[TBpack`Private`unitcell, TBpack`Private`o]], {
+                TBpack`Private`i, -1, 1}, {TBpack`Private`j, -1, 1}], 1], 3, 
+              Flatten[
+               Table[
+                
+                Map[# + TBpack`Private`i 
+                  Part[TBpack`Private`Tvec, TBpack`Private`o, 1] + 
+                 TBpack`Private`j 
+                  Part[TBpack`Private`Tvec, TBpack`Private`o, 2] + 
+                 TBpack`Private`k 
+                  Part[TBpack`Private`Tvec, TBpack`Private`o, 3]& , 
+                 Part[TBpack`Private`unitcell, TBpack`Private`o]], {
+                TBpack`Private`i, -1, 1}, {TBpack`Private`j, -1, 1}, {
+                TBpack`Private`k, -1, 1}], 2]], {TBpack`Private`o, 1, 2}]; 
+          TBpack`Private`aplist = Flatten[
+             Part[TBpack`Private`aunitcells, 1], 1]; 
+          TBpack`Private`cnlist = 
+           Table[TBpack`Private`counter = 0; 
+             Do[TBpack`Private`v = 
+                Part[TBpack`Private`unitcell, 1, TBpack`Private`i] - Part[
+                 TBpack`Private`aplist, TBpack`Private`j]; If[Abs[Sqrt[
+                    Dot[TBpack`Private`v, TBpack`Private`v]] - Part[
+                   TBpack`Private`nnlengthlist, 2]] < TBpack`Private`\[Delta], 
+                 Increment[TBpack`Private`counter]], {TBpack`Private`j, 1, 
+                Length[TBpack`Private`aplist]}]; TBpack`Private`counter, {
+             TBpack`Private`i, 1, TBpack`Private`len}]; 
+          TBpack`Private`H = 
+           ConstantArray[0, {TBpack`Private`len, TBpack`Private`len}]; 
+          TBpack`Private`S = 
+           ConstantArray[0, {TBpack`Private`len, TBpack`Private`len}]; 
+          Do[TBpack`Private`hij = 0; TBpack`Private`sij = 0; 
+            Do[TBpack`Private`r1 = 
+               Part[TBpack`Private`unitcell, 1, TBpack`Private`i]; 
+              TBpack`Private`r2 = 
+               Part[TBpack`Private`aunitcells, 1, TBpack`Private`c, 
+                 TBpack`Private`j]; 
+              TBpack`Private`r12 = TBpack`Private`r1 - TBpack`Private`r2; Do[
+                If[
+                Abs[Part[TBpack`Private`nnlengthlist, TBpack`Private`l] - Sqrt[
+                    Dot[TBpack`Private`r12, TBpack`Private`r12]]] < 
+                 TBpack`Private`\[Delta], 
+                 TBpack`Private`r1 = 
+                  Part[TBpack`Private`unitcell, 2, TBpack`Private`i]; 
+                 TBpack`Private`r2 = 
+                  Part[TBpack`Private`aunitcells, 2, TBpack`Private`c, 
+                    TBpack`Private`j]; 
+                 TBpack`Private`t = 
+                  Part[TBpack`Private`hoppingintegrals, TBpack`Private`l]; 
+                 TBpack`Private`s = 
+                  Part[TBpack`Private`overlappingintegrals, TBpack`Private`l]; 
+                 TBpack`Private`r12 = TBpack`Private`r1 - TBpack`Private`r2; 
+                 TBpack`Private`bondlength = Sqrt[
+                    Dot[TBpack`Private`r12, TBpack`Private`r12]]; 
+                 TBpack`Private`\[CurlyEpsilon] = 
+                  If[TBpack`Private`l == 1, 
+                    0, (TBpack`Private`bondlength - Part[
+                    TBpack`Private`nnlengthlist, TBpack`Private`l])/Part[
+                    TBpack`Private`nnlengthlist, TBpack`Private`l]]; If[
+                   NumberQ[TBpack`Private`B], TBpack`Private`\[CurlyPhi]M = 
+                   TBpack`Private`B, 
+                   TBpack`Private`\[CapitalPhi] = 
+                    Part[TBpack`Private`r2 + TBpack`Private`r1, 1] 2^(-1) 
+                    Part[TBpack`Private`B, 3] 
+                    Part[TBpack`Private`r2 - TBpack`Private`r1, 2] + (
+                    Part[TBpack`Private`r2 + TBpack`Private`r1, 2] 2^(-1) 
+                    Part[TBpack`Private`B, 1] - 
+                    Part[TBpack`Private`r2 + TBpack`Private`r1, 1] 2^(-1) 
+                    Part[TBpack`Private`B, 2]) 
+                    Part[TBpack`Private`r2 - TBpack`Private`r1, 3]; 
+                   TBpack`Private`\[CurlyPhi]M = 
+                    Pi TBpack`Private`\[CapitalPhi]/
+                    TBpack`Private`\[CapitalPhi]0; Null]; 
+                 TBpack`Private`\[CurlyPhi] = 
+                  Dot[TBpack`Private`k, TBpack`Private`r12]; 
+                 TBpack`Private`\[Delta]t = Switch[
+                    Part[TBpack`Private`cnlist, TBpack`Private`i], 1, 
+                    Part[TBpack`Private`edgecorrections, TBpack`Private`l, 1],
+                     2, 
+                    Part[TBpack`Private`edgecorrections, TBpack`Private`l, 2],
+                     3, 0, 
+                    Blank[], 0]; TBpack`Private`tE = If[TBpack`Private`l == 1, 
+                    TBpack`Private`U[
+                    TBpack`Private`r1, TBpack`Private`\[CapitalEpsilon]], 0]; 
+                 TBpack`Private`hij = 
+                  TBpack`Private`hij + 
+                   Exp[-TBpack`Private`\[Beta] 
+                    TBpack`Private`\[CurlyEpsilon]] (TBpack`Private`t + 
+                    TBpack`Private`\[Delta]t + TBpack`Private`tE) 
+                    Exp[I (TBpack`Private`\[CurlyPhi] - 
+                    TBpack`Private`\[CurlyPhi]M)]; 
+                 TBpack`Private`sij = 
+                  TBpack`Private`sij + 
+                   Exp[-TBpack`Private`\[Beta] TBpack`Private`\[CurlyEpsilon]]
+                     TBpack`Private`s 
+                    Exp[I (TBpack`Private`\[CurlyPhi] - 
+                    TBpack`Private`\[CurlyPhi]M)]; Break[]; Null], {
+                TBpack`Private`l, 1, 
+                 Length[TBpack`Private`hoppingintegrals]}], {
+              TBpack`Private`c, 1, 
+               Length[
+                Part[TBpack`Private`aunitcells, 1]]}]; 
+            Part[TBpack`Private`H, TBpack`Private`i, TBpack`Private`j] = 
+             If[TBpack`Private`i == TBpack`Private`j, 1 2^(-1) 
+               TBpack`Private`hij, TBpack`Private`hij]; 
+            Part[TBpack`Private`S, TBpack`Private`i, TBpack`Private`j] = 
+             If[TBpack`Private`i == TBpack`Private`j, 1 2^(-1) 
+               TBpack`Private`sij, TBpack`Private`sij]; Null, {
+            TBpack`Private`i, 1, TBpack`Private`len}, {
+            TBpack`Private`j, TBpack`Private`i, TBpack`Private`len}]; {
+           TBpack`Private`H + TBpack`Private`conjugate[
+              Transpose[TBpack`Private`H]], TBpack`Private`S + 
+            TBpack`Private`conjugate[
+              Transpose[TBpack`Private`S]]}]]}], "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {Protected}, "FullName" -> 
+    "TBpack`Hamiltonian4TBpack"], False]]], "Output",
+ CellChangeTimes->{3.793522234359373*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"685d51d7-e438-4fef-aa46-f7989b7eba38"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"make", " ", "TBpack", " ", "functions", " ", 
+    RowBox[{"ReadProtected", "!"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"add", " ", "to", " ", "Sneg", " ", 
+    RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], " ", "to", " ", "avoid",
+     " ", "a", " ", "warning", " ", "for", " ", "symbols", " ", 
+    RowBox[{"overshading", "!"}]}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7935356747169447`*^9, 3.7935356893539653`*^9}, {
+  3.7935357872161837`*^9, 
+  3.7935358426232643`*^9}},ExpressionUUID->"cf6ea6a0-6ff1-4347-8e7b-\
+80159cc902e1"],
+
+Cell["", "Item",
+ CellChangeTimes->{
+  3.79353567156494*^9},ExpressionUUID->"b8fa0a28-cc4f-41d8-bef1-470782bcf620"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Context", "[", "Hamiltonian4TBpack", 
+  "]"}], "\[IndentingNewLine]", "$Context", "\[IndentingNewLine]", 
+ RowBox[{"Contexts", "[", "\"\<TB*\>\"", 
+  "]"}], "\[IndentingNewLine]", "$Packages"}], "Input",
+ CellChangeTimes->{{3.7935223381227055`*^9, 3.793522387003848*^9}, {
+  3.7935224520650654`*^9, 3.7935224571570797`*^9}, {3.793522544468355*^9, 
+  3.7935225608964024`*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"44bd1336-0354-4a79-97b1-17c8e4bd8136"],
+
+Cell[BoxData["\<\"TBpack`\"\>"], "Output",
+ CellChangeTimes->{{3.7935223577687626`*^9, 3.7935223878238497`*^9}, 
+   3.7935224580460835`*^9, {3.7935225492983694`*^9, 3.793522561708404*^9}},
+ CellLabel->"Out[31]=",ExpressionUUID->"c04c167d-971d-4ab5-84a3-2770587341fc"],
+
+Cell[BoxData["\<\"Global`\"\>"], "Output",
+ CellChangeTimes->{{3.7935223577687626`*^9, 3.7935223878238497`*^9}, 
+   3.7935224580460835`*^9, {3.7935225492983694`*^9, 3.793522561718404*^9}},
+ CellLabel->"Out[32]=",ExpressionUUID->"a89458d6-37cd-4f0b-9081-33520d240fb8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"TBpack`\"\>", ",", "\<\"TBpack`Private`\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.7935223577687626`*^9, 3.7935223878238497`*^9}, 
+   3.7935224580460835`*^9, {3.7935225492983694`*^9, 3.793522561758404*^9}},
+ CellLabel->"Out[33]=",ExpressionUUID->"0b4d0654-8035-47d4-8800-78972f0d4aac"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"TBpack`\"\>", ",", "\<\"CloudObject`UserManagement`\"\>", 
+   ",", "\<\"CloudObject`\"\>", ",", "\<\"MailReceiver`\"\>", 
+   ",", "\<\"GeneralUtilities`\"\>", ",", "\<\"Templating`\"\>", 
+   ",", "\<\"Forms`\"\>", ",", "\<\"Authentication`\"\>", 
+   ",", "\<\"Iconize`\"\>", ",", "\<\"UUID`\"\>", ",", "\<\"Security`\"\>", 
+   ",", "\<\"DocumentationSearch`\"\>", ",", "\<\"EntityFramework`\"\>", 
+   ",", "\<\"CURLLink`URLResponseTime`\"\>", 
+   ",", "\<\"CURLLink`Utilities`\"\>", ",", "\<\"CURLInfo`\"\>", 
+   ",", "\<\"CURLLink`Cookies`\"\>", ",", "\<\"CURLLink`HTTP`\"\>", 
+   ",", "\<\"OAuthSigning`\"\>", ",", "\<\"CURLLink`URLFetch`\"\>", 
+   ",", "\<\"CURLLink`\"\>", ",", "\<\"Macros`\"\>", 
+   ",", "\<\"DocumentationSearch`Skeletonizer`\"\>", ",", "\<\"JLink`\"\>", 
+   ",", "\<\"GetFEKernelInit`\"\>", ",", "\<\"URLUtilities`\"\>", 
+   ",", "\<\"JSONTools`\"\>", ",", "\<\"EntityFrameworkLoader`\"\>", 
+   ",", "\<\"WebAudioSearchLoader`\"\>", ",", "\<\"NeuralFunctions`\"\>", 
+   ",", "\<\"MobileMessaging`\"\>", ",", "\<\"Interpreter`\"\>", 
+   ",", "\<\"IntegratedServices`\"\>", ",", "\<\"IconizeLoader`\"\>", 
+   ",", "\<\"HTTPHandling`\"\>", ",", "\<\"ExternalEvaluate`\"\>", 
+   ",", "\<\"Cryptography`\"\>", ",", "\<\"Blockchain`\"\>", 
+   ",", "\<\"SystemTools`\"\>", ",", "\<\"SecureShellLink`\"\>", 
+   ",", "\<\"MailLinkLoader`\"\>", ",", "\<\"IMAPLinkLoader`\"\>", 
+   ",", "\<\"UnitTable`\"\>", ",", "\<\"ResourceFunctionHelpers`\"\>", 
+   ",", "\<\"NeuralNetworks`\"\>", ",", "\<\"NaturalLanguage`\"\>", 
+   ",", "\<\"CloudObjectLoader`\"\>", ",", "\<\"AlphaScannerFunctions`\"\>", 
+   ",", "\<\"ResourceLocator`\"\>", ",", "\<\"PacletManager`\"\>", 
+   ",", "\<\"PersistenceLocations`\"\>", ",", "\<\"System`\"\>", 
+   ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.7935223577687626`*^9, 3.7935223878238497`*^9}, 
+   3.7935224580460835`*^9, {3.7935225492983694`*^9, 3.793522561758404*^9}},
+ CellLabel->"Out[34]=",ExpressionUUID->"5e88db36-2b87-4225-ab4a-05778e45ba06"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+  "path2TBpack", "=", 
+   "\"\<D:\\\\Dropbox\\\\Mathematica Files\\\\Packages\\\\TBpack\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"AppendTo", "[", 
+  RowBox[{"$Path", ",", "path2TBpack"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.793519943523713*^9, 3.793519963693777*^9}, {
+  3.7935200069549026`*^9, 3.793520023705969*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"05311128-8ede-4388-9962-27cdc6f2c46e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+DocumentationIndices\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Links\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Kernel\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Autoload\"\>", 
+   ",", "\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\\
+Applications\"\>", ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Kernel\"\>", 
+   ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\ProgramData\\\\Mathematica\\\\Applications\"\>", 
+   ",", "\<\".\"\>", ",", "\<\"C:\\\\Users\\\\Vasil\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Packages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Autoload\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\Applications\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\AddOns\\\\ExtraPackages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Kernel\\\\Packages\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\Documentation\\\\English\\\\System\"\>", 
+   ",", "\<\"C:\\\\Program Files\\\\Wolfram Research\\\\Mathematica\\\\12.0\\\
+\\SystemFiles\\\\Data\\\\ICC\"\>", 
+   ",", "\<\"D:\\\\Dropbox\\\\Mathematica Files\\\\Packages\\\\TBpack\"\>", 
+   ",", "\<\"D:\\\\Dropbox\\\\Mathematica Files\\\\Packages\\\\TBpack\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.793519969663794*^9, 3.793520025114973*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"738f0882-7704-4dbf-acea-872d76de4e7a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$Packages"], "Input",
+ CellChangeTimes->{{3.793517861459836*^9, 3.7935178642708397`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"d41468bc-ed67-4642-a245-616cc0d12938"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"DocumentationSearch`\"\>", ",", "\<\"EntityFramework`\"\>", 
+   ",", "\<\"CURLLink`URLResponseTime`\"\>", 
+   ",", "\<\"CURLLink`Utilities`\"\>", ",", "\<\"CURLInfo`\"\>", 
+   ",", "\<\"CURLLink`Cookies`\"\>", ",", "\<\"CURLLink`HTTP`\"\>", 
+   ",", "\<\"OAuthSigning`\"\>", ",", "\<\"CURLLink`URLFetch`\"\>", 
+   ",", "\<\"CURLLink`\"\>", ",", "\<\"Macros`\"\>", 
+   ",", "\<\"DocumentationSearch`Skeletonizer`\"\>", ",", "\<\"JLink`\"\>", 
+   ",", "\<\"GetFEKernelInit`\"\>", ",", "\<\"URLUtilities`\"\>", 
+   ",", "\<\"JSONTools`\"\>", ",", "\<\"EntityFrameworkLoader`\"\>", 
+   ",", "\<\"WebAudioSearchLoader`\"\>", ",", "\<\"Templating`\"\>", 
+   ",", "\<\"NeuralFunctions`\"\>", ",", "\<\"MobileMessaging`\"\>", 
+   ",", "\<\"Interpreter`\"\>", ",", "\<\"IntegratedServices`\"\>", 
+   ",", "\<\"IconizeLoader`\"\>", ",", "\<\"HTTPHandling`\"\>", 
+   ",", "\<\"Forms`\"\>", ",", "\<\"ExternalEvaluate`\"\>", 
+   ",", "\<\"Cryptography`\"\>", ",", "\<\"Blockchain`\"\>", 
+   ",", "\<\"Authentication`\"\>", ",", "\<\"SystemTools`\"\>", 
+   ",", "\<\"SecureShellLink`\"\>", ",", "\<\"MailLinkLoader`\"\>", 
+   ",", "\<\"IMAPLinkLoader`\"\>", ",", "\<\"UnitTable`\"\>", 
+   ",", "\<\"ResourceFunctionHelpers`\"\>", ",", "\<\"NeuralNetworks`\"\>", 
+   ",", "\<\"NaturalLanguage`\"\>", ",", "\<\"CloudObjectLoader`\"\>", 
+   ",", "\<\"AlphaScannerFunctions`\"\>", ",", "\<\"ResourceLocator`\"\>", 
+   ",", "\<\"PacletManager`\"\>", ",", "\<\"PersistenceLocations`\"\>", 
+   ",", "\<\"System`\"\>", ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.793517865941842*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"795066ab-f580-4860-bc4f-69296abd57dc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$ContextPath"], "Input",
+ CellChangeTimes->{{3.7935194052731686`*^9, 3.7935194073741713`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"a44bd750-fe3d-4cf4-8f06-70fb17730b70"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"DocumentationSearch`\"\>", ",", "\<\"ResourceLocator`\"\>", 
+   ",", "\<\"URLUtilities`\"\>", ",", "\<\"PacletManager`\"\>", 
+   ",", "\<\"System`\"\>", ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.793519408454173*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"f8c152f1-c3cb-4f74-a0c9-f6d277d148e2"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{"MaTeX", " ", "is", " ", "in", " ", "the", " ", "following", " ", 
+   RowBox[{"folder", ":", " ", "C", ":", 
+    RowBox[{
+     RowBox[{
+     "\\", "Users", "\\", "Vasil", "\\", "AppData", "\\", "Roaming", "\\", 
+      "Mathematica", "\\", "Paclets", "\\", "Repository", "\\", "MaTeX"}], 
+     "-", 
+     RowBox[{"1.7", ".4"}]}]}]}], " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.7935303210935726`*^9, 
+  3.793530335891595*^9}},ExpressionUUID->"db62bd47-eb94-4b31-a2a8-\
+8138d1ed40fd"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "[", 
+  "\"\<C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\\Paclets\\\
+\\Repository\\\\MaTeX-1.7.4\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.7935303384335985`*^9, 3.7935303453916273`*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"d940029c-3d22-4686-90ca-d84aea657bb5"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<MaTeX`\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.793533017810124*^9, 3.7935330271661377`*^9}},
+ CellLabel->"In[37]:=",ExpressionUUID->"93565e39-5572-4ad8-9e8b-31bf64db7ca5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"MaTeX`Private`$applicationDataDirectory", \
+"\[IndentingNewLine]", 
+ RowBox[{"SystemOpen", "[", "%", "]"}]}], "Input",
+ CellChangeTimes->{{3.7935330553631783`*^9, 3.7935331173152847`*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"4613b053-c7ce-43bc-9d5b-a87e7c0aee73"],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\Vasil\\\\AppData\\\\Roaming\\\\Mathematica\\\
+\\ApplicationData\\\\MaTeX\"\>"], "Output",
+ CellChangeTimes->{
+  3.793533040064156*^9, {3.793533093935234*^9, 3.793533118576287*^9}},
+ CellLabel->"Out[40]=",ExpressionUUID->"71931996-d026-4c29-b69b-595739b8e127"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Evaluate", "[", 
+  RowBox[{"$Context", "<>", "\"\<*\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.793534060930826*^9, 3.7935340621408277`*^9}},
+ CellLabel->"In[42]:=",ExpressionUUID->"bf9415c6-6391-4932-9407-ef04d5574208"],
+
+Cell[BoxData["\<\"Global`*\"\>"], "Output",
+ CellChangeTimes->{3.7935340626718283`*^9},
+ CellLabel->"Out[42]=",ExpressionUUID->"868c4425-7623-4050-8bbe-62e4cf654a3f"]
+}, Open  ]],
+
+Cell[BoxData[""], "Code",
+ CellChangeTimes->{{3.7935326250324144`*^9, 3.793532640682437*^9}, {
+  3.793534057260803*^9, 
+  3.7935340595518064`*^9}},ExpressionUUID->"1072fa1e-ac92-486a-8da8-\
+7dfd9905db4f"]
+},
+WindowSize->{775, 873},
+WindowMargins->{{Automatic, 279}, {-98, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 179, 2, 28, "Input",ExpressionUUID->"ee6a745f-de6f-4eb0-b067-802d782b933e"],
+Cell[762, 26, 1821, 32, 280, "Output",ExpressionUUID->"c2becd9c-1731-4c4a-8095-0e9a9294b02c"]
+}, Open  ]],
+Cell[2598, 61, 316, 6, 28, "Input",ExpressionUUID->"dc1f486e-66ba-4000-bb67-da7972615bae"],
+Cell[2917, 69, 343, 6, 28, "Input",ExpressionUUID->"608658df-22fc-4935-9f9a-1b8f472f6823"],
+Cell[3263, 77, 272, 4, 28, "Input",ExpressionUUID->"39920afb-ddb7-491d-b837-902ee636b1ce"],
+Cell[CellGroupData[{
+Cell[3560, 85, 218, 2, 48, "Input",ExpressionUUID->"9cf4db57-2157-4ff8-a23c-46a5775982ee"],
+Cell[3781, 89, 443, 8, 52, "Output",ExpressionUUID->"6d669316-9a41-4f22-afeb-9fcbd33f8dd3"],
+Cell[4227, 99, 217, 3, 32, "Output",ExpressionUUID->"4172920b-32f6-4b03-b636-1ec2f7bb6bcb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4481, 107, 208, 3, 28, "Input",ExpressionUUID->"fbb307be-d4d6-4dd4-9f22-03e81666aca7"],
+Cell[4692, 112, 49911, 1035, 2268, "Output",ExpressionUUID->"685d51d7-e438-4fef-aa46-f7989b7eba38"]
+}, Open  ]],
+Cell[54618, 1150, 636, 13, 48, "Input",ExpressionUUID->"cf6ea6a0-6ff1-4347-8e7b-80159cc902e1"],
+Cell[55257, 1165, 115, 2, 31, "Item",ExpressionUUID->"b8fa0a28-cc4f-41d8-bef1-470782bcf620"],
+Cell[CellGroupData[{
+Cell[55397, 1171, 479, 8, 86, "Input",ExpressionUUID->"44bd1336-0354-4a79-97b1-17c8e4bd8136"],
+Cell[55879, 1181, 267, 3, 32, "Output",ExpressionUUID->"c04c167d-971d-4ab5-84a3-2770587341fc"],
+Cell[56149, 1186, 267, 3, 32, "Output",ExpressionUUID->"a89458d6-37cd-4f0b-9081-33520d240fb8"],
+Cell[56419, 1191, 337, 6, 32, "Output",ExpressionUUID->"0b4d0654-8035-47d4-8800-78972f0d4aac"],
+Cell[56759, 1199, 2060, 31, 223, "Output",ExpressionUUID->"5e88db36-2b87-4225-ab4a-05778e45ba06"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[58856, 1235, 447, 10, 50, "Input",ExpressionUUID->"05311128-8ede-4388-9962-27cdc6f2c46e"],
+Cell[59306, 1247, 2001, 35, 299, "Output",ExpressionUUID->"738f0882-7704-4dbf-acea-872d76de4e7a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[61344, 1287, 181, 2, 28, "Input",ExpressionUUID->"d41468bc-ed67-4642-a245-616cc0d12938"],
+Cell[61528, 1291, 1705, 26, 185, "Output",ExpressionUUID->"795066ab-f580-4860-bc4f-69296abd57dc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[63270, 1322, 186, 2, 28, "Input",ExpressionUUID->"a44bd750-fe3d-4cf4-8f06-70fb17730b70"],
+Cell[63459, 1326, 360, 6, 32, "Output",ExpressionUUID->"f8c152f1-c3cb-4f74-a0c9-f6d277d148e2"]
+}, Open  ]],
+Cell[63834, 1335, 528, 12, 48, "Input",ExpressionUUID->"db62bd47-eb94-4b31-a2a8-8138d1ed40fd"],
+Cell[64365, 1349, 321, 5, 48, "Input",ExpressionUUID->"d940029c-3d22-4686-90ca-d84aea657bb5"],
+Cell[64689, 1356, 218, 3, 28, "Input",ExpressionUUID->"93565e39-5572-4ad8-9e8b-31bf64db7ca5"],
+Cell[CellGroupData[{
+Cell[64932, 1363, 282, 4, 48, "Input",ExpressionUUID->"4613b053-c7ce-43bc-9d5b-a87e7c0aee73"],
+Cell[65217, 1369, 292, 4, 32, "Output",ExpressionUUID->"71931996-d026-4c29-b69b-595739b8e127"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65546, 1378, 247, 4, 31, "Input",ExpressionUUID->"bf9415c6-6391-4932-9407-ef04d5574208"],
+Cell[65796, 1384, 166, 2, 32, "Output",ExpressionUUID->"868c4425-7623-4050-8bbe-62e4cf654a3f"]
+}, Open  ]],
+Cell[65977, 1389, 204, 4, 50, "Code",ExpressionUUID->"1072fa1e-ac92-486a-8da8-7dfd9905db4f"]
+}
+]
+*)
+
