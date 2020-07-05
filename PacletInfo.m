@@ -1,8 +1,6 @@
-(* ::Package:: *)
-
 (* Paclet Info File *)
 
-(* created 2020/03/18 *)
+(* created 2020/03/28*)
 
 Paclet[
     Name -> "TBpack",
@@ -10,10 +8,12 @@ Paclet[
     MathematicaVersion -> "10.0+",
     Description -> "Tight-binding calculations within Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
-    URL -> "https://github.com/vasilsaroka/TBpack",
+    Thumbnail -> "Logo.png",
     Extensions -> 
         {
             {"Documentation", Language -> "English", MainPage -> "Guides/TBpack"}, 
-            {"Kernel", Context -> "TBpack`"}
+            {"Application", Context -> "TBpack`"}
         }
 ]
+
+

@@ -1,0 +1,1036 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     40487,       1028]
+NotebookOptionsPosition[     32540,        866]
+NotebookOutlinePosition[     33245,        891]
+CellTagsIndexPosition[     33166,        886]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "New in: ",
+ Cell["(1.0)", "HistoryData",
+  CellTags->"New",ExpressionUUID->"a3da3c16-592b-4404-bc34-a26d2a723157"],
+ " | Modified in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Modified",ExpressionUUID->"245b6711-f5d3-495c-9f08-2e7c4d819b10"],
+ " | Obsolete in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Obsolete",ExpressionUUID->"b7c62e65-7f51-4568-81e9-92df1cce4e25"],
+ " | Excised in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Excised",ExpressionUUID->"8cd93719-119f-425f-a64d-eb214ad68867"]
+}], "History",
+ CellChangeTimes->{{3.799859071155052*^9, 3.79985907478826*^9}},
+ CellID->1247902091,ExpressionUUID->"48f600bc-5b0e-4c62-97f6-43db428bb078"],
+
+Cell[CellGroupData[{
+
+Cell["Categorization", "CategorizationSection",
+ CellID->1122911449,ExpressionUUID->"c974ba61-73b6-485a-8586-ae1b2417b4ef"],
+
+Cell["Symbol", "Categorization",
+ CellLabel->"Entity Type",
+ CellID->686433507,ExpressionUUID->"5aa01cad-b0ac-4418-b5a1-7bdd42cba7ce"],
+
+Cell["TBpack Package", "Categorization",
+ CellLabel->"Paclet Name",
+ CellID->605800465,ExpressionUUID->"c1f41cdb-3947-4eda-aa18-f0d84d0a5b6b"],
+
+Cell["TBpack`", "Categorization",
+ CellLabel->"Context",
+ CellID->468444828,ExpressionUUID->"435a5fd1-ed5e-4733-b325-260ea6784b7c"],
+
+Cell["TBpack/ref/ElectronicStructure", "Categorization",
+ CellLabel->"URI",ExpressionUUID->"a5e3d10c-beb4-4de9-a8e7-16ab195de4ee"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "KeywordsSection",
+ CellID->477174294,ExpressionUUID->"7d72b605-b542-44e9-8872-1cf0bf373f54"],
+
+Cell["electronic structure", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.799859110509303*^9}},
+ CellID->1164421360,ExpressionUUID->"4c3a7261-8bae-4057-be09-441e0b6b295a"],
+
+Cell["energy levels", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.799859134341666*^9}},
+ CellID->156629908,ExpressionUUID->"ffe2cc54-8977-443a-a895-659cdf314cca"],
+
+Cell["energy bands", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.799859130635454*^9}},
+ CellID->940085452,ExpressionUUID->"1da3ed2b-1583-4760-bcf4-308727450cb0"],
+
+Cell["molecule", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.7998591472114024`*^9}},
+ CellID->60556800,ExpressionUUID->"466e1b65-4dc6-4d15-baf0-4e1d2badd437"],
+
+Cell["lattice", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.7998591512246323`*^9}},
+ CellID->485868386,ExpressionUUID->"7c8d4a59-351f-457a-9938-e61dc151cd28"],
+
+Cell["graphene", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.799859164220375*^9}},
+ CellID->40414371,ExpressionUUID->"d38318a3-adf4-4fe3-af35-de4058346ab0"],
+
+Cell["nanotube", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.799859167817581*^9}},
+ CellID->123891490,ExpressionUUID->"cf78c2e3-b608-4441-9051-6b693ea3c26b"],
+
+Cell["nanoribbon", "Keywords",
+ CellChangeTimes->{{3.7998590878020043`*^9, 3.7998591728408685`*^9}},
+ CellID->641372006,ExpressionUUID->"9e8fa681-326f-48ec-83bc-59a783837a74"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Syntax Templates", "TemplatesSection",
+ CellID->1872225408,ExpressionUUID->"01ba5eb9-92f8-4f8a-8739-116be6080cd0"],
+
+Cell[BoxData[""], "Template",
+ CellLabel->"Additional Function Template",
+ CellID->1562036412,ExpressionUUID->"91ad479b-19bb-47ca-bf76-bcac3769db34"],
+
+Cell[BoxData[""], "Template",
+ CellLabel->"Arguments Pattern",
+ CellID->158391909,ExpressionUUID->"17ea97ec-1269-426c-a130-21eb4d7d7461"],
+
+Cell[BoxData[""], "Template",
+ CellLabel->"Local Variables",
+ CellID->1360575930,ExpressionUUID->"90664ecf-9a59-4682-ad75-0ee0088729c2"],
+
+Cell[BoxData[""], "Template",
+ CellLabel->"Color Equal Signs",
+ CellID->793782254,ExpressionUUID->"f958307f-ffbb-459e-8919-a713420dda7a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Details", "DetailsSection",
+ CellID->307771771,ExpressionUUID->"bd282da9-499d-4445-8c18-69b1e619d23f"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Lead",
+ CellID->670882175,ExpressionUUID->"6b93eb32-2b51-447f-8fe3-b2edea3a17ed"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Developers",
+ CellID->350963985,ExpressionUUID->"3fcace82-0b5f-46c6-9241-71f269277772"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Authors",
+ CellID->8391405,ExpressionUUID->"72749f5a-9ce1-46c9-9d6a-827bf07628f9"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Feature Name",
+ CellID->3610269,ExpressionUUID->"cd8a1889-a6b8-46bc-ab9b-192bf3034b4e"],
+
+Cell["XXXX", "Details",
+ CellLabel->"QA",
+ CellID->401364205,ExpressionUUID->"dddc5db2-a5ba-46f7-baaf-846808630455"],
+
+Cell["XXXX", "Details",
+ CellLabel->"DA",
+ CellID->350204745,ExpressionUUID->"449447bd-5b1b-4ef8-a991-b005e8e5bde2"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Docs",
+ CellID->732958810,ExpressionUUID->"5ae4f2f5-54ee-48ae-bcea-cd66e19348a9"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Features Page Notes",
+ CellID->222905350,ExpressionUUID->"784ee58f-deaf-42e2-9282-f6702faac8ee"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Comments",
+ CellID->240026365,ExpressionUUID->"992cc21a-2831-475b-b906-285058bb291d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ElectronicStructure", "ObjectName",
+ CellID->1224892054,ExpressionUUID->"639e76cb-19c6-4f8d-8277-88676f982dbf"],
+
+Cell[TextData[{
+ Cell["   ", "ModInfo",ExpressionUUID->"da9f0c57-b416-4f57-a065-2ece1c5d5dd2"],
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["ElectronicStructure",
+    BaseStyle->"Link",
+    ButtonData->"paclet:TBpack/ref/ElectronicStructure"], "[", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox[
+      StyleBox["unitcell", "TI"], 
+      StyleBox["1", "TR"]], ",", 
+     SubscriptBox[
+      StyleBox["unitcell", "TI"], 
+      StyleBox["2", "TR"]]}], "}"}], "]"}]], "InlineFormula",ExpressionUUID->
+  "6ac7f9c2-e5ad-48a5-a0eb-561f4222a70f"],
+ " \[LineSeparator]calculates the energy levels for the ",
+ Cell[BoxData[
+  RowBox[{
+   StyleBox["unitcell", "TI"], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox[
+      StyleBox["unitcell", "TI"], 
+      StyleBox["1", "TR"]], ",", 
+     SubscriptBox[
+      StyleBox["unitcell", "TI"], 
+      StyleBox["2", "TR"]]}], "}"}]}]], "InlineFormula",
+  FormatType->"StandardForm",ExpressionUUID->
+  "65b4c559-f2fa-4acf-b77e-05c9117c6279"],
+ " using the ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["p", "TI"], 
+   StyleBox["z", "TI"]]], "InlineFormula",
+  FormatType->"StandardForm",ExpressionUUID->
+  "5a3bfa15-7f63-4502-9f2d-152ffbbba767"],
+ " tight-binding Hamiltonian and matrix of overlapping integrals\n",
+ Cell["      ", "ModInfo",ExpressionUUID->
+  "c259b6c9-d692-4af8-892a-00b5cfc2a7b3"],
+ Cell[BoxData[
+  RowBox[{
+   ButtonBox["ElectronicStructure",
+    BaseStyle->"Link",
+    ButtonData->"paclet:TBpack/ref/ElectronicStructure"], "[", 
+   RowBox[{
+    StyleBox["unitcell", "TI"], ",", " ", 
+    RowBox[{
+     SubscriptBox[
+      StyleBox["opt", "TI"], 
+      StyleBox["1", "TR"]], "\[Rule]", " ", 
+     SubscriptBox[
+      StyleBox["value", "TI"], 
+      StyleBox["1", "TR"]]}], ",", 
+    RowBox[{
+     SubscriptBox[
+      StyleBox["opt", "TI"], 
+      StyleBox["2", "TR"]], "\[Rule]", 
+     SubscriptBox[
+      StyleBox["value", "TI"], 
+      StyleBox["2", "TR"]]}], ",", " ", "..."}], "]"}]], "InlineFormula",
+  ExpressionUUID->"8ea4eb01-5a52-4da3-94d1-e79c40641ff9"],
+ "\[LineSeparator]calculates the energy levels for the ",
+ Cell[BoxData[
+  StyleBox["unitcell", "TI"]], "InlineFormula",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a98a6f12-c76e-47d2-909a-7e8aa25feb24"],
+ " with specified options"
+}], "Usage",
+ CellChangeTimes->{{3.7998597188280973`*^9, 3.7998597877420387`*^9}, {
+  3.7998598362918158`*^9, 3.7998598881927843`*^9}, {3.79985994528905*^9, 
+  3.7998600122758813`*^9}, {3.79986014303736*^9, 3.7998603680722313`*^9}},
+ CellID->982511436,ExpressionUUID->"35daf0f3-4cb6-4337-b5cf-7423e836ce9f"],
+
+Cell[TextData[{
+ "This function is based on ",
+ Cell[BoxData[
+  ButtonBox["Hamiltonian",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Hamiltonian"]], "InlineFormula",
+  ExpressionUUID->"61ebff2f-573c-4407-ad2e-4e6e96a3c29b"],
+ "."
+}], "Notes",
+ CellChangeTimes->{{3.799863491951907*^9, 3.7998634939520216`*^9}, {
+  3.799864220108556*^9, 3.7998642453029966`*^9}},
+ CellID->587248733,ExpressionUUID->"96c09d87-bd76-45bb-8588-b4d5f1ad5002"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["unitcell", "TI"], 
+   StyleBox["1", "TR"]]], "InlineFormula",ExpressionUUID->
+  "da9d910d-5a8d-4668-bf6d-6d97136b90e9"],
+ " is a list of ",
+ Cell[BoxData[
+  RowBox[{"{", 
+   RowBox[{
+    StyleBox["x", "TI"], ",", 
+    StyleBox["y", "TI"], ",", 
+    StyleBox["z", "TI"]}], "}"}]], "InlineFormula",ExpressionUUID->
+  "aea338e7-07ec-4b30-8611-128c0e8d9a48"],
+ " coordinates of the atoms making up an ideal unit cell of the structure, \
+while ",
+ Cell[BoxData[
+  SubscriptBox[
+   StyleBox["unitcell", "TI"], 
+   StyleBox["2", "TR"]]], "InlineFormula",ExpressionUUID->
+  "67b7f3a9-79b9-4da1-a57d-6d095bd4b3bd"],
+ " is the list of atom coordinates for the unit cell with relaxed geometry. \
+If geometry relaxation is not used both lists must be identical."
+}], "Notes",
+ CellChangeTimes->{{3.799863491951907*^9, 3.7998634939520216`*^9}},
+ CellID->230967638,ExpressionUUID->"61846ee3-088d-4e04-bb8f-a6490048a85b"],
+
+Cell["The following options can be used:", "Notes",
+ CellChangeTimes->{3.7998614674981155`*^9},
+ CellID->1067943069,ExpressionUUID->"5fda1e84-22f0-46d8-9ad6-e3442e654784"],
+
+Cell[BoxData[GridBox[{
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "73a94769-4815-44e7-8a4c-6592d38d36c7"], 
+    ButtonBox["TranslationVectors",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/TranslationVectors"], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", " ", 
+      RowBox[{"{", "}"}]}], "}"}], Cell[TextData[Cell[BoxData[Cell["\<\
+lists of translation vectors of ideal and relaxed unit cells in \[Angstrom]\
+\>", "TableText",ExpressionUUID->"b8b968a6-759c-4464-8b91-1e48e185ff2e"]],
+     CellChangeTimes->{{3.7962852536245995`*^9, 3.7962852608740144`*^9}, {
+       3.796285310342844*^9, 3.796285364070917*^9}, {3.796285432753845*^9, 
+       3.7962855714927807`*^9}, {3.7962858488226433`*^9, 
+       3.79628585802617*^9}, {3.79628593758572*^9, 3.79628593758572*^9}, {
+       3.796286541554265*^9, 3.796286542703331*^9}, {3.7962867711343966`*^9, 
+       3.796286771247403*^9}, {3.7962868726632037`*^9, 
+       3.7962868762774105`*^9}, 3.796843926740246*^9, {3.7969161742904477`*^9,
+        3.7969162451394997`*^9}, {3.7969162763382845`*^9, 
+       3.7969162763382845`*^9}},ExpressionUUID->
+     "a34a2f43-727c-4741-a050-72f7e26c6a23"]], "TableText",ExpressionUUID->
+     "91b714a3-79ef-4033-b282-4542adf3129c"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "c382afba-e3f5-4588-a4f3-72109a565ca3"], 
+    ButtonBox["HoppingIntegrals",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/HoppingIntegrals"], 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "3.12", ",", " ", "0", ",", " ", "0"}], "}"}], 
+    Cell[TextData[{
+     "hopping integrals in eV for graphene, see ",
+     ButtonBox["B. Partoens and F. M. Peeters, ",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://doi.org/10.1103/PhysRevB.74.075404"], None}],
+     StyleBox[ButtonBox["Phys. Rev. B",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://doi.org/10.1103/PhysRevB.74.075404"], None}],
+      FontSlant->"Italic"],
+     ButtonBox[" ",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://doi.org/10.1103/PhysRevB.74.075404"], None}],
+     StyleBox[ButtonBox["74",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://doi.org/10.1103/PhysRevB.74.075404"], None}],
+      FontWeight->"Bold"],
+     ButtonBox[", 075404 (2006)",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://doi.org/10.1103/PhysRevB.74.075404"], None}]
+    }], "TableText",ExpressionUUID->"cb730875-46fc-44cc-82c1-075d6828afb1"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "8b9fc2f2-3a48-4fa0-878e-6a250bdac9c1"], 
+    ButtonBox["OverlappingIntegrals",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/OverlappingIntegrals"], 
+    RowBox[{"{", 
+     RowBox[{"1", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], Cell[
+    "wavefunction overlapping integrals", "TableText",ExpressionUUID->
+     "76264d7a-42e9-4b3e-8e49-c82f769d2583"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "8a353992-9e29-4b95-9548-2742aaab8ffb"], 
+    ButtonBox["HoppingDistances",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/HoppingDistances"], 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "1.42", ",", " ", "2.46", ",", " ", "2.84"}], 
+     "}"}], Cell[
+    "hopping distances in \[Angstrom] in 2D hexagonal lattice of graphene", 
+     "TableText",ExpressionUUID->"3ce5a6b5-2c0e-4878-9f82-ecc28d86b1b0"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "8932dbdf-1376-4a71-8335-af856f9380d9"], 
+    ButtonBox["StrainExponent",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/StrainExponent"], "3", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       StyleBox["\[Beta]", "TR"], " "}]], "InlineFormula",ExpressionUUID->
+      "8ecb5ed9-caf9-4696-93d7-a6f2959a5499"],
+     "in ",
+     Cell[BoxData[
+      RowBox[{
+       ButtonBox["Exp",
+        BaseStyle->"Link"], "[", 
+       RowBox[{
+        RowBox[{"-", 
+         StyleBox["\[Beta]", "TR"]}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           StyleBox["l", "TI"], "-", 
+           SubscriptBox[
+            StyleBox["l", "TI"], 
+            StyleBox["0", "TR"]]}], ")"}], "/", 
+         SubscriptBox[
+          StyleBox["l", "TI"], 
+          StyleBox["0", "TR"]]}]}], "]"}]], "InlineFormula",ExpressionUUID->
+      "7a2d4a3f-8b78-4b1a-afc7-1ba79c83247b"],
+     " in front of the  hopping integrals"
+    }], "TableText",ExpressionUUID->"e76b4415-88ba-4582-b3cc-762ec73819a8"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "23c274e0-ec55-49dd-9fc1-c2c73f41927e"], 
+    ButtonBox["Kpoint",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/Kpoint"], 
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], "}"}], Cell[
+    TextData[Cell[BoxData[Cell[TextData[{
+      "list of ",
+      Cell[BoxData[
+       StyleBox["k", "TI"]], "InlineFormula",ExpressionUUID->
+       "233193a3-836f-49fa-9cf6-34e451a95861"],
+      "-points Cartesian components in 1/\[Angstrom]"
+     }], "TableText",ExpressionUUID->"0bd8f0ca-4a89-4e1d-adbe-06ffe65f78c6"]],
+     CellChangeTimes->{{3.7962852536245995`*^9, 3.7962852608740144`*^9}, {
+       3.796285310342844*^9, 3.796285364070917*^9}, {3.796285432753845*^9, 
+       3.7962855714927807`*^9}, {3.7962858488226433`*^9, 
+       3.79628585802617*^9}, {3.79628593758572*^9, 3.79628593758572*^9}, {
+       3.796286541554265*^9, 3.796286542703331*^9}, {3.7962867711343966`*^9, 
+       3.796286771247403*^9}, {3.7962868726632037`*^9, 
+       3.7962868762774105`*^9}, 3.796843926740246*^9, {3.7969161742904477`*^9,
+        3.7969162451394997`*^9}, {3.7969162763382845`*^9, 
+       3.7969162763382845`*^9}, {3.7998623750750256`*^9, 
+       3.7998623838645287`*^9}},ExpressionUUID->
+     "1d3591cf-99e0-42d6-b076-e7116cbbe5bc"]], "TableText",ExpressionUUID->
+     "edb31d53-c27b-407a-b050-3ba0e0bd2855"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "ce8c83d7-3b91-4ee2-869e-839caa13aba8"], 
+    ButtonBox["Efield",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/Efield"], 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], Cell["\<\
+Cartesian components of a homogeneous external electric field in V/\[Angstrom]\
+\>", "TableText",ExpressionUUID->"b4aed6e2-15d5-49a2-ab2c-4584ab3559eb"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "7f5a12ca-4284-436d-b047-9170325b0a80"], 
+    ButtonBox["Bfield",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/Bfield"], 
+    RowBox[{"{", 
+     RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}], Cell["\<\
+Cartesian components of a homogeneous external magnetic field in T\
+\>", "TableText",ExpressionUUID->"2d586df3-0890-4fef-8f88-9fdc0697615e"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "afc1296d-0e2f-445e-ba52-0d6064a5f072"], 
+    ButtonBox["EdgeCorrections",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/EdgeCorrections"], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+       "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+       "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}], 
+        ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "0", ",", " ", "0", ",", " ", "0"}], "}"}]}], 
+       "}"}]}], "}"}], Cell["\<\
+hopping integral edge corrections in eV corresponding to coordination numbers \
+1, 2 and 3 in the 2D hexagonal lattice\
+\>", "TableText",ExpressionUUID->"21f4bd23-7924-4c84-b444-883fc9976fb1"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "f9b12eee-34f2-46a3-9c58-1b390c3e5197"], 
+    ButtonBox["HoppingDistanceDelta",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/HoppingDistanceDelta"], "0.05", Cell[
+    TextData[{
+     "the largest absolute deviation in \[Angstrom] for which the hopping \
+distance is still considered as matching to the coressponding hopping \
+integral, see ",
+     ButtonBox["V. A. Saroka, K. G. Batrakov, and L. A. Chernozatonskii, ",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://rdcu.be/b3EJj"], None}],
+     StyleBox[ButtonBox["Phys. Solid State",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://rdcu.be/b3EJj"], None}],
+      FontSlant->"Italic"],
+     ButtonBox[" ",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://rdcu.be/b3EJj"], None}],
+     StyleBox[ButtonBox["56",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://rdcu.be/b3EJj"], None}],
+      FontWeight->"Bold"],
+     ButtonBox[", 2135 (2014)",
+      BaseStyle->"Hyperlink",
+      ButtonData->{
+        URL["https://rdcu.be/b3EJj"], None}]
+    }], "TableText",ExpressionUUID->"7d5541c8-91d2-4575-90b4-709c158e5c3d"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "7c512d9f-2b65-4bfe-9808-46528264835a"], 
+    ButtonBox["SuperCellSize",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/SuperCellSize"], "1", Cell[TextData[{
+     "positive integer ",
+     Cell[BoxData[
+      StyleBox["n", "TI"]], "InlineFormula",
+      FormatType->"StandardForm",ExpressionUUID->
+      "dec01969-01f4-4bc9-856f-ad2461322c5c"],
+     " setting the number of unit cells in the supercell: 0D- 1; 1D- ",
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"2", 
+        StyleBox["n", "TI"]}], "+", "1"}]], "InlineFormula",
+      FormatType->"StandardForm",ExpressionUUID->
+      "e962066e-6aa0-4ecd-8658-e627a4a50fef"],
+     "; 2D- ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", 
+          StyleBox["n", "TI"]}], "+", "1"}], ")"}], "2"]], "InlineFormula",
+      FormatType->"StandardForm",ExpressionUUID->
+      "ad33c247-9417-435c-987d-4a3b3f28f308"],
+     "; 3D- ",
+     Cell[BoxData[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", 
+          StyleBox["n", "TI"]}], "+", "1"}], ")"}], "3"]], "InlineFormula",
+      ExpressionUUID->"a700d8ba-128e-4e04-81a7-fd4307fc947c"],
+     "."
+    }], "TableText",ExpressionUUID->"8f96557c-fdab-4a78-937d-26da7818769c"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "679a426e-36f6-4c54-b834-19185b182760"], 
+    ButtonBox["EigenVectors",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/EigenVectors"], 
+    ButtonBox["False",
+     BaseStyle->"Link"], Cell[TextData[{
+     "usage of ",
+     Cell[BoxData[
+      ButtonBox["Eigenvalues",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "ad949858-8ce0-41c5-9ce7-c889451ed881"],
+     " if set to ",
+     Cell[BoxData[
+      ButtonBox["False",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "509be19d-c460-4263-9dbc-ec86f7be7476"],
+     " and ",
+     Cell[BoxData[
+      ButtonBox["Eigensystem",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "a6ad6bba-3566-46d3-be6f-3395ea37ebf4"],
+     " if set to ",
+     Cell[BoxData[
+      ButtonBox["True",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "58935eec-f46e-4bef-b794-3c13b8350fcc"]
+    }], "TableText",ExpressionUUID->"2e1f7594-9995-4ae0-9935-b2f22d478511"]},
+   {Cell["      ", "ModInfo",ExpressionUUID->
+     "41c18405-2c43-4e73-a511-b7bedb5e76c6"], 
+    ButtonBox["ParallelEvaluation",
+     BaseStyle->"Link",
+     ButtonData->"paclet:TBpack/ref/ParallelEvaluation"], 
+    ButtonBox["True",
+     BaseStyle->"Link"], Cell[TextData[{
+     "calculation of energy levels in the given list of ",
+     Cell[BoxData[
+      StyleBox["k", "TI"]], "InlineFormula",ExpressionUUID->
+      "11eded77-c568-4c26-94d4-f308f7b38c97"],
+     "-points using ",
+     Cell[BoxData[
+      ButtonBox["ParallelTable",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "f488ece4-e743-4a9c-8898-80d80e006197"],
+     " if set to ",
+     Cell[BoxData[
+      ButtonBox["True",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "1472b124-b7c6-4eb8-bad6-381729e54f84"],
+     " and using ",
+     Cell[BoxData[
+      ButtonBox["Table",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "c324558f-1d2e-49c5-97a9-171d46ea0c87"],
+     " if set to ",
+     Cell[BoxData[
+      ButtonBox["False",
+       BaseStyle->"Link"]], "InlineFormula",ExpressionUUID->
+      "3bac8836-23c4-4b3b-ae2d-176480759aa3"]
+    }], "TableText",ExpressionUUID->"cbb5f171-6e23-42d1-8e4c-6c9aa6ce127d"]}
+  }]], "3ColumnTableMod",
+ CellChangeTimes->{{3.79986195957526*^9, 3.799862328850382*^9}, {
+  3.7998623593061237`*^9, 3.7998625964496875`*^9}, {3.7998626503477707`*^9, 
+  3.7998626504757776`*^9}, {3.7998628227906337`*^9, 3.7998629173550425`*^9}, {
+  3.7998629557192364`*^9, 3.7998629581933784`*^9}, {3.7998630079572244`*^9, 
+  3.7998630129345093`*^9}, {3.7998630583321056`*^9, 3.799863304989214*^9}, {
+  3.799863531143149*^9, 3.7998635319051924`*^9}, {3.7999505742544365`*^9, 
+  3.7999506082723827`*^9}},
+ CellID->102642234,ExpressionUUID->"361a5a14-ca7f-4a34-a95f-85628c1808c9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Tutorials", "TutorialsSection",
+ CellID->250839057,ExpressionUUID->"0ab0ccb4-9b46-4dff-bdd3-1463da007e88"],
+
+Cell[TextData[ButtonBox["Electronic Properties",
+ BaseStyle->"Link",
+ ButtonData->"paclet:TBpack/tutorial/ElectronicProperties"]], "Tutorials",
+ CellChangeTimes->{{3.7998603877473574`*^9, 3.7998603935386887`*^9}, {
+  3.7998604629346576`*^9, 3.7998604631416693`*^9}},
+ CellID->341631938,ExpressionUUID->"c872502b-671d-4150-8ec6-472f9aa787c7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Demonstrations", "RelatedDemonstrationsSection",
+ CellID->1268215905,ExpressionUUID->"5879cb7a-d28f-4fa2-b33c-7e44d287bbb3"],
+
+Cell["XXXX", "RelatedDemonstrations",
+ CellID->1129518860,ExpressionUUID->"e2121eb3-05d6-4cdd-be0e-95aaa3948a41"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Links", "RelatedLinksSection",
+ CellID->1584193535,ExpressionUUID->"669c2b86-4a6d-48fd-8644-d9f7fa704dba"],
+
+Cell["XXXX", "RelatedLinks",
+ CellID->1038487239,ExpressionUUID->"3be3dc87-a15b-4dee-9deb-eaa83d3a20bd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "SeeAlsoSection",
+ CellID->1255426704,ExpressionUUID->"aeef9b8d-e459-4b10-9eda-fbc55dd1b28e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Hamiltonian",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Hamiltonian"]], "InlineFormula",
+  ExpressionUUID->"c93e4b90-43c7-4af5-a84b-7f932e2991eb"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["ElectronicBands1D",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/ElectronicBands1D"]], "InlineFormula",
+  ExpressionUUID->"de1d46f3-188b-4d38-b405-e832b07289a1"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["TranslationVectors",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/TranslationVectors"]], "InlineFormula",
+  ExpressionUUID->"5383c022-365f-46e8-8662-c606f6afedb9"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["HoppingIntegrals",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/HoppingIntegrals"]], "InlineFormula",
+  ExpressionUUID->"48303cb5-c98b-4b75-8620-bd8da0c6f86e"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["OverlappingIntegrals",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/OverlappingIntegrals"]], "InlineFormula",
+  ExpressionUUID->"f92b2f62-278c-4ef3-8c59-2b0958f3904d"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["HoppingDistances",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/HoppingDistances"]], "InlineFormula",
+  ExpressionUUID->"f038e529-8e9e-4d54-bba8-8c4b55fc36f3"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["StrainExponent",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/StrainExponent"]], "InlineFormula",
+  ExpressionUUID->"a3aa6dd5-17f1-4e22-b3ac-19c94abcad17"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Kpoint",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Kpoint"]], "InlineFormula",ExpressionUUID->
+  "c52b603e-3cdf-4ce2-9850-f7d3d2d419db"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Efield",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Efield"]], "InlineFormula",ExpressionUUID->
+  "f01aafb7-4218-4b63-b45e-a6f4ae4bdb49"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Bfield",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Bfield"]], "InlineFormula",ExpressionUUID->
+  "ebdd432b-ae64-4963-aeee-03e093ba9aeb"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["EdgeCorrections",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/EdgeCorrections"]], "InlineFormula",
+  ExpressionUUID->"2df16c60-15b2-4f9f-9de2-fc58a2161c49"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["HoppingDistanceDelta",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/HoppingDistanceDelta"]], "InlineFormula",
+  ExpressionUUID->"c78112d1-a0d9-42b8-acea-ceab19d68405"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["SuperCellSize",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/SuperCellSize"]], "InlineFormula",
+  ExpressionUUID->"494aa67d-2017-4bc7-a8ab-96b882c943f9"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Nanotube",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Nanotube"]], "InlineFormula",ExpressionUUID->
+  "160da8ed-2999-4b4c-9056-dc38e9335003"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["Nanoribbon",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/Nanoribbon"]], "InlineFormula",
+  ExpressionUUID->"5da5d447-9b93-4759-b3b2-1910fdc9df51"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["CNanoribbon",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/CNanoribbon"]], "InlineFormula",
+  ExpressionUUID->"eb4c90d7-d57b-4997-80f7-99aaf7800b0d"],
+ " \[EmptyVerySmallSquare] ",
+ Cell[BoxData[
+  ButtonBox["ZigzagShapedNanoribbon",
+   BaseStyle->"Link",
+   ButtonData->"paclet:TBpack/ref/ZigzagShapedNanoribbon"]], "InlineFormula",
+  ExpressionUUID->"a43b05be-8bae-4fd9-866d-11e46674d87c"]
+}], "SeeAlso",
+ CellChangeTimes->{{3.799860408594549*^9, 3.799860432114895*^9}, {
+   3.7998606209736967`*^9, 3.799860691539733*^9}, 3.7998607333121223`*^9, 
+   3.7998637868167725`*^9, {3.79995066609769*^9, 3.7999506712129827`*^9}},
+ CellID->929782353,ExpressionUUID->"ae2b5063-4346-4202-8555-a8705db74053"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["More About", "MoreAboutSection",
+ CellID->38303248,ExpressionUUID->"f7b9c2fc-f94b-4480-b549-514c08af89f2"],
+
+Cell[TextData[ButtonBox["TBpack",
+ BaseStyle->"Link",
+ ButtonData->"paclet:TBpack/guide/TBpack"]], "MoreAbout",
+ CellChangeTimes->{{3.7998607607166896`*^9, 3.7998607637008605`*^9}, {
+  3.7998610248207955`*^9, 3.7998610250138063`*^9}},
+ CellID->1665078683,ExpressionUUID->"7f64af20-3d34-408d-91fa-0d4f750432d7"]
+}, Open  ]],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {
+     StyleBox["Examples", "PrimaryExamplesSection"], 
+     ButtonBox[
+      RowBox[{
+       RowBox[{"More", " ", "Examples"}], " ", "\[RightTriangle]"}],
+      BaseStyle->"ExtendedExamplesLink",
+      ButtonData:>"ExtendedExamples"]}
+   }],
+  $Line = 0; Null]], "PrimaryExamplesSection",
+ CellID->880084151,ExpressionUUID->"a1548603-f3ef-48a9-841b-af997c1a63e4"],
+
+Cell[CellGroupData[{
+
+Cell["More Examples", "ExtendedExamplesSection",
+ CellTags->"ExtendedExamples",
+ CellID->1854448968,ExpressionUUID->"69609d99-0f9a-4069-a61a-993f7fd08701"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Scope", "ExampleSection",ExpressionUUID->
+   "97fb0e62-1d67-4881-96fd-c9d24b3d73a1"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->1293636265,ExpressionUUID->"4b5713e5-b97e-4fd1-a388-f043ea6bbeb1"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Generalizations & Extensions", "ExampleSection",ExpressionUUID->
+   "ba5221fc-5d84-4ca3-9e65-bd1c07ea456c"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->1020263627,ExpressionUUID->"2bc4387a-7c3b-4ae2-bf45-74a707485459"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Options", "ExampleSection",ExpressionUUID->
+   "c88af651-a22c-4fc3-8bfb-1ca0d113c8c6"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->2061341341,ExpressionUUID->"31c304e1-3ce7-4d71-b345-b03af26ef2d6"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "XXXX", "ExampleSubsection",ExpressionUUID->
+   "46be01ad-bb34-4545-baa6-88860eaaabdd"],
+  $Line = 0; Null]], "ExampleSubsection",
+ CellID->1757724783,ExpressionUUID->"6127af21-ff62-4218-8b04-1b59f787fbfc"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "XXXX", "ExampleSubsection",ExpressionUUID->
+   "cd0f808b-e2b6-46ac-b8f0-31e3d7a86f55"],
+  $Line = 0; Null]], "ExampleSubsection",
+ CellID->1295379749,ExpressionUUID->"1d2bc1a6-7fef-4c64-8e31-195594a821b8"]
+}, Open  ]],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Applications", "ExampleSection",ExpressionUUID->
+   "8e9da09f-b469-41ff-9426-04c3172db6c5"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->258228157,ExpressionUUID->"43cdba8b-0b32-405b-a2dd-3f23b8644d92"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Properties & Relations", "ExampleSection",ExpressionUUID->
+   "da3bd073-3fbd-4198-823a-25ad29e50a02"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->2123667759,ExpressionUUID->"62752f5d-4ff1-432e-975e-652106b3697a"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Possible Issues", "ExampleSection",ExpressionUUID->
+   "4bf75689-7d16-45ab-bdbd-a2af53ed9a2c"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->1305812373,ExpressionUUID->"b1d9f2cc-0f5a-4a0d-947c-5e8c5b7c9416"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Interactive Examples", "ExampleSection",ExpressionUUID->
+   "d7fc019e-7bb7-43ea-9e63-58843a523c34"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->1653164318,ExpressionUUID->"dc8a62bd-acee-4765-bc19-53baa96a786f"],
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "Neat Examples", "ExampleSection",ExpressionUUID->
+   "40392c85-907a-4ea8-adbd-c49609466279"],
+  $Line = 0; Null]], "ExampleSection",
+ CellID->589267740,ExpressionUUID->"98823c6f-0659-41a6-a97c-3dd905663f98"]
+}, Open  ]]
+},
+WindowSize->{1027, 770},
+WindowMargins->{{Automatic, 246}, {74, Automatic}},
+CellContext->"Global`",
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "FunctionPageStyles.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ExtendedExamples"->{
+  Cell[29795, 788, 155, 2, 63, "ExtendedExamplesSection",ExpressionUUID->"69609d99-0f9a-4069-a61a-993f7fd08701",
+   CellTags->"ExtendedExamples",
+   CellID->1854448968]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ExtendedExamples", 32972, 879}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 667, 15, 34, "History",ExpressionUUID->"48f600bc-5b0e-4c62-97f6-43db428bb078",
+ CellID->1247902091],
+Cell[CellGroupData[{
+Cell[1250, 39, 123, 1, 41, "CategorizationSection",ExpressionUUID->"c974ba61-73b6-485a-8586-ae1b2417b4ef",
+ CellID->1122911449],
+Cell[1376, 42, 134, 2, 45, "Categorization",ExpressionUUID->"5aa01cad-b0ac-4418-b5a1-7bdd42cba7ce",
+ CellID->686433507],
+Cell[1513, 46, 142, 2, 45, "Categorization",ExpressionUUID->"c1f41cdb-3947-4eda-aa18-f0d84d0a5b6b",
+ CellID->605800465],
+Cell[1658, 50, 131, 2, 45, "Categorization",ExpressionUUID->"435a5fd1-ed5e-4733-b325-260ea6784b7c",
+ CellID->468444828],
+Cell[1792, 54, 130, 1, 45, "Categorization",ExpressionUUID->"a5e3d10c-beb4-4de9-a8e7-16ab195de4ee"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1959, 60, 110, 1, 41, "KeywordsSection",ExpressionUUID->"7d72b605-b542-44e9-8872-1cf0bf373f54",
+ CellID->477174294],
+Cell[2072, 63, 184, 2, 26, "Keywords",ExpressionUUID->"4c3a7261-8bae-4057-be09-441e0b6b295a",
+ CellID->1164421360],
+Cell[2259, 67, 176, 2, 26, "Keywords",ExpressionUUID->"ffe2cc54-8977-443a-a895-659cdf314cca",
+ CellID->156629908],
+Cell[2438, 71, 175, 2, 26, "Keywords",ExpressionUUID->"1da3ed2b-1583-4760-bcf4-308727450cb0",
+ CellID->940085452],
+Cell[2616, 75, 172, 2, 26, "Keywords",ExpressionUUID->"466e1b65-4dc6-4d15-baf0-4e1d2badd437",
+ CellID->60556800],
+Cell[2791, 79, 172, 2, 26, "Keywords",ExpressionUUID->"7c8d4a59-351f-457a-9938-e61dc151cd28",
+ CellID->485868386],
+Cell[2966, 83, 170, 2, 26, "Keywords",ExpressionUUID->"d38318a3-adf4-4fe3-af35-de4058346ab0",
+ CellID->40414371],
+Cell[3139, 87, 171, 2, 26, "Keywords",ExpressionUUID->"cf78c2e3-b608-4441-9051-6b693ea3c26b",
+ CellID->123891490],
+Cell[3313, 91, 175, 2, 26, "Keywords",ExpressionUUID->"9e8fa681-326f-48ec-83bc-59a783837a74",
+ CellID->641372006]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3525, 98, 120, 1, 41, "TemplatesSection",ExpressionUUID->"01ba5eb9-92f8-4f8a-8739-116be6080cd0",
+ CellID->1872225408],
+Cell[3648, 101, 149, 2, 42, "Template",ExpressionUUID->"91ad479b-19bb-47ca-bf76-bcac3769db34",
+ CellID->1562036412],
+Cell[3800, 105, 137, 2, 42, "Template",ExpressionUUID->"17ea97ec-1269-426c-a130-21eb4d7d7461",
+ CellID->158391909],
+Cell[3940, 109, 136, 2, 42, "Template",ExpressionUUID->"90664ecf-9a59-4682-ad75-0ee0088729c2",
+ CellID->1360575930],
+Cell[4079, 113, 137, 2, 42, "Template",ExpressionUUID->"f958307f-ffbb-459e-8919-a713420dda7a",
+ CellID->793782254]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4253, 120, 108, 1, 41, "DetailsSection",ExpressionUUID->"bd282da9-499d-4445-8c18-69b1e619d23f",
+ CellID->307771771],
+Cell[4364, 123, 118, 2, 45, "Details",ExpressionUUID->"6b93eb32-2b51-447f-8fe3-b2edea3a17ed",
+ CellID->670882175],
+Cell[4485, 127, 124, 2, 45, "Details",ExpressionUUID->"3fcace82-0b5f-46c6-9241-71f269277772",
+ CellID->350963985],
+Cell[4612, 131, 119, 2, 45, "Details",ExpressionUUID->"72749f5a-9ce1-46c9-9d6a-827bf07628f9",
+ CellID->8391405],
+Cell[4734, 135, 124, 2, 45, "Details",ExpressionUUID->"cd8a1889-a6b8-46bc-ab9b-192bf3034b4e",
+ CellID->3610269],
+Cell[4861, 139, 116, 2, 45, "Details",ExpressionUUID->"dddc5db2-a5ba-46f7-baaf-846808630455",
+ CellID->401364205],
+Cell[4980, 143, 116, 2, 45, "Details",ExpressionUUID->"449447bd-5b1b-4ef8-a991-b005e8e5bde2",
+ CellID->350204745],
+Cell[5099, 147, 118, 2, 45, "Details",ExpressionUUID->"5ae4f2f5-54ee-48ae-bcea-cd66e19348a9",
+ CellID->732958810],
+Cell[5220, 151, 133, 2, 45, "Details",ExpressionUUID->"784ee58f-deaf-42e2-9282-f6702faac8ee",
+ CellID->222905350],
+Cell[5356, 155, 122, 2, 45, "Details",ExpressionUUID->"992cc21a-2831-475b-b906-285058bb291d",
+ CellID->240026365]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5515, 162, 117, 1, 92, "ObjectName",ExpressionUUID->"639e76cb-19c6-4f8d-8277-88676f982dbf",
+ CellID->1224892054],
+Cell[5635, 165, 2565, 72, 185, "Usage",ExpressionUUID->"35daf0f3-4cb6-4337-b5cf-7423e836ce9f",
+ CellID->982511436],
+Cell[8203, 239, 448, 11, 38, "Notes",ExpressionUUID->"96c09d87-bd76-45bb-8588-b4d5f1ad5002",
+ CellID->587248733],
+Cell[8654, 252, 975, 26, 83, "Notes",ExpressionUUID->"61846ee3-088d-4e04-bb8f-a6490048a85b",
+ CellID->230967638],
+Cell[9632, 280, 171, 2, 36, "Notes",ExpressionUUID->"5fda1e84-22f0-46d8-9ad6-e3442e654784",
+ CellID->1067943069],
+Cell[9806, 284, 13763, 328, 959, "3ColumnTableMod",ExpressionUUID->"361a5a14-ca7f-4a34-a95f-85628c1808c9",
+ CellID->102642234]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23606, 617, 112, 1, 65, "TutorialsSection",ExpressionUUID->"0ab0ccb4-9b46-4dff-bdd3-1463da007e88",
+ CellID->250839057],
+Cell[23721, 620, 341, 5, 23, "Tutorials",ExpressionUUID->"c872502b-671d-4150-8ec6-472f9aa787c7",
+ CellID->341631938]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24099, 630, 138, 1, 45, "RelatedDemonstrationsSection",ExpressionUUID->"5879cb7a-d28f-4fa2-b33c-7e44d287bbb3",
+ CellID->1268215905],
+Cell[24240, 633, 113, 1, 23, "RelatedDemonstrations",ExpressionUUID->"e2121eb3-05d6-4cdd-be0e-95aaa3948a41",
+ CellID->1129518860]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24390, 639, 120, 1, 45, "RelatedLinksSection",ExpressionUUID->"669c2b86-4a6d-48fd-8644-d9f7fa704dba",
+ CellID->1584193535],
+Cell[24513, 642, 104, 1, 23, "RelatedLinks",ExpressionUUID->"3be3dc87-a15b-4dee-9deb-eaa83d3a20bd",
+ CellID->1038487239]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24654, 648, 110, 1, 45, "SeeAlsoSection",ExpressionUUID->"aeef9b8d-e459-4b10-9eda-fbc55dd1b28e",
+ CellID->1255426704],
+Cell[24767, 651, 4115, 106, 99, "SeeAlso",ExpressionUUID->"ae2b5063-4346-4202-8555-a8705db74053",
+ CellID->929782353]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28919, 762, 112, 1, 45, "MoreAboutSection",ExpressionUUID->"f7b9c2fc-f94b-4480-b549-514c08af89f2",
+ CellID->38303248],
+Cell[29034, 765, 310, 5, 23, "MoreAbout",ExpressionUUID->"7f64af20-3d34-408d-91fa-0d4f750432d7",
+ CellID->1665078683]
+}, Open  ]],
+Cell[29359, 773, 411, 11, 102, "PrimaryExamplesSection",ExpressionUUID->"a1548603-f3ef-48a9-841b-af997c1a63e4",
+ CellID->880084151],
+Cell[CellGroupData[{
+Cell[29795, 788, 155, 2, 63, "ExtendedExamplesSection",ExpressionUUID->"69609d99-0f9a-4069-a61a-993f7fd08701",
+ CellTags->"ExtendedExamples",
+ CellID->1854448968],
+Cell[29953, 792, 242, 5, 46, "ExampleSection",ExpressionUUID->"4b5713e5-b97e-4fd1-a388-f043ea6bbeb1",
+ CellID->1293636265],
+Cell[30198, 799, 265, 5, 26, "ExampleSection",ExpressionUUID->"2bc4387a-7c3b-4ae2-bf45-74a707485459",
+ CellID->1020263627],
+Cell[CellGroupData[{
+Cell[30488, 808, 244, 5, 26, "ExampleSection",ExpressionUUID->"31c304e1-3ce7-4d71-b345-b03af26ef2d6",
+ CellID->2061341341],
+Cell[30735, 815, 247, 5, 32, "ExampleSubsection",ExpressionUUID->"6127af21-ff62-4218-8b04-1b59f787fbfc",
+ CellID->1757724783],
+Cell[30985, 822, 247, 5, 24, "ExampleSubsection",ExpressionUUID->"1d2bc1a6-7fef-4c64-8e31-195594a821b8",
+ CellID->1295379749]
+}, Open  ]],
+Cell[31247, 830, 248, 5, 46, "ExampleSection",ExpressionUUID->"43cdba8b-0b32-405b-a2dd-3f23b8644d92",
+ CellID->258228157],
+Cell[31498, 837, 259, 5, 26, "ExampleSection",ExpressionUUID->"62752f5d-4ff1-432e-975e-652106b3697a",
+ CellID->2123667759],
+Cell[31760, 844, 252, 5, 26, "ExampleSection",ExpressionUUID->"b1d9f2cc-0f5a-4a0d-947c-5e8c5b7c9416",
+ CellID->1305812373],
+Cell[32015, 851, 257, 5, 26, "ExampleSection",ExpressionUUID->"dc8a62bd-acee-4765-bc19-53baa96a786f",
+ CellID->1653164318],
+Cell[32275, 858, 249, 5, 26, "ExampleSection",ExpressionUUID->"98823c6f-0659-41a6-a97c-3dd905663f98",
+ CellID->589267740]
+}, Open  ]]
+}
+]
+*)
+
