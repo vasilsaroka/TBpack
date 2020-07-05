@@ -1,12 +1,12 @@
 (* Paclet Info File *)
 
-(* created 2020/03/28*)
+(* created 2020/07/05*)
 
 Paclet[
     Name -> "TBpack",
-    Version -> "0.0.1",
+    Version -> "0.1.0",
     MathematicaVersion -> "10.0+",
-    Description -> "Tight-binding calculations within Mathematica.",
+    Description -> "Tight-binding calculations in Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
     Thumbnail -> "Logo.png",
     Extensions -> 
