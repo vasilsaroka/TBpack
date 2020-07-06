@@ -30,4 +30,4 @@ Tight-binding calculations in Mathematica
  - Open the documentation center and search for "Hamiltonian" to get started.
 
 ## Supporting the project
-   TBpack is free to use and distribute and will stay so. However, since it is developed in my own time consider supporting the project to help me to explain my wife why I should spend our weekends on this :).
+   TBpack is free to use and distribute and will stay so. However, since it is developed in my own time consider supporting the project to help me to explain my wife why I should spend our weekends on this :)
