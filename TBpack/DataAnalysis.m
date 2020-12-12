@@ -17,6 +17,10 @@ AtomicStructure[\*StyleBox[\"system\",\"TI\"], ImageSize \[Rule] \*StyleBox[\"va
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], AtomColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the atom color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], BondColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the bond color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], TextColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the label text color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.";
+ReciprocalVectors::usage = "ReciprocalVectors[\*StyleBox[\"list\",\"TI\"]] returns a list of reciprical vectors for the given \*StyleBox[\"list\",\"TI\"] of the primitive translations.
+ReciprocalVectors[{\*StyleBox[\"tr\",\"TI\"] }] for a 1D lattice with the primitive translation \*StyleBox[\"tr\",\"TI\"].
+ReciprocalVectors[{\*StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"], \*StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"] }] for a 2D lattice with the primitive translations \*StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"] and \*StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"].
+ReciprocalVectors[{\*StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"], \*StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"], \*StyleBox[SubscriptBox[\"tr\",\"3\"],\"TI\"] }] for a 3D lattice with the primitive translations \*StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"], \*StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"] and \*StyleBox[SubscriptBox[\"tr\",\"3\"],\"TI\"].";
 FermiEnergy::usage = "FermiEnergy[\*StyleBox[\"bands\",\"TI\"]] estimates the intrinsic Fermi level for the \*StyleBox[\"bands\",\"TI\"] that are returned by ElectronicBands1D.";
 EnergyGap::usage = "EnergyGap[\*StyleBox[\"bands\",\"TI\"]] estimates the energy band gap for the \*StyleBox[\"bands\",\"TI\"] that are returned by ElectronicBands1D.";
 PlotElectronicBands1D::usage = "PlotElectronicBands1D[\!\(\*StyleBox[\"bands\",\"TI\"], \*StyleBox[\"fermilevel\",\"TI\"], \*StyleBox[\"knorm\",\"TI\"]\)] plots the energy bands \*StyleBox[\"bands\",\"TI\"] shifting them by \*StyleBox[\"fermilevel\",\"TI\"] and normalizing \*StyleBox[\"k\",\"TI\"]-points by \*StyleBox[\"knorm\",\"TI\"] factor.
@@ -117,6 +121,7 @@ Return[bondlist]
 SyntaxInformation[ListOfBonds] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
 
 Options[AtomicStructure] = {
+	BondLengthDelta -> 0.05,
 	NumberOfUnitCells -> 1,
 	Dimensionality -> 3,
 	AtomEnumeration -> False,
@@ -130,6 +135,7 @@ Options[AtomicStructure] = {
 (* 2D structure visualization is not included *)
 AtomicStructure[system_List, OptionsPattern[]]:=Module[
 {
+	bondlengthdelta = OptionValue[BondLengthDelta],
 	lim = OptionValue[NumberOfUnitCells],
 	dim = OptionValue[Dimensionality],
 	acolor = OptionValue[AtomColor],
@@ -170,6 +176,7 @@ unitcell = system[[1]];
 T = system[[2]];
 a0 = system[[3]];
 
+(* TODO: generalize to 2 and 3 dimensions 12/08/2020 *)
 u = Flatten[Table[(# + T (i-1))&/@unitcell,{i,lim}],1];
 
 Switch[
@@ -203,7 +210,7 @@ Switch[
 							v = #[[2]] - #[[1]];
 							nd[Sqrt[v.v]]<>" \[Angstrom]",
 							TooltipStyle -> {Background -> White }
-			](* end Tooltip *)&/@ListOfBonds[u,a0,Dimensionality->3]
+			](* end Tooltip *)&/@ListOfBonds[u, a0, Dimensionality->3, BondLengthDelta->bondlengthdelta]
 			},
 			Boxed->False,
 			Lighting-> "Neutral",
@@ -219,7 +226,7 @@ Switch[
 				v = #[[2]] - #[[1]];
 				nd[Sqrt[v.v]]<>" \[Angstrom]",
 				TooltipStyle -> {Background -> White}
-			](*end Tooltip *)&/@ListOfBonds[u, a0, Dimensionality->2],
+			](*end Tooltip *)&/@ListOfBonds[u, a0, Dimensionality->2, BondLengthDelta->bondlengthdelta],
 			Tooltip[
 				counter++;
 				Mouseover[
@@ -242,6 +249,72 @@ Switch[
 ](* end Switch *)
 ](* end Module *);
 SyntaxInformation[AtomicStructure] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
+
+
+(* Error messages *)
+ReciprocalVectors::falseargumentstructure = 
+     "The argument of the \!\(\*
+StyleBox[\"ReciprocalVectors\",\nFontSlant->\"Italic\"]\) must be a \
+list of 3-component vectors, numeric or symbolic.";
+ReciprocalVectors::badargument = "The argument of the \!\(\*
+StyleBox[\"ReciprocalVectors\",\nFontSlant->\"Italic\"]\) contains or \
+was reduced to dependent vectors.";
+ReciprocalVectors::somevaluesdroped = 
+     "One or more last unzero vector components were droped during \
+evaluation.";
+
+ReciprocalVectors[listofvectors_] := Catch[
+   Module[
+    {
+     list, len,
+     k, b, eq,
+     testfunction,
+     f
+     },
+    
+    testfunction = (MatchQ[#, 
+         List[arg__?(VectorQ[#] && Length[#] == 3 &)]] && 
+        Length[#] <= 3) &;
+    If[
+     	VectorQ[listofvectors] && Length[listofvectors] == 3 ,
+     	list = {listofvectors},
+     	list = listofvectors;
+     ];
+    
+    If[
+     	! testfunction[list],
+     	Message[ReciprocalVectors::falseargumentstructure];
+     	Throw[$Failed]
+     ];
+    
+    len = Length[list];
+    
+    f = If[
+       		! MatchQ[Take[#, len - 3], List[arg__?(# == 0 &)]],
+       		Message[ReciprocalVectors::somevaluesdroped];
+       		Drop[#, len - 3],
+       		Drop[#, len - 3]
+       	](* end If *)&;
+    list = Map[f, list];
+    
+    If[
+     	Det[list] == 0,
+     	Message[ReciprocalVectors::badargument];
+     	Throw[$Failed]
+     ];
+    
+    k = Table[Symbol["k" <> ToString[i]], {i, len}];
+    b = Permutations[Drop[{2 \[Pi], 0, 0}, len - 3]];
+    Table[
+     eq = 
+      Table[With[{x = i}, Hold[k.list[[x]] == b[[j, x]]]], {i, 1, 
+         len}] // ReleaseHold;
+     Join[k /. Flatten@Solve[eq, k], ConstantArray[0, 3 - len]](* 
+     end Join *)
+     , {j, 1, len}]
+    
+  ](* end Module *)
+](* end Catch *);
 
 
 

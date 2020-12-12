@@ -6,7 +6,7 @@
 (* :Title: TBpack *)
 (* :Author: Vasil A. Saroka <40.ovasil@gmail.com> *)
 (* :Context: TBpack` *)
-(* :Version: 0.0.1 *)
+(* :Version: 0.2.0 *)
 (* :Date: 2020-03-18 *)
 
 (* :Mathematica Version: 10.0+ *)
@@ -90,9 +90,6 @@ Options[Hamiltonian] = {
 	HoppingDistanceDelta -> 0.05,
 	SuperCellSize -> 1};
 	
-
-(* ::Subsubsection:: *)
-(* Region Title *)
 Hamiltonian[unitcell_List, OptionsPattern[]] := Catch[
 Module[
 {
@@ -133,9 +130,15 @@ Module[
 	
 	hlen,etest,
 	
+	hd,
+	hdfun,
+	hifun,
+	oifun,
+	
 	(* subfunctions *)
 	U,
 	realnumbersQ
+	
 },
 
 (*
@@ -230,8 +233,10 @@ bondvectorlist1 contains vectors to the nearest neighbors
 hdlen = Length[hoppingdistances];
 bondconfiglist = Table[
    bondvectorlist = Table[{}, {i, hdlen}];
-   Do[
-    	bondvector = aplist[[j]] - unitcell[[1, i]];
+   Do[	
+   		r2 = aplist[[j]];
+   		r1 = unitcell[[1, i]];
+    	bondvector = r2 - r1;
     	idealbondlength = Sqrt[bondvector.bondvector];
     	Do[
     		If[
@@ -239,9 +244,9 @@ bondconfiglist = Table[
 					realnumbersQ[idealbondlength,hoppingdistances[[n]]],
 					Abs[idealbondlength - hoppingdistances[[n]]] < hoppingdistancedelta,
 					(* if idealbondlength and given hoppingdistance are not a real numbers 
-					then they can be treated symbolically, so an exact comparison is attempted *)
-					hoppingdistances[[n]] === (idealbondlength/.Sqrt[x_^2] :> x) 
+						then they can be treated symbolically, so an exact comparison is attempted *)
 					(* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *)
+					hoppingdistances[[n]] === (idealbondlength/.Sqrt[x_^2] :> x)
 				]
 				, 
       			AppendTo[bondvectorlist[[n]], bondvector]
@@ -272,54 +277,131 @@ Do[
 		
 		(* Summation over nearest neighbours of various orders *)
 		Do[
+			
 			If[
-				
+				(*========= This If section makes decision if the loop should be evaluated and how the hoppping and overlapping integrals must be set ==========================*)
 				If[
 					realnumbersQ[idealbondlength,hoppingdistances[[l]]],
-					Abs[hoppingdistances[[l]] - idealbondlength] < hoppingdistancedelta,
+					If[
+						Abs[hoppingdistances[[l]] - idealbondlength] < hoppingdistancedelta,
+						t = If[ListQ[hoppingintegrals[[l]]], hoppingintegrals[[l, 1]], hoppingintegrals[[l]]];
+						s = If[ListQ[overlappingintegrals[[l]]], overlappingintegrals[[l, 1]], overlappingintegrals[[l]]];
+			
+						(* correct hopping integral due to the environmental (surrounding) effect *)
+						(* hopping integrals format
+						{
+							{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+							{t1,{t11,testfun11},{t12,testfun12}, ...},
+							{t2,{t21,testfun21},{t22,testfun22}, ...},
+							...
+						}
+						overlapping integrals format 
+						{
+							{s0,s01,s02,...}
+							{s1,s11,s12,...},
+							{s2,s21,s22,...}
+							...
+						}
+						test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+						the test functions run on ideal structure vectors r1, r2
+						*)
+						If[
+							ListQ[hoppingintegrals[[l]]],
+							hlen = Length[hoppingintegrals[[l]]];
+						
+							If[
+								hlen > 1,
+						
+								Do[
+									etest = hoppingintegrals[[l, m, 2]];
+									(*Print[bondconfiglist[[i]]];*)
+									If[
+										etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
+										(*Print["Yes"];*)							
+										t = hoppingintegrals[[l, m, 1]];
+										s = overlappingintegrals[[l,m]]
+									],
+								{m, 2, hlen}]
+							];
+						] (* end If hopping integral as a list*);
+						(* Evaluate the rest of the code in the loop? Yes*)
+						True,
+						(* Evaluate the rest of the code in the loop? No*)
+						False
+					],
 					(* if idealbondlength and given hoppingdistance are not a real numbers 
-					then they can be treated symbolically, and an exact comparison is attempted *)
-					hoppingdistances[[l]] === (idealbondlength/.Sqrt[x_^2] :> x) 
-					(* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *)
-				]
+					then they are treated symbolically, and an exact comparison is attempted *)
+					If[
+						hoppingdistances[[l]] === (idealbondlength/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *),
+						t = If[ListQ[hoppingintegrals[[l]]], hoppingintegrals[[l, 1]], hoppingintegrals[[l]]];
+						s = If[ListQ[overlappingintegrals[[l]]], overlappingintegrals[[l, 1]], overlappingintegrals[[l]]];
+			
+						(* correct hopping integral due to the environmental (surrounding) effect *)
+						(* hopping integrals format
+						{
+							{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+							{t1,{t11,testfun11},{t12,testfun12}, ...},
+							{t2,{t21,testfun21},{t22,testfun22}, ...},
+							...
+						}
+						overlapping integrals format 
+						{
+							{s0,s01,s02,...}
+							{s1,s11,s12,...},
+							{s2,s21,s22,...}
+							...
+						}
+						test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+						the test functions run on ideal structure vectors r1, r2
+						*)
+						If[
+							ListQ[hoppingintegrals[[l]]],
+							hlen = Length[hoppingintegrals[[l]]];
+						
+							If[
+								hlen > 1,
+						
+								Do[
+									etest = hoppingintegrals[[l, m, 2]];
+									(*Print[bondconfiglist[[i]]];*)
+									If[
+										etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
+										(*Print["Yes"];*)							
+										t = hoppingintegrals[[l, m, 1]];
+										s = overlappingintegrals[[l,m]]
+									],
+								{m, 2, hlen}]
+							];
+						] (* end If hopping integral as a list*);
+						(* Evaluate the rest of the code in the loop? Yes*)
+						True,
+						(* not a real number or a valid symbolic expression *)
+				
+						(* check if the hopping distance is defined via a pure function with boolean output, this allows us to address a range of hopping distances in a similar fashion;
+						for the range of hopping distances the hopping and overlapping integrals are set as pure functions too *)
+						hdfun = hoppingdistances[[l]];
+						hd = hdfun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+						If[
+							(hd === True),
+							(* hopping distance is a pure function with boolean output True *)
+							hifun = hoppingintegrals[[l]];
+							oifun = overlappingintegrals[[l]];
+							t = hifun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+							s = oifun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+							(*Print["Yes"];*)
+							(* Evaluate the rest of the code in the loop? Yes *)
+							True,
+							(* hopping distance is not a pure function with boolean output True (also not a real number or valid symbolic expression) *)
+							(* Evaluate the rest of the code in the loop? No *)
+							False
+						](* if hd True *)
+					](* If symbolic comparison successful *)
+				](* If real numbers are given for hopping distances *)
+					
+				(*========= This code section make decision if the hoppping and overlapping integrals must be used and how they are set ==========================*)
 				,
 				
-				t = If[ListQ[hoppingintegrals[[l]]], hoppingintegrals[[l, 1]], hoppingintegrals[[l]]];
-				s = If[ListQ[overlappingintegrals[[l]]], overlappingintegrals[[l, 1]], overlappingintegrals[[l]]];
-				
-				(* correct hopping integral due to the environmental (surrounding) effect *)
-				(* hopping integrals format
-					{
-						{t0,{t01,testfun01},{t02,testfun02}, ...}, 
-						{t1,{t11,testfun11},{t12,testfun12}, ...},
-						{t2,{t21,testfun21},{t22,testfun22}, ...},
-						...
-					}
-					overlapping integrals format 
-					{
-						{s0,s01,s02,...}
-						{s1,s11,s12,...},
-						{s2,s21,s22,...}
-						...
-					}
-					test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
-					the test functions run on ideal structure vectors r1, r2
-				*)
-				hlen = Length[hoppingintegrals[[l]]];
-				
-				If[
-					hlen > 1,
-				
-					Do[
-						etest = hoppingintegrals[[l, m, 2]];
-						If[
- 							etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
- 							t = hoppingintegrals[[l, m, 1]];
- 							s = overlappingintegrals[[l,m]]
- 						],
-					{m, 2, hlen}]
-				];
-
+	
 				r1 = unitcell[[2,i]];
 				r2 = supercell[[2,c,j]];				
 				r12 = r1 - r2; (* bondvector for optimized geometry *)
@@ -344,13 +426,27 @@ Do[
 
 				(* hoppingintegrals edge corrections due to the coordination number *)
 				dt = If[
-							(cnlist[[i]] == 0)||(cnlist[[j]] == 0),
-							0,
-							edgecorrections[[cnlist[[i]],cnlist[[j]],l]]
+						(cnlist[[i]] == 0)||(cnlist[[j]] == 0),
+						0,
+						edgecorrections[[cnlist[[i]],cnlist[[j]],l]]
 				]; (* end If edge correction *)
 				
-				(* electric field *)
-				tE = If[l == 1, U[r1,efield], 0];(* electrostatic on-site energy *)
+				
+				(* electrostatic on-site energy *)
+				tE = If[
+							l == 1,
+							If[
+								VectorQ[efield, NumericQ] && Length[efield] == 3,
+								(* efield is a 3-component Cartesian vector setting the electrostatic field strength *)
+								U[r1,efield],
+								(* if efield is not a 3-component Cartesian vector (i.e. electrostatic field strength) 
+								   then it is assumed to be a pure function defining in eV an electrostatic potential 
+								   in space as function of x, y and z. 
+								*)
+								efield[r1[[1]], r1[[2]], r1[[3]]]
+							],
+				 0];
+				
 								
 				hij = hij + Exp[- strain relbonddeformation] (t + dt + tE) Exp[I (sphase - mphase)];
 				sij = sij + Exp[- strain relbonddeformation] s Exp[I (sphase - mphase)];
@@ -389,11 +485,14 @@ Module[
 	bfield = OptionValue[Bfield],
 	edgecorrections = OptionValue[EdgeCorrections],
 	hoppingdistancedelta = OptionValue[HoppingDistanceDelta],
+	supercellsize = OptionValue[SuperCellSize],
 	
 	bands,m,k,
 	data,
 	vm,kx,ky,kz,v,
-	epsol,eval,evec
+	epsol,eval,evec,
+	
+	ordering
 },
 
 (* hoppingintegrals_?(VectorQ[#,NumericQ]&) 
@@ -402,11 +501,11 @@ overlappingintegrals_?(VectorQ[#,NumericQ]&)
 *)
 
 (*
-ElectronicBands4TBpack::klist="The argument must be a list of vectors three element long each.";
+ElectronicBands::klist="The argument must be a list of vectors three element long each.";
 
 tf=VectorQ[#,(ListQ[#]&&Length[#]==3&)]&;
 
-If[!tf@klist,Throw[Message[ElectronicBands4TBpack::klist,unitcell]]];
+If[!tf@klist,Throw[Message[ElectronicBands::klist,unitcell]]];
 *)
 
 (* First argument structure: unitcell={idealunitcell,optimizedunitcell};
@@ -423,7 +522,8 @@ m = Hamiltonian[unitcell,
 							Efield->efield,
 							Bfield->bfield,
 							EdgeCorrections->edgecorrections,
-							HoppingDistanceDelta->hoppingdistancedelta
+							HoppingDistanceDelta->hoppingdistancedelta,
+							SuperCellSize->supercellsize
 ];
 	
 If[
@@ -433,20 +533,22 @@ If[
 	data = If[
 				OptionValue[ParallelEvaluation],
 				ParallelTable[
-					epsol = Chop@Eigensystem[m/.k->i];
-					{eval,evec} = #[[Ordering[epsol[[1]]]]]&/@epsol;				
-					v = Chop[vm/.{kx->i[[1]],ky->i[[2]],kz->i[[3]]}];
+					epsol = Chop[Eigensystem[m/.k->i]];
+					ordering = Ordering[First[epsol]];
+					{eval,evec} = #[[ordering]]&/@epsol;
+					v = vm/.{kx->i[[1]],ky->i[[2]],kz->i[[3]]};	
 					{Append[eval,i],evec,v},
 				{i,klist},DistributedContexts->"TBpack`Private`"](* end ParallelTable *)
 				,
 				Table[
 					epsol = Chop[Eigensystem[m/.k->i]];
-					{eval,evec} = #[[Ordering[epsol[[1]]]]]&/@epsol;				
+					ordering = Ordering[First[epsol]];
+					{eval,evec} = #[[ordering]]&/@epsol;		
 					v = vm/.{kx->i[[1]],ky->i[[2]],kz->i[[3]]};
 					{Append[eval,i],evec,v},
 				{i,klist}](* end Table *)
 	](* end If ParallelEvaluation *);
-	data=Transpose[data];
+	data = Transpose[data];
 	Join[{Transpose[First@data]},Rest@data]
 	,
 	bands = If[
