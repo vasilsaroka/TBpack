@@ -8,7 +8,7 @@ Paclet[
     MathematicaVersion -> "10.0+",
     Description -> "Tight-binding calculations in Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
-    Thumbnail -> "Logo.png",
+    Icon -> "Logo.png",
     Extensions -> 
         {
             {"Documentation", Language -> "English", MainPage -> "Guides/TBpack"}, 
