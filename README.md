@@ -14,6 +14,14 @@ Tight-binding calculations in Mathematica
         PacletInstall["path2paclet"]
         
    Insert `path2paclet` via Mathematica's Insert → File Path... menu command.
+   
+   In Mathematica 12.1+ ``PacletInstall["url"]`` can be used for installation straight away:
+        
+        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v<version>/TBpack-<version>.paclet"]  
+   where `<version>` stands for the latest version of the application. For example,
+   
+       PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
+   
 
  - Evaluate ``<<TBpack` `` to load the application into the Mathematica session.
  - Test TBpack using `AtomicStructure[Nanotube[10, 10]]`.
