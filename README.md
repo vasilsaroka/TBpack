@@ -76,7 +76,9 @@ Tight-binding calculations in Mathematica
  - Test CustomTicks using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
  - Test MaTeX and CustomTicks altogether using 
      
-       Plot[Sin[x], {x, -1, 3}, Axes -> {MaTeX["x"],MaTeX["\sin(x)"]}, AxesStyle -> BlackFrame, 
+       Plot[Sin[x], {x, -1, 3}, 
+            Axes -> {MaTeX["x"],MaTeX["\sin(x)"]},
+            AxesStyle -> BlackFrame, 
             Ticks -> {
             LinTicks[-1, 3, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025], 
             LinTicks[-1, 1, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025]
