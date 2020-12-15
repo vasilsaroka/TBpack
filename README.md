@@ -14,8 +14,13 @@ Tight-binding calculations in Mathematica
         jsonreleases = Import["https://api.github.com/repos/vasilsaroka/TBpack/releases","JSON"];
         If[jsonreleases === $Failed, Return[$Failed]];
         info = "Downloading TBpack " <> First@Lookup[jsonreleases, "tag_name"];
-        If[$Notebooks,PrintTemporary@Row[{info, ProgressIndicator[Appearance -> "Percolate"]},Frame -> True, RoundingRadius -> 9], Print[info <> "..."]];
-        url = First@Lookup[First[Lookup[jsonreleases, "assets"]],"browser_download_url"];message = "TBpack is succefully installed.";
+        If[
+           $Notebooks,
+           PrintTemporary@Row[{info, ProgressIndicator[Appearance -> "Percolate"]},Frame -> True, RoundingRadius -> 9], 
+           Print[info <> "..."]
+        ];
+        url = First@Lookup[First[Lookup[jsonreleases, "assets"]],"browser_download_url"];
+        message = "TBpack is succefully installed.";
         If[
    	         $VersionNumber >= 12.1,
    	         Check[PacletInstall[url, ForceVersionInstall -> True],Return[$Failed]];
