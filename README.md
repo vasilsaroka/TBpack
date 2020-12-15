@@ -43,9 +43,9 @@ Tight-binding calculations in Mathematica
                            $Failed
                       ],
                       $Failed
-                   ](* end If *)
-                ](* end If *)
-            ](* end If  *)
+                 ](* end If *)
+              ](* end If *)
+          ](* end If  *)
         ](* end Block *)
         
    Copy-paste the above function into a Mathematica notebook cell. Evaluate the cell to make the definition of this function known to Mathematica. In the next cell type and evaluate `InstallTBpack[]`. 
