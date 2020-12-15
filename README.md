@@ -21,16 +21,16 @@ Tight-binding calculations in Mathematica
    	         Check[PacletInstall[url, ForceVersionInstall -> True],Return[$Failed]];
    	         Print[message],
    	         If[
-    		             $VersionNumber >= 11.0,
-    		             tempfile = FileNameJoin[{$TemporaryDirectory, FileNameTake[url]}];
-                 		Check[fpath = URLDownload[url, tempfile], Return[$Failed]];
-    		             If[
-                        FileExistsQ[fpath],
-     			                Check[PacletManager\`PacletInstall[fpath, "IgnoreVersion" -> True],Return[$Failed]];
-     			                DeleteFile[fpath];
-     			                Print[message],
-     			                $Failed
-     		            ],
+    		            $VersionNumber >= 11.0,
+                  tempfile = FileNameJoin[{$TemporaryDirectory, FileNameTake[url]}];
+                  Check[fpath = URLDownload[url, tempfile], Return[$Failed]];
+    		            If[
+                    FileExistsQ[fpath],
+     			            Check[PacletManager\`PacletInstall[fpath, "IgnoreVersion" -> True],Return[$Failed]];
+     			            DeleteFile[fpath];
+     			            Print[message],
+     			            $Failed
+     		         ],
     		             If[
      			                $VersionNumber >= 10.0,
      			                tempfile = FileNameJoin[{$TemporaryDirectory, FileNameTake[url]}];
@@ -69,7 +69,7 @@ Tight-binding calculations in Mathematica
  - Test TBpack using `AtomicStructure[Nanotube[10, 10]]`.
  - Test MaTeX using `MaTeX["x^2"]`.
  - Test CustomTicks using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
- - Test MaTeX and CustomTicks alltogether using 
+ - Test MaTeX and CustomTicks altogether using 
      
        Plot[Sin[x], {x, -1, 3}, AxesStyle -> BlackFrame, 
             Ticks -> {
