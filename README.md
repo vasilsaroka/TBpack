@@ -16,7 +16,7 @@ Tight-binding calculations in Mathematica
         info = "Downloading TBpack " <> First@Lookup[jsonreleases, "tag_name"];
         If[
            $Notebooks,
-           PrintTemporary@Row[{info, ProgressIndicator[Appearance -> "Percolate"]},Frame -> True, RoundingRadius -> 9], 
+           PrintTemporary@Row[{info,ProgressIndicator[Appearance -> "Percolate"]},Frame -> True,RoundingRadius -> 9], 
            Print[info <> "..."]
         ];
         url = First@Lookup[First[Lookup[jsonreleases, "assets"]],"browser_download_url"];
@@ -27,22 +27,22 @@ Tight-binding calculations in Mathematica
    	         Print[message],
    	         If[
     		   $VersionNumber >= 11.0,
-                  tempfile = FileNameJoin[{$TemporaryDirectory, FileNameTake[url]}];
-                  Check[fpath = URLDownload[url, tempfile], Return[$Failed]];
+                  tempfile = FileNameJoin[{$TemporaryDirectory,FileNameTake[url]}];
+                  Check[fpath = URLDownload[url, tempfile],Return[$Failed]];
                   If[
                       FileExistsQ[fpath],
-                      Check[PacletManager\`PacletInstall[fpath, "IgnoreVersion" -> True],Return[$Failed]];
+                      Check[PacletManager\`PacletInstall[fpath,"IgnoreVersion" -> True],Return[$Failed]];
                       DeleteFile[fpath];
                       Print[message],
                       $Failed
      		   ],
     		   If[
                       $VersionNumber >= 10.0,
-                      tempfile = FileNameJoin[{$TemporaryDirectory, FileNameTake[url]}];
-                      Check[fpath = URLSave[url, tempfile], Return[$Failed]];
+                      tempfile = FileNameJoin[{$TemporaryDirectory,FileNameTake[url]}];
+                      Check[fpath = URLSave[url,tempfile],Return[$Failed]];
                       If[
                            FileExistsQ[fpath],
-                           Check[PacletManager\`PacletInstall[fpath,"IgnoreVersion" -> True], Return[$Failed]];
+                           Check[PacletManager\`PacletInstall[fpath,"IgnoreVersion" -> True],Return[$Failed]];
                            DeleteFile[fpath];
                            Print[message],
                            $Failed
@@ -76,10 +76,10 @@ Tight-binding calculations in Mathematica
  - Test CustomTicks using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
  - Test MaTeX and CustomTicks altogether using 
      
-       Plot[Sin[x], {x, -1, 3}, AxesStyle -> BlackFrame, 
+       Plot[Sin[x], {x, -1, 3}, Axes -> {MaTeX["x"],MaTeX["\sin(x)"]}, AxesStyle -> BlackFrame, 
             Ticks -> {
-            LinTicks[-1, 3, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025, TickLabelFunction -> (MaTeX[#, FontSize -> 20] &)], 
-            LinTicks[-1, 1, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025, TickLabelFunction -> (MaTeX[#, FontSize -> 20] &)]
+            LinTicks[-1, 3, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025], 
+            LinTicks[-1, 1, 1, 5, MinorTickLength -> 0.015, MajorTickLength -> 0.025]
             }
        ]
  
