@@ -25,13 +25,12 @@ Paclet[
     URL -> "https://github.com/vasilsaroka/TBpack",
     Support -> "https://t.me/vasilsaroka",
     Icon -> "Logo_2.png",
-    UUID -> "MaTeX documentation embeded",
+    UUID -> "no MaTeX documentation embeded",
     Location -> "https://github.com/vasilsaroka/TBpack",
     Extensions -> 
         {
             {"Documentation", Language -> "English", MainPage -> "Guides/TBpack"}, 
-            {"Kernel", Context -> 
-                {"TBpack`", "MaTeX`"}
+            {"Kernel", Context -> "TBpack`"
             }
         }
 ]
