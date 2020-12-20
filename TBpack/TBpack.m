@@ -6,7 +6,7 @@
 (* :Title: TBpack *)
 (* :Author: Vasil A. Saroka <40.ovasil@gmail.com> *)
 (* :Context: TBpack` *)
-(* :Version: 0.2.0 *)
+(* :Version: 0.2.1 *)
 (* :Date: 2020-03-18 *)
 
 (* :Mathematica Version: 10.0+ *)

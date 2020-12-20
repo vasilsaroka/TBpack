@@ -1,3 +1,2 @@
-(* Wolfram Language Init File *)
-
+(* Kernel/init.m *)
 Get[ "TBpack`TBpack`"]

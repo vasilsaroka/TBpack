@@ -1,6 +1,6 @@
 (* Wolfram Language Package *)
 
-BeginPackage["TBpack`DataAnalysis`", {"TBpack`CustomTicks`", "TBpack`MaTeX`"}]
+BeginPackage["TBpack`DataAnalysis`", {"TBpack`MaTeX`","TBpack`CustomTicks`"}]
 (* Exported symbols added here with SymbolName::usage *)  
 
 (* Functions *)
