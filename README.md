@@ -7,7 +7,16 @@
 Tight-binding calculations in Mathematica
 
 ## Installation guide
+ - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack):
+ 
+   To install the latest version of the TBpack from this GitHub repo, evaluate
+   
+       ResourceFunction["InstallTBpack"][]
 
+   To find all installed versions on your PC and to uninstall chosen (all) version (s), evaluate
+   
+       ResourceFunction["InstallTBpack"][Method->"Uninstall"]
+   
  - The automated installation option for Mathematica 10.0+ is to use the following function:
         
         InstallTBpack[] := Block[{jsonreleases, info, url, message,tempfile,fpath},
