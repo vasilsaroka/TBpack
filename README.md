@@ -17,8 +17,20 @@ Tight-binding calculations in Mathematica
    
        ResourceFunction["InstallTBpack"][Method->"Uninstall"]
    
- - The automated installation option for Mathematica 10.0+ is to use the following function:
+ - The automated management of TBpack paclet in Mathematica 10.0+:
+ 
+   To install the latest version of the TBpack from this GitHub repo, evaluate
+   
+        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
+        InstallTBpack[]
         
+   To find all installed versions on your PC and to uninstall chosen (all) version (s), evaluate
+   
+        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
+        InstallTBpack[Method->"Uninstall"]
+        
+ - The automated installation option for Mathematica 10.0+:
+   
         InstallTBpack[] := Block[{jsonreleases, info, url, message,tempfile,fpath},
         jsonreleases = Import["https://api.github.com/repos/vasilsaroka/TBpack/releases","JSON"];
         If[jsonreleases === $Failed, Return[$Failed]];
@@ -74,7 +86,7 @@ Tight-binding calculations in Mathematica
  - In Mathematica 12.1+ ``PacletInstall["url"]`` can be used for the installation straight away:
         
         PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v<version>/TBpack-<version>.paclet"]  
-   where `<version>` stands for the latest version of the application. For example,
+   where `<version>` stands for any existing version of the application. For example,
    
        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
    
