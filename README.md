@@ -6,6 +6,24 @@
 # TBpack
 Tight-binding calculations in Mathematica
 
+## Trial
+   If you are not sure whether you want to install TBpack application, you can try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all core functions that are fully functional, but lacks visualization, input  and output data currating functions. 
+   
+   To get  **TBpackDemo** from Wolfram Cloud evaluate in Mathematica 10.0+:
+   
+       CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/TBpackDemo.wl"]
+       
+   **TBpackDemo** does not have documentation built-in into Wolfram Documentation Center, only user information messages can be invoked for the core fucntions. The available functions are `Hamiltonian`, `ElectronicStructure`, `ElectronicBands1D`. Try, for example,
+   
+       ?Hamiltonian
+       
+   to get informaiton on the usage of `Hamiltonian` core fucntion.
+   
+   For a flawless start, you can use our Cloud based demo examples. Download [ExamplesDemo.nb](https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/ExamplesDemo.nb) with examples and follow the instruction inside
+       
+       
+       
+
 ## Installation guide
  - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack):
  
