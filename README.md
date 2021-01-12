@@ -6,6 +6,24 @@
 # TBpack
 Tight-binding calculations in Mathematica
 
+## Trial
+   If you are not sure whether you want to install TBpack application, you can try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all core functions that are fully functional, but lacks visualization, input  and output data currating functions. 
+   
+   To get  **TBpackDemo** from Wolfram Cloud evaluate in Mathematica 10.0+:
+   
+       CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/TBpackDemo.wl"]
+       
+   **TBpackDemo** does not have documentation built-in into Wolfram Documentation Center, only user information messages can be invoked for the core fucntions. The available functions are `Hamiltonian`, `ElectronicStructure`, `ElectronicBands1D`. Try, for example,
+   
+       ?Hamiltonian
+       
+   to get informaiton on the usage of `Hamiltonian` core fucntion.
+   
+   For a flawless start, you can use our Cloud based demo examples. Download [ExamplesDemo.nb](https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/ExamplesDemo.nb) with examples and follow the instruction inside
+       
+       
+       
+
 ## Installation guide
  - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack):
  
@@ -17,8 +35,20 @@ Tight-binding calculations in Mathematica
    
        ResourceFunction["InstallTBpack"][Method->"Uninstall"]
    
- - The automated installation option for Mathematica 10.0+ is to use the following function:
+ - The automated management of TBpack paclet in Mathematica 10.0+:
+ 
+   To install the latest version of the TBpack from this GitHub repo, evaluate
+   
+        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
+        InstallTBpack[]
         
+   To find all installed versions on your PC and to uninstall chosen (all) version (s), evaluate
+   
+        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
+        InstallTBpack[Method->"Uninstall"]
+        
+ - The automated installation option for Mathematica 10.0+:
+   
         InstallTBpack[] := Block[{jsonreleases, info, url, message,tempfile,fpath},
         jsonreleases = Import["https://api.github.com/repos/vasilsaroka/TBpack/releases","JSON"];
         If[jsonreleases === $Failed, Return[$Failed]];
@@ -74,7 +104,7 @@ Tight-binding calculations in Mathematica
  - In Mathematica 12.1+ ``PacletInstall["url"]`` can be used for the installation straight away:
         
         PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v<version>/TBpack-<version>.paclet"]  
-   where `<version>` stands for the latest version of the application. For example,
+   where `<version>` stands for any existing version of the application. For example,
    
        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
    
