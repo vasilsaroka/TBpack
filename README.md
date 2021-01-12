@@ -6,10 +6,11 @@
 # TBpack
 Tight-binding calculations in Mathematica
 
-## Trial
-   If you are not sure whether you want to install TBpack application, you can try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all core functions that are fully functional, but lacks visualization, input  and output data currating functions. 
+## Hands-on Trial
+Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization, input and output data currating functions. <img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo">
+
    
-   To get  **TBpackDemo** from Wolfram Cloud evaluate in Mathematica 10.0+:
+   Get **TBpackDemo** immediately in your notebook from Wolfram Cloud by evaluating in Mathematica 10.0+:
    
        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/TBpackDemo.wl"]
        
