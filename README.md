@@ -14,13 +14,11 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
    
        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/TBpackDemo.wl"]
        
-   **TBpackDemo** does not have documentation built-in into Wolfram Documentation Center, only user information messages can be invoked for the core fucntions. The available functions are `Hamiltonian`, `ElectronicStructure`, `ElectronicBands1D`. Try, for example,
+   **TBpackDemo** does not have documentation built-in into Wolfram Documentation Center, only user information messages can be invoked for the core fucntions. The available functions are `Hamiltonian`, `ElectronicStructure`, `ElectronicBands1D`. To get informaiton on the usage of `Hamiltonian` core fucntion, try
    
        ?Hamiltonian
-       
-   to get informaiton on the usage of `Hamiltonian` core fucntion.
    
-   For a flawless start, you can use our Cloud based demo examples. Download [ExamplesDemo.nb](https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/ExamplesDemo.nb) with examples and follow the instruction inside.
+   For a flawless start, you can use our Cloud based demo examples. Download [ExamplesDemo.nb](https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/ExamplesDemo.nb) with examples and follow the instructions inside.
        
        
        
@@ -49,6 +47,8 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
         InstallTBpack[Method->"Uninstall"]
         
  - The automated installation option for Mathematica 10.0+:
+ 
+   Copy-paste the below function into a Mathematica notebook cell. Evaluate the cell to make the definition of this function known to Mathematica. In the next cell type and evaluate `InstallTBpack[]`.
    
         InstallTBpack[] := Block[{jsonreleases, info, url, message,tempfile,fpath},
         jsonreleases = Import["https://api.github.com/repos/vasilsaroka/TBpack/releases","JSON"];
@@ -91,9 +91,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
                  ](* end If *)
               ](* end If *)
           ](* end If  *)
-        ](* end Block *)
-        
-   Copy-paste the above function into a Mathematica notebook cell. Evaluate the cell to make the definition of this function known to Mathematica. In the next cell type and evaluate `InstallTBpack[]`. 
+        ](* end Block *) 
 
  - An alternative manual intallation option for Mathematica 10.0+ is the following. [Download the latest release](https://github.com/vasilsaroka/TBpack/releases), distributed as a `.paclet` file, and install it using the `PacletInstall` function in Mathematica:
 
@@ -125,11 +123,12 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
             }
        ]
  
-   Packages [MaTeX](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio  are integral parts of `TBpack`.
+   Packages [MaTeX](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio are integral parts of `TBpack`.
 
  - Open the documentation center and search for "Hamiltonian" to get started.
  
  <b>Note:</b> Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
 
 ## Supporting the project
-   TBpack is free to use and distribute and will stay so. However, since it is developed in my own time consider supporting the project to help me to explain my wife why I should spend our weekends on this :)
+   We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to take meaningful action. We have no shareholders or billionaire owner, meaning only your funding powers our work and ensures it can remain open for all. Every contribution, however big or small, makes a real difference for TBpack future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
+. 
