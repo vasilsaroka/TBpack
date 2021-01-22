@@ -7,7 +7,7 @@
 Tight-binding calculations in Mathematica
 
 ## Hands-on Trial
-Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization, input and output data currating functions. [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo">](https://paypal.me/vasilsaroka?locale.x=en_GB)
+Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization and data currating functions. [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo">](https://paypal.me/vasilsaroka?locale.x=en_GB)
 
    
    Get **TBpackDemo** immediately in your notebook from Wolfram Cloud by evaluating in Mathematica 10.0+:
@@ -130,5 +130,5 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
  <b>Note:</b> Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
 
 ## Supporting the project
-   We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no shareholders or billionaire owner, meaning only your donations powers our work and ensures it can remain open for all. Every contribution, however big or small, makes a real difference for TBpack future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
+   We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no shareholders or billionaire owner, meaning only your donations power our work and ensure it can remain open for all. Every contribution, however big or small, makes a real difference for `TBpack` future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
 . 
