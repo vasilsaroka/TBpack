@@ -2,13 +2,13 @@
 (* Created by IntelliJ IDEA http://wlplugin.halirutan.de/ *)
 
 (* :Title: MaTeX *)
-(* :Author: Szabolcs Horv\'at <szhorvat@gmail.com> *)
+(* :Author: Szabolcs Horvat <szhorvat@gmail.com> *)
 (* :Context: MaTeX` *)
-(* :Version: 1.7.4 *)
+(* :Version: 1.7.8 *)
 (* :Date: 2015-03-04 *)
 
 (* :Mathematica Version: %%mathversion%% *)
-(* :Copyright: (c) 2019 Szabolcs Horv\'at *)
+(* :Copyright: (c) 2019 Szabolcs Horvat *)
 
 
 BeginPackage["TBpack`MaTeX`"];
@@ -29,10 +29,10 @@ ClearMaTeXCache::usage = "ClearMaTeXCache[] clears MaTeX's cache.";
 `Information`$Version = "%%version%% (%%date%%)";
 `Developer`$Version = `Information`$Version;
 
-`Developer`ResetConfiguration::usage = "MaTeX`Developer`ResetConfiguration[] resets the configuration to its default value and attempts to automatically detect the location of external dependencies.";
-`Developer`WorkingDirectory::usage = "MaTeX`Developer`WorkingDirectory[] returns the directory where MaTeX creates temporary files.";
+`Developer`ResetConfiguration::usage = "TBpack`MaTeX`Developer`ResetConfiguration[] resets the configuration to its default value and attempts to automatically detect the location of external dependencies.";
+`Developer`WorkingDirectory::usage = "TBpack`MaTeX`Developer`WorkingDirectory[] returns the directory where MaTeX creates temporary files.";
 
-`Developer`Texify::usage = "MaTeX`Developer`Texify[expr] converts expr to TeX code suitable for MateX.";
+`Developer`Texify::usage = "TBpack`MaTeX`Developer`Texify[expr] converts expr to TeX code suitable for MateX.";
 
 Begin["`Private`"]; (* Begin Private Context *)
 
@@ -157,7 +157,7 @@ loadConfig[] :=
 
 
 (* Discard the existing configuration and re-run detection *)
-MaTeX`Developer`ResetConfiguration[] := resetConfiguration[]
+TBpack`MaTeX`Developer`ResetConfiguration[] := resetConfiguration[]
 resetConfiguration[] :=
     Module[{},
       $config = defaultConfig[];
@@ -216,7 +216,7 @@ checkConfig[] :=
     ];
 
     (* Verify that gs is Ghostscript and that it is working. We expect a version string as output. *)
-    If[gsOK && Not@StringMatchQ[gsver, DigitCharacter..~~"."~~DigitCharacter..],
+    If[gsOK && Not@StringMatchQ[gsver,  Repeated[DigitCharacter .. ~~ "."] ~~ DigitCharacter ..],
       Print[gs <> " is either not working or is not a command line version of Ghostscript."];
       If[$OperatingSystem === "Windows" && StringMatchQ[FileNameTake[gs], "gswin"~~DigitCharacter~~DigitCharacter~~".exe"],
         Print["On Windows, the c-suffixed command line version of Ghostscript must be used. Use gswin64c.exe or gswin32c.exe instead of gswin64.exe or gswin32.exe."]
@@ -318,7 +318,7 @@ $dirpath := $dirpath = getWorkingDir[]
 
 
 (* This is a function, not a variable, to ensure that users do not try to set it. *)
-MaTeX`Developer`WorkingDirectory[] := $dirpath
+TBpack`MaTeX`Developer`WorkingDirectory[] := $dirpath
 
 
 (* Thank you to David Carlisle and Tom Hejda for help with the LaTeX code in template.tex. *)
@@ -500,7 +500,7 @@ iMaTeX[tex:{__String}, preamble_, display_, fontsize_, strut_, ls : {lsmult_, ls
         Return[$Failed]
       ];
 
-      results = Import[pdfgsfile, "PDF"];
+      results = Import[pdfgsfile, {"PDF", "Pages"}];
       cleanup[];
       If[results === $Failed,
         Message[MaTeX::importerr];
@@ -538,10 +538,10 @@ checkForCommonErrors[str_String] :=
 
 
 (* Convert supported expression types to a string containing TeX code *)
-MaTeX`Developer`Texify[expr_String] := expr
-MaTeX`Developer`Texify[expr_StringForm] := ToString[expr] (* per user request, StringForm is treated like the string it represents; may be removed in the future; use StringTemplate instead. *)
-MaTeX`Developer`Texify[expr_TeXForm] := ToString[expr]
-MaTeX`Developer`Texify[expr_] := ToString@TeXForm[expr]
+TBpack`MaTeX`Developer`Texify[expr_String] := expr
+TBpack`MaTeX`Developer`Texify[expr_StringForm] := ToString[expr] (* per user request, StringForm is treated like the string it represents; may be removed in the future; use StringTemplate instead. *)
+TBpack`MaTeX`Developer`Texify[expr_TeXForm] := ToString[expr]
+TBpack`MaTeX`Developer`Texify[expr_] := ToString@TeXForm[expr]
 
 
 MaTeX[tex:{__String}, opt:OptionsPattern[]] :=
@@ -605,7 +605,7 @@ MaTeX[tex:{__String}, opt:OptionsPattern[]] :=
 
 MaTeX[{}, opt:OptionsPattern[]] := {} (* prevent infinite recursion *)
 
-MaTeX[tex_List, opt:OptionsPattern[]] := MaTeX[MaTeX`Developer`Texify /@ tex, opt]
+MaTeX[tex_List, opt:OptionsPattern[]] := MaTeX[TBpack`MaTeX`Developer`Texify /@ tex, opt]
 
 MaTeX[tex_, opt:OptionsPattern[]] := With[{result = MaTeX[{tex}, opt]}, If[result === $Failed, $Failed, First[result]]]
 

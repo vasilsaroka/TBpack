@@ -1,10 +1,10 @@
 (* Paclet Info File *)
 
-(* created 2020/12/19*)
+(* created 2021/02/28*)
 
 Paclet[
     Name -> "TBpack",
-    Version -> "0.2.1",
+    Version -> "0.2.3",
     MathematicaVersion -> "10.0+",
     Description -> "Tight-binding calculations in Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
@@ -13,7 +13,6 @@ Paclet[
     WolframVersion -> "10.0+",
     SystemID -> All,
     ProductID -> "Mathematica",
-    (* Loading -> "Manual",*)
     AutoUpdating -> False,
     Category -> 
         {"Core Languare & Structure", "Symbolic & Numeric Compuation", "Data manipulation & Analysis"}
@@ -25,13 +24,12 @@ Paclet[
     URL -> "https://github.com/vasilsaroka/TBpack",
     Support -> "https://t.me/vasilsaroka",
     Icon -> "Logo_2.png",
-    UUID -> "no MaTeX documentation embeded",
+    UUID -> "MaTeX documentation embeded",
     Location -> "https://github.com/vasilsaroka/TBpack",
     Extensions -> 
         {
             {"Documentation", Language -> "English", MainPage -> "Guides/TBpack"}, 
-            {"Kernel", Context -> "TBpack`"
-            }
+            {"Kernel", Context -> "TBpack`"}
         }
 ]
 

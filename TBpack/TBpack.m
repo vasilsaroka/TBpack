@@ -476,8 +476,8 @@ ElectronicStructure[unitcell_List, OptionsPattern[{ParallelEvaluation->True,Eige
 Module[
 {
 	translationvectors = OptionValue[TranslationVectors],
-	hoppingintegrals = OptionValue["HoppingIntegrals"],
-	overlappingintegrals = OptionValue["OverlappingIntegrals"],
+	hoppingintegrals = OptionValue[HoppingIntegrals],
+	overlappingintegrals = OptionValue[OverlappingIntegrals],
 	hoppingdistances = OptionValue[HoppingDistances],
 	strain = OptionValue[StrainExponent],
 	klist = OptionValue[Kpoint],
