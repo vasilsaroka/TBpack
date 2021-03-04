@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34513,        836]
-NotebookOptionsPosition[     24571,        642]
-NotebookOutlinePosition[     25073,        660]
-CellTagsIndexPosition[     25030,        657]
+NotebookDataLength[     32666,        800]
+NotebookOptionsPosition[     23210,        614]
+NotebookOutlinePosition[     23712,        632]
+CellTagsIndexPosition[     23669,        629]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -589,33 +589,6 @@ Cell[CellGroupData[{
 Cell["Tutorials", "GuideTutorialsSection",
  CellID->415694126,ExpressionUUID->"6da760d0-6dc8-4b8d-ba6f-b6a05c4831e9"],
 
-Cell[TextData[ButtonBox["Generating and Importing TeX",
- BaseStyle->"Link",
- ButtonData->"paclet:tutorial/ImportingAndExporting#32618"]], "GuideTutorial",
- CellChangeTimes->{{3.8237842893191433`*^9, 3.823784305945094*^9}, {
-  3.8237843433082314`*^9, 3.8237843538448343`*^9}},
- CellID->94880744,ExpressionUUID->"d408d76a-033c-432d-868c-ad61e23ba4e2"],
-
-Cell[TextData[ButtonBox["Configuring MaTeX",
- BaseStyle->"Link",
- ButtonData->"paclet:TBpack/tutorial/ConfiguringMaTeX"]], "GuideTutorial",
- CellChangeTimes->{{3.8237843681116505`*^9, 3.823784385788661*^9}, {
-  3.8237844644891624`*^9, 3.823784464630171*^9}},
- CellID->466808371,ExpressionUUID->"4daa802f-6107-4dda-b4df-01510d188fb1"],
-
-Cell[TextData[ButtonBox["Typesetting with MaTeX",
- BaseStyle->"Link",
- ButtonData->"paclet:TBpack/tutorial/TypesettingWithMaTeX"]], "GuideTutorial",
- CellChangeTimes->{{3.8237844856883755`*^9, 3.823784514956049*^9}},
- CellID->691363379,ExpressionUUID->"f41da2af-1930-4258-96aa-fb8bb259764c"],
-
-Cell[TextData[ButtonBox["Preparing Figures to Size",
- BaseStyle->"Link",
- ButtonData->
-  "paclet:TBpack/tutorial/PreparingFiguresToSize"]], "GuideTutorial",
- CellChangeTimes->{{3.823784521227408*^9, 3.82378454398771*^9}},
- CellID->54873901,ExpressionUUID->"9b8aa4f9-1360-4fa6-91da-81dc41d037e4"],
-
 Cell["XXXX", "GuideTutorial",
  CellChangeTimes->{{3.8237861724508524`*^9, 3.8237861752550125`*^9}},
  CellID->650662356,ExpressionUUID->"a13ac684-0255-4e00-bd89-aecd95b1729f"]
@@ -626,12 +599,11 @@ Cell[CellGroupData[{
 Cell["More About", "GuideMoreAboutSection",
  CellID->23220180,ExpressionUUID->"a8b922bb-ddfe-499f-a42b-d0f024dbfb80"],
 
-Cell[TextData[ButtonBox["Mathematical Typesetting",
+Cell[TextData[ButtonBox["MaTeX",
  BaseStyle->"Link",
- ButtonData->"paclet:guide/MathematicalTypesetting"]], "GuideMoreAbout",
- CellChangeTimes->{{3.8236967843731413`*^9, 3.823696818164074*^9}, {
-  3.8237804391879287`*^9, 3.823780439245932*^9}},
- CellID->299918985,ExpressionUUID->"cc0f416b-9d92-475e-b4c3-04ebb3c0f2fd"],
+ ButtonData->"paclet:TBpack/guide/MaTeX"]], "GuideMoreAbout",
+ CellChangeTimes->{{3.8238363861793003`*^9, 3.823836407135499*^9}},
+ CellID->237534764,ExpressionUUID->"2e6f7fee-7b15-41a4-9d91-72d66f260acb"],
 
 Cell["XXXX", "GuideMoreAbout",
  CellID->252299663,ExpressionUUID->"33557419-70b9-49c2-b3d9-40fc359ca265"]
@@ -817,26 +789,18 @@ Cell[21958, 579, 244, 3, 41, "InlineGuideFunctionListing",ExpressionUUID->"8d142
 Cell[CellGroupData[{
 Cell[22251, 588, 117, 1, 141, "GuideTutorialsSection",ExpressionUUID->"6da760d0-6dc8-4b8d-ba6f-b6a05c4831e9",
  CellID->415694126],
-Cell[22371, 591, 349, 5, 40, "GuideTutorial",ExpressionUUID->"d408d76a-033c-432d-868c-ad61e23ba4e2",
- CellID->94880744],
-Cell[22723, 598, 333, 5, 40, "GuideTutorial",ExpressionUUID->"4daa802f-6107-4dda-b4df-01510d188fb1",
- CellID->466808371],
-Cell[23059, 605, 291, 4, 40, "GuideTutorial",ExpressionUUID->"f41da2af-1930-4258-96aa-fb8bb259764c",
- CellID->691363379],
-Cell[23353, 611, 295, 5, 40, "GuideTutorial",ExpressionUUID->"9b8aa4f9-1360-4fa6-91da-81dc41d037e4",
- CellID->54873901],
-Cell[23651, 618, 174, 2, 40, "GuideTutorial",ExpressionUUID->"a13ac684-0255-4e00-bd89-aecd95b1729f",
+Cell[22371, 591, 174, 2, 40, "GuideTutorial",ExpressionUUID->"a13ac684-0255-4e00-bd89-aecd95b1729f",
  CellID->650662356]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23862, 625, 117, 1, 141, "GuideMoreAboutSection",ExpressionUUID->"a8b922bb-ddfe-499f-a42b-d0f024dbfb80",
+Cell[22582, 598, 117, 1, 141, "GuideMoreAboutSection",ExpressionUUID->"a8b922bb-ddfe-499f-a42b-d0f024dbfb80",
  CellID->23220180],
-Cell[23982, 628, 338, 5, 40, "GuideMoreAbout",ExpressionUUID->"cc0f416b-9d92-475e-b4c3-04ebb3c0f2fd",
- CellID->299918985],
-Cell[24323, 635, 105, 1, 40, "GuideMoreAbout",ExpressionUUID->"33557419-70b9-49c2-b3d9-40fc359ca265",
+Cell[22702, 601, 257, 4, 40, "GuideMoreAbout",ExpressionUUID->"2e6f7fee-7b15-41a4-9d91-72d66f260acb",
+ CellID->237534764],
+Cell[22962, 607, 105, 1, 40, "GuideMoreAbout",ExpressionUUID->"33557419-70b9-49c2-b3d9-40fc359ca265",
  CellID->252299663]
 }, Open  ]],
-Cell[24443, 639, 124, 1, 141, "GuideRelatedLinksSection",ExpressionUUID->"957a3103-bd46-44e1-b888-c25cc58bc9ec",
+Cell[23082, 611, 124, 1, 141, "GuideRelatedLinksSection",ExpressionUUID->"957a3103-bd46-44e1-b888-c25cc58bc9ec",
  CellID->415694148]
 }
 ]
