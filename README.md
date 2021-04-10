@@ -24,7 +24,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
        
 
 ## Installation guide
- - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack):
+ - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackPro_Logo.png" alt="TBpackPro_Logo">](https://paypal.me/vasilsaroka?locale.x=en_GB)
  
    To install the latest version of the TBpack from this GitHub repo, evaluate
    
@@ -110,10 +110,10 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
    
 ## Demo
  - Evaluate ``<<TBpack` `` to load the application into the Mathematica session.
- - Test TBpack using `AtomicStructure[Nanotube[10, 10]]`.
- - Test MaTeX using `MaTeX["x^2"]`.
- - Test CustomTicks using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
- - Test MaTeX and CustomTicks altogether using 
+ - Test `TBpack` using `AtomicStructure[Nanotube[10, 10]]`.
+ - Test `MaTeX` using `MaTeX["x^2"]`.
+ - Test `CustomTicks` using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
+ - Test `MaTeX` and `CustomTicks` altogether using 
      
        Plot[Sin[x], {x, -1, 3}, 
             Axes -> {MaTeX["x"],MaTeX["\sin(x)"]},
@@ -128,7 +128,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
    
     **Note:** Make sure that [a TeX system](https://tug.org/begin.html) and Ghostscript 9.15 or later are installed so that `MaTeX` can work. The latest version of [Gostscript](https://www.ghostscript.com/download/gsdnld.html) can be downloaded for Windows and Linux. On OS X, MacTeX 2015 and later already include a compatible version of Ghostscript. When `MaTeX` is not able to locate these installations automatically, you must provide paths to pdfLaTeX and Ghostscript executable files using `ConfigureMaTeX["pdfLaTeX"->"path2pdflatex","Ghostscript"->"path2gsfile"]`.
    
- - Test Sneg
+ - Test `Sneg` using
 
          snegfermionoperators[c];
          nc[c[AN, 1, UP], VACUUM] (* annihilates the vacuum producing zero result *)
