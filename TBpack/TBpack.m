@@ -6,13 +6,13 @@
 (* :Title: TBpack *)
 (* :Author: Vasil A. Saroka <40.ovasil@gmail.com> *)
 (* :Context: TBpack` *)
-(* :Version: 0.2.1 *)
-(* :Date: 2020-03-18 *)
+(* :Version: 0.3.0 *)
+(* :Date: 2021-03-04 *)
 
 (* :Mathematica Version: 10.0+ *)
 (* :Copyright: (c) 2020 Vasil A. Saroka *)
 
-BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optics`"}];
+BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optics`","TBpack`Sneg`"}];
 
 Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
 

@@ -1,13 +1,15 @@
 (* Mathematica Package  *)
 (* Created by IntelliJ IDEA http://wlplugin.halirutan.de/ *)
 
+(* ::Package:: *)
+
 (* :Title: MaTeX *)
 (* :Author: Szabolcs Horvat <szhorvat@gmail.com> *)
 (* :Context: MaTeX` *)
 (* :Version: 1.7.8 *)
 (* :Date: 2015-03-04 *)
 
-(* :Mathematica Version: %%mathversion%% *)
+(* :Mathematica Version: 10.0+ *)
 (* :Copyright: (c) 2019 Szabolcs Horvat *)
 
 
@@ -246,7 +248,7 @@ checkConfig[] :=
 
     $configOK = pdflatexOK && gsOK && cacheSizeOK && workingDirectoryOK;
     If[Not[$configOK] && $Notebooks, 
-      Print@StringForm["`` for documentation on configuring MaTeX.", Hyperlink["Click here", "paclet:MaTeX/tutorial/ConfiguringMaTeX"]]
+      Print@StringForm["`` for documentation on configuring MaTeX.", Hyperlink["Click here", "paclet:TBpack/tutorial/ConfiguringMaTeX"]]
 	  ];
   ]
 

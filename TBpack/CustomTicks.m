@@ -1,12 +1,16 @@
 (* ::Package:: *)
 
 (* :Title: CustomTicks *)
-(* :Context: CustomTicks` *)
 (* :Author: Mark A. Caprio, Department of Physics, University of Notre Dame *)
+(* :Context: CustomTicks` *)
+(* :Version: 2.1.0 *)
+(* :Date: 2016-03-12 *)
+
+(* :Mathematica Version: 6.0+ *)
+(* :Copyright: (c) 2016, Mark A. Caprio *)
+
+
 (* :Summary: Custom tick mark generation for linear, log, and general nonlinear axes. *)
-(* :Copyright: Copyright 2016, Mark A. Caprio *)
-(* :Package Version: 2.1.0 *)
-(* :Mathematica Version: 6.0 *)
 (* :History:
   MCAxes package, January 10, 2003.
   MCAxes and then MCTicks packages distributed as part of LevelScheme, 2004.
