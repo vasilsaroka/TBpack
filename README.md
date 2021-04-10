@@ -1,4 +1,4 @@
-[![GitHub (pre-)release](https://img.shields.io/github/release/vasilsaroka/TBpack/all.svg)](https://github.com/vasilsaroka/TBpack/releases)
+[![GitHub (pre-)release](https://img.shields.io/github/release/vasilsaroka/all.svg)](https://github.com/vasilsaroka/TBpack/releases)
 [![Github All Releases](https://img.shields.io/github/downloads/vasilsaroka/TBpack/total.svg)](https://github.com/vasilsaroka/TBpack/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Support TBpack](https://img.shields.io/static/v1?label=support&message=5$&color=green&style=flat&logo=paypal)](https://paypal.me/vasilsaroka?locale.x=en_GB)
@@ -106,6 +106,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
    where `<version>` stands for any existing version of the application. For example,
    
        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
+
    
 ## Demo
  - Evaluate ``<<TBpack` `` to load the application into the Mathematica session.
@@ -123,11 +124,22 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
             }
        ]
  
-   Packages [MaTeX](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio are integral parts of `TBpack`.
+   Packages [MaTeX 1.7.8](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks 2.1.0](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio are integral parts of `TBpack`.
+   
+    **Note:** Make sure that [a TeX system](https://tug.org/begin.html) and Ghostscript 9.15 or later are installed so that `MaTeX` can work. The latest version of [Gostscript](https://www.ghostscript.com/download/gsdnld.html) can be downloaded for Windows and Linux. On OS X, MacTeX 2015 and later already include a compatible version of Ghostscript. When `MaTeX` is not able to locate these installations automatically, you must provide paths to pdfLaTeX and Ghostscript executable files using `ConfigureMaTeX["pdfLaTeX"->"path2pdflatex","Ghostscript"->"path2gsfile"]`.
+   
+ - Test Sneg
 
- - Open the documentation center and search for "Hamiltonian" to get started.
+         snegfermionoperators[c];
+         nc[c[AN, 1, UP], VACUUM] (* annihilates the vacuum producing zero result *)
+         nc[c[CR, 1, UP], VACUUM] (* creates the state with fermion having spin-1/2 with +1/2 projection *)
+     
+   [Sneg](http://nrgljubljana.ijs.si/sneg/) library by Rok Zitko is an integral but independent part of `TBpack` starting from `v0.4.0`. Note that `Sneg` can be used as a stand-alone package.
+
+ - Open the documentation center and search for `Hamiltonian` to get started.
  
- <b>Note:</b> Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
+ **Note:** Compilation to C code is used in `TBpack` to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
+ 
 
 ## Supporting the project
    We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no shareholders or billionaire owner, meaning only your donations power our work and ensure it can remain open for all. Every contribution, however big or small, makes a real difference for `TBpack` future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
