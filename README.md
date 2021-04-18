@@ -6,8 +6,14 @@
 # TBpack
 Tight-binding calculations in Mathematica
 
+## TBpack for fun
+<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="200"/>
+
+Before putting your hands on **TBpack** application you can get its flavor and spirit by playing a couple of rounds with our Telegram bot. Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO Quantum Game: [@HOMO_LUMO_Quantum_Game_bot](https://t.me/HOMO_LUMO_Quantum_Game_bot). Use `/rules` to see the rules of the game or have a look at our sample [game video](https://www.youtube.com/watch?v=DUy22OKLgvs) on YouTube.
+
+
 ## Hands-on Trial
-Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization and data currating functions. [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo">](https://paypal.me/vasilsaroka?locale.x=en_GB)
+Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization and data currating functions. [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
 
    
    Get **TBpackDemo** immediately in your notebook from Wolfram Cloud by evaluating in Mathematica 10.0+:
@@ -24,7 +30,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
        
 
 ## Installation guide
- - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackPro_Logo.png" alt="TBpackPro_Logo">](https://paypal.me/vasilsaroka?locale.x=en_GB)
+ - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackPro_Logo.png" alt="TBpackPro_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
  
    To install the latest version of the TBpack from this GitHub repo, evaluate
    
@@ -110,10 +116,10 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
    
 ## Demo
  - Evaluate ``<<TBpack` `` to load the application into the Mathematica session.
- - Test `TBpack` using `AtomicStructure[Nanotube[10, 10]]`.
- - Test `MaTeX` using `MaTeX["x^2"]`.
- - Test `CustomTicks` using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
- - Test `MaTeX` and `CustomTicks` altogether using 
+ - Test TBpack using `AtomicStructure[Nanotube[10, 10]]`.
+ - Test MaTeX using `MaTeX["x^2"]`.
+ - Test CustomTicks using `Plot[Sin[x], {x, 0, 3}, Ticks -> {LinTicks[-1, 3, 1, 5], LinTicks[0, 1, 1, 5]}]`.
+ - Test MaTeX and CustomTicks altogether using 
      
        Plot[Sin[x], {x, -1, 3}, 
             Axes -> {MaTeX["x"],MaTeX["\sin(x)"]},
@@ -124,23 +130,23 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
             }
        ]
  
-   Packages [MaTeX 1.7.8](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks 2.1.0](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio are integral parts of `TBpack`.
+   Packages [MaTeX 1.7.8](https://github.com/szhorvat/MaTeX/releases) by Szabolcs Horvát and [CustomTicks 2.1.0](https://library.wolfram.com/infocenter/Demos/5599/) by Mark A. Caprio are integral parts of TBpack.
    
-    **Note:** Make sure that [a TeX system](https://tug.org/begin.html) and Ghostscript 9.15 or later are installed so that `MaTeX` can work. The latest version of [Gostscript](https://www.ghostscript.com/download/gsdnld.html) can be downloaded for Windows and Linux. On OS X, MacTeX 2015 and later already include a compatible version of Ghostscript. When `MaTeX` is not able to locate these installations automatically, you must provide paths to pdfLaTeX and Ghostscript executable files using `ConfigureMaTeX["pdfLaTeX"->"path2pdflatex","Ghostscript"->"path2gsfile"]`.
+    **Note:** Make sure that [a TeX system](https://tug.org/begin.html) and Ghostscript 9.15 or later are installed so that MaTeX can work. The latest version of [Ghostscript](https://www.ghostscript.com/download/gsdnld.html) can be downloaded for Windows and Linux. On OS X, MacTeX 2015 and later already include a compatible version of Ghostscript. When MaTeX is not able to locate these installations automatically, you must provide paths to pdfLaTeX and Ghostscript executable files using `ConfigureMaTeX["pdfLaTeX"->"path2pdflatex","Ghostscript"->"path2gsfile"]`.
    
- - Test `Sneg` using
+ - Test Sneg using
 
          snegfermionoperators[c];
          nc[c[AN, 1, UP], VACUUM] (* annihilates the vacuum producing zero result *)
          nc[c[CR, 1, UP], VACUUM] (* creates the state with fermion having spin-1/2 with +1/2 projection *)
      
-   [Sneg](http://nrgljubljana.ijs.si/sneg/) library by Rok Zitko is an integral but independent part of `TBpack` starting from `v0.4.0`. Note that `Sneg` can be used as a stand-alone package.
+   [Sneg](http://nrgljubljana.ijs.si/sneg/) library by Rok Zitko is an integral but independent part of TBpack starting from v0.4.0. Note that Sneg can be used as a stand-alone package.
 
  - Open the documentation center and search for `Hamiltonian` to get started.
  
- **Note:** Compilation to C code is used in `TBpack` to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
+ **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
  
 
 ## Supporting the project
-   We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no shareholders or billionaire owner, meaning only your donations power our work and ensure it can remain open for all. Every contribution, however big or small, makes a real difference for `TBpack` future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
+   We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no shareholders or billionaire owner, meaning only your donations power our work and ensure it can remain open for all. Every contribution, however big or small, makes a real difference for TBpack future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB)
 . 
