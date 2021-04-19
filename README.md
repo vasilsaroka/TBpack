@@ -7,7 +7,7 @@
 Tight-binding calculations in Mathematica
 
 ## TBpack for fun
-<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="200"/>
+[<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="250"/>](https://t.me/HOMO_LUMO_Quantum_Game_bot)
 
 Before putting your hands on **TBpack** application you can get its flavor and spirit by playing a couple of rounds with our Telegram bot. Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO Quantum Game: [@HOMO_LUMO_Quantum_Game_bot](https://t.me/HOMO_LUMO_Quantum_Game_bot). Use `/rules` to see the rules of the game or have a look at our sample [game video](https://www.youtube.com/watch?v=DUy22OKLgvs) on YouTube.
 
