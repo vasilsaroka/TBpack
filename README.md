@@ -144,7 +144,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
 
  - Open the documentation center and search for `Hamiltonian` to get started.
  
- **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/site/sarokavasil/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
+ **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/view/vasilsaroka/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
  
 
 ## Supporting the project
