@@ -140,7 +140,7 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
          nc[c[AN, 1, UP], VACUUM] (* annihilates the vacuum producing zero result *)
          nc[c[CR, 1, UP], VACUUM] (* creates the state with fermion having spin-1/2 with +1/2 projection *)
      
-   [Sneg](http://nrgljubljana.ijs.si/sneg/) library by Rok Zitko is an integral but independent part of TBpack starting from v0.4.0. Note that Sneg can be used as a stand-alone package.
+   [Sneg 1.250](http://nrgljubljana.ijs.si/sneg/) library by Rok Zitko is an integral but independent part of TBpack starting from v0.4.0. Note that Sneg can be used as a stand-alone package.
 
  - Open the documentation center and search for `Hamiltonian` to get started.
  
