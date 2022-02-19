@@ -7,7 +7,7 @@ BeginPackage["TBpack`DataAnalysis`", {"TBpack`MaTeX`","TBpack`CustomTicks`"}]
 ListOfBonds::usage = "ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"]] returns point pairs from \*StyleBox[\"unitcell\",\"TI\"] such that distance between the points is \*StyleBox[\"bondlength\",\"TI\"] \[PlusMinus] 0.05 \[Angstrom].
 ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"], BondLengthDelta \[Rule] \*StyleBox[\"value\",\"TI\"]] returns point pairs from \*StyleBox[\"unitcell\",\"TI\"] such that distance between the points is \*StyleBox[\"bondlength\",\"TI\"] \[PlusMinus] \*StyleBox[\"value\",\"TI\"] \[Angstrom].
 ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"], Dimentionality \[Rule] 2] returns a list of pairs \*RowBox[{\"{\", \"{\", StyleBox[SubscriptBox[\"x\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"y\",\"1\"],\"TI\"] , \"}\" , \",\" , \"{\", StyleBox[SubscriptBox[\"x\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"y\",\"2\"],\"TI\"] ,\"}\" ,\"}\"}].";
-AtomicStructure::usage = "AtomicStructure[{\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"tr\",\"TI\"], \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"]}] returns the ball-and-stick model of a \*StyleBox[\"system\",\"TI\"] specified by unit cell \*StyleBox[\"unitcell\",\"TI\"], translation vector \*StyleBox[\"tr\",\"TI\"] and the lattice constant \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"].
+AtomicStructure::usage = "AtomicStructure[{\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"tr\",\"TI\"], \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"]}] returns the ball-and-stick model of a \*StyleBox[\"system\",\"TI\"] specified by the unit cell \*StyleBox[\"unitcell\",\"TI\"], translation vector \*StyleBox[\"tr\",\"TI\"] and the lattice constant \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], \*StyleBox[\"options\",\"TI\"]] uses option settings specified in \*StyleBox[\"options\",\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], NumberOfUnitCells \[Rule] \*StyleBox[\"value\",\"TI\"]] returns the number of unit cells set by \*StyleBox[\"value\",\"TI\"]. 
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], Dimensionality \[Rule] 2] returns the \*StyleBox[\"system\",\"TI\"] projection to the \*StyleBox[\"xy\",\"TI\"]-plane.
@@ -53,6 +53,16 @@ PlotGrid[\!\(\*StyleBox[\"plist\",\"TI\"], \*StyleBox[\"options\",\"TI\"] \)] us
 PlotGrid[\!\(\*StyleBox[\"plist\",\"TI\"], ImageSize \[Rule] {\*StyleBox[\"width\",\"TI\"], \*StyleBox[\"height\",\"TI\"] }\)] produces image with the specified \*StyleBox[\"width\",\"TI\"] and \*StyleBox[\"height\",\"TI\"].
 PlotGrid[\!\(\*StyleBox[\"plist\",\"TI\"], ImagePadding \[Rule] {{\*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"]}, {\*StyleBox[\"bottom\",\"TI\"], \*StyleBox[\"top\",\"TI\"] }\)] produces image with the specified \*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"], \*StyleBox[\"bottom\",\"TI\"] and \*StyleBox[\"top\",\"TI\"] image paddings around the tiled plots.";
 
+ReadElectronicBands1D::usage = "ReadElectronicBands1D[] imports data from an output text file of \*StyleBox[\"ElectronicBands1D\",\"TI\"] function,
+ReadElectronicBands1D[\!\(\*StyleBox[\"options\",\"TI\"] \)] imports data using the specified \*StyleBox[\"options\",\"TI\"].
+ReadElectronicBands1D[\!\(Path2File \[Rule] \*StyleBox[\"path\",\"TI\"] \)] imports data from the file in a directory specified with \*StyleBox[\"path\",\"TI\"].
+ReadElectronicBands1D[\!\(FileName \[Rule] \*StyleBox[\"fname\",\"TI\"] \)] imports data from the file specified with \*StyleBox[\"fname\",\"TI\"].
+ReadElectronicBands1D[\!\(Output \[Rule] \*StyleBox[\"form\",\"TI\"] \)] imports data from the file in a form specified with \*StyleBox[\"form\",\"TI\"]: 
+\"\*StyleBox[\"Standard\",\"TI\"]\" returns the standard return of \*StyleBox[\"ElectronicBands1D\",\"TI\"] (default), 
+\"\*StyleBox[\"System\",\"TI\"]\" returns the list of the unit cell \*StyleBox[\"unitcell\",\"TI\"], translation vector \*StyleBox[\"tr\",\"TI\"] and the lattice constant \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"] to be used as an input for \*StyleBox[\"AtomicStructure\",\"TI\"] function, 
+\"\*StyleBox[\"Fields\",\"TI\"]\" returns the list of external electric and magnetic fields that were used in the calculations by \*StyleBox[\"ElectronicBands1D\",\"TI\"], 
+\"\*StyleBox[\"StructuralParameters\",\"TI\"]\" returns the list of hopping distances and hopping distance delta that were used in the calculations by \*StyleBox[\"ElectronicBands1D\",\"TI\"]. 
+";
 
 
 
@@ -60,7 +70,6 @@ PlotGrid[\!\(\*StyleBox[\"plist\",\"TI\"], ImagePadding \[Rule] {{\*StyleBox[\"l
 NumberOfUnitCells::usage = "Option setting the number of unit cell to be displayed.";
 Dimensionality::usage = "Option setting the number of dimensions used in displaying an object.";
 AtomEnumeration::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the atom numbers should be displayed."
-BondLengthDelta::usage = "Option setting in \[Angstrom] the maximum deviation of the bond length in the unit cell from the explicitly specified bond length value.";
 AtomColor::usage = "Option setting the color of the atoms displayed in graphical objects.";
 BondColor::usage = "Option setting the color of the bonds displayed in graphical objects."
 TextColor::usage = "Option setting the color of the text displayed in graphical objects."
@@ -78,7 +87,8 @@ YTickLen::usage = "Option in some plotting functions setting the length of ticks
 XTickLen::usage = "Option in some plotting functions setting the length of ticks for x-axis scaled to the height of the plot.";
 YTickDirection::usage = "Option in some plotting functions setting \*StyleBox[\"Inward\",\"TI\"], \*StyleBox[\"Outward\",\"TI\"] or \*StyleBox[\"Both\",\"TI\"]  direction of ticks for y-axis."
 XTickDirection::usage = "Option in some plotting functions setting \*StyleBox[\"Inward\",\"TI\"], \*StyleBox[\"Outward\",\"TI\"] or \*StyleBox[\"Both\",\"TI\"] direction of ticks for x-axis."
-TicksPattern::usage = "Option is some plotting functions setting a pattern of the frame ticks displaying: {{\*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"]}, {\*StyleBox[\"bottom\",\"TI\"], \*StyleBox[\"top\",\"TI\"]}}, where \*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"], \*StyleBox[\"bottom\",\"TI\"] and \*StyleBox[\"top\",\"TI\"] are \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"]."
+TicksPattern::usage = "Option in some plotting functions setting a pattern of the frame ticks displaying: {{\*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"]}, {\*StyleBox[\"bottom\",\"TI\"], \*StyleBox[\"top\",\"TI\"]}}, where \*StyleBox[\"left\",\"TI\"], \*StyleBox[\"right\",\"TI\"], \*StyleBox[\"bottom\",\"TI\"] and \*StyleBox[\"top\",\"TI\"] are \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"]."
+Output::usage = "Option specifying a form of the output for such functions as \*StyleBox[\"ReadElectronicBands1D\",\"TI\"].";
 
 (* Constants *)
 TBpackPalette::usage = "The list of standard colors used by default in plotting functions.";
@@ -88,12 +98,12 @@ Begin["`Private`"] (* Begin Private Context *)
 
 Options[ListOfBonds] = {
 		Dimensionality -> 3,
-		BondLengthDelta -> 0.05
+		TBpack`BondLengthDelta -> 0.05
 		};
 ListOfBonds[unitcell_List, bondlength_, OptionsPattern[]] := Module[
 {
 	dim = OptionValue[Dimensionality],
-	delta = OptionValue[BondLengthDelta],
+	delta = OptionValue[TBpack`BondLengthDelta],
 	len, vec,
 	bondlist = {}
 },
@@ -121,7 +131,7 @@ Return[bondlist]
 SyntaxInformation[ListOfBonds] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
 
 Options[AtomicStructure] = {
-	BondLengthDelta -> 0.05,
+	TBpack`BondLengthDelta -> 0.05,
 	NumberOfUnitCells -> 1,
 	Dimensionality -> 3,
 	AtomEnumeration -> False,
@@ -135,7 +145,7 @@ Options[AtomicStructure] = {
 (* 2D structure visualization is not included *)
 AtomicStructure[system_List, OptionsPattern[]]:=Module[
 {
-	bondlengthdelta = OptionValue[BondLengthDelta],
+	bondlengthdelta = OptionValue[TBpack`BondLengthDelta],
 	lim = OptionValue[NumberOfUnitCells],
 	dim = OptionValue[Dimensionality],
 	acolor = OptionValue[AtomColor],
@@ -722,7 +732,7 @@ SyntaxInformation[PlotElectronicBands1D] = {"ArgumentsPattern" -> {_, _, _, Opti
    
    
    
-(* this function is modified code from stackexchange: 
+(* this function is the modified code from stackexchange: 
 https://mathematica.stackexchange.com/questions/6877/do-i-have-to-\code-each-case-of-this-grid-full-of-plots-separately/6882#6882
 *)
   
@@ -818,6 +828,209 @@ PlotGrid[l_?MatrixQ, OptionsPattern[]] := Catch[Module[
    	](* end Graphics *)
 ](* end Module *)]; (* end Catch *)
 SyntaxInformation[PlotGrid] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
+
+
+Options[ReadElectronicBands1D] = {
+   TBpack`Path2File -> Automatic(* Path2Save from ElectronicBands1D *),
+   TBpack`FileName -> Automatic(* last file in the list of files for the directory given by Path *),
+   Output -> "Standard" (* standard output of ElectronicBands1D *)
+   (* 
+   System: {unitcell,T,a0}; 
+   StructuralParameters: {hoppinddistances,hoppingdistancedelta};
+   Fields: {efield,bgield} 
+   *)
+   };
+ReadElectronicBands1D[OptionsPattern[]] := Block[
+  {
+   output = OptionValue[Output],
+   path = OptionValue[TBpack`Path2File],
+   fname = OptionValue[TBpack`FileName],
+   data, evpos,
+   pos, pos2, pos3,
+   bands,
+   hoppingintegrals,
+   overlappingintegrals,
+   strain,
+   edgecorrections,
+   modelname,
+   len,
+   evec, v,
+   
+   indfun, prc
+   },
+  
+  (* path and file name *)
+  If[
+   path === Automatic,
+   path = Options[TBpack`ElectronicBands1D, TBpack`Path2Save][[1, 2]]
+   ](* end If *);
+  
+  If[
+   fname === Automatic,
+   SetDirectory[Options[TBpack`ElectronicBands1D, TBpack`Path2Save][[1, 2]]];
+   fname = Last[FileNames["ElectronicBands1D*"]]
+   ](* end If *);
+  
+  data = ReadList[FileNameJoin[{path, fname}], Word, RecordLists -> True];
+  
+  Switch[
+   	output,
+   	"System",
+   	(* system under consideration *)
+   	pos  = Position[data, {"#", __ , "under", "consideration:",___}][[1, 1]];
+   	pos2 = Position[data, {"#", "Translation", "vector", __, "Angstrom"}][[1, 1]];
+   	pos3 = Position[data, {"#", "Hopping", "distances,", "Angstrom"}][[1, 1]];
+   	{
+    	(* unit cell *)
+    	ToExpression[data[[pos + 2 ;; pos2 - 1]]],
+    	(* translation vector *)
+    	ToExpression[data[[pos2 + 1]]],
+    	(* lattice constant *)
+    	ToExpression[data[[pos3 + 2, 4]]]
+    	},
+   	"Fields",
+   	(* Efield *)
+   	pos = Position[data, {"#", "Electric", "field", __, "V/Angstrom"}][[1, 1]];
+   	pos2 = Position[data, {"#", "Magnetic", "field", __, "T"}][[1, 1]];
+   	{
+    	(*efield*)
+    	ToExpression[data[[pos + 1]]],
+    	(*bfield*)
+    	ToExpression[data[[pos2 + 1]]]
+    	},
+   	"StructuralParameters",
+   	(* structural parameters *)
+   	pos = Position[data, {"#", "Hopping", "distances,", "Angstrom"}][[1, 1]];
+   	pos2 = Position[data, {"#", "Hopping", "distance", "delta,", "Angstrom"}][[1, 1]];
+   	{
+    	(*hoppingdistances*)
+    	ToExpression[data[[pos + 1 ;; pos2 - 1, 4]]],
+    	(*hoppingdistancedelta*)
+    	ToExpression[data[[pos2 + 1, 3]]]
+    	},
+   	"Standard",
+   	(* auxilliary functions *)
+   	indfun[list_] := Block[
+     			{
+      			ilist
+      			},
+     			ilist = First /@ StringPosition[list[[1]], {"t", "_"}];
+     			RotateLeft[{1, 0, 0} + ToExpression@StringTake[list[[1]],
+         	{
+          	{ilist[[1]] + 1, ilist[[2]] - 1},
+          	{ilist[[2]] + 1, ilist[[3]] - 1},
+          	{ilist[[3]] + 1, -1}
+          	}
+         	]](* end RotateLeft *)
+     	](* end Block *);
+   
+   	(* partition list of strings into a list of real and/or complex numbers *)
+   	prc[tlist_] := Block[
+     		{
+      		l, elist, i
+      		},
+     		l = Length[tlist];
+     		elist = {};
+     		i = 1;
+     		While[
+      				i <= l,
+      				If[
+       					i > l - 3,
+       					AppendTo[elist, ToExpression[tlist[[i]]]];
+       					i += 1,
+       					If[
+        						SameQ["I", tlist[[i + 3]]],
+        						AppendTo[
+         								elist,
+         								ToExpression[StringJoin[tlist[[i ;; i + 3]]]]
+         						];
+        						i += 4,
+        						AppendTo[elist, ToExpression[tlist[[i]]]];
+        						i += 1
+        					](*end If*)
+       				](* end If *)
+      		](* end While *);
+     		elist
+     	](* end Block *);
+   	
+   	(*hoppingintegrals*)
+   	pos = Position[data, {"#", "Hopping", "integrals,", "eV"}][[1, 1]];
+   	pos2 = Position[data, {"#", "Overlapping", "integrals"}][[1, 1]];
+   	hoppingintegrals = ToExpression[StringJoin[#[[3 ;; All]]]] & /@ (data[[pos + 1 ;; pos2 - 1]]);
+   
+   
+   	(*overlappingintegrals*)
+   	pos = pos2;
+   	pos2 = Position[data, {"#", "Strain", "exponent"}][[1, 1]];
+   	overlappingintegrals = 
+    ToExpression[StringJoin[#[[3 ;; All]]]] & /@ (data[[
+       pos + 1 ;; pos2 - 1]]);
+   
+   	(*strain*)
+   	pos = pos2;
+   	pos2 = Position[data, {"#", "Edge", "corrections,", "eV"}][[1, 1]];
+   	strain = 
+    ToExpression[StringJoin[data[[pos + 1 ;; pos2 - 1, 3 ;; All]]]];
+   
+   	(*edgecorrections*)
+   	pos = pos2;
+   	pos2 = Position[data, {"#", _, "system", "under", "consideration:",___}][[1, 1]];
+   	edgecorrections = 
+    ArrayReshape[
+     ToExpression[StringJoin[#[[3 ;; All]]]] & /@ (data[[
+        pos + 1 ;; pos2 - 1]]), indfun@(data[[pos2 - 1]])];
+   
+   	(*modelname*)
+   	pos = Position[data, {"#", "Model", "name:", ___}][[1, 1]];
+   	modelname = StringJoin @@ data[[pos, 4 ;; All]];
+   
+   	evpos = Position[data, {"#", "Eigenvectors:"}];
+   	If[
+    		evpos === {},
+    		pos = Position[data, {"#", "Electronic", "band", "structure:"}][[1, 1]];
+    		pos2 = Position[data, {"#", "Finished", "on", ___}][[1, 1]];
+    		bands = prc /@ (data[[pos + 2 ;; pos2 - 1]]);
+    		{
+     		bands,
+     		{hoppingintegrals,
+     		overlappingintegrals,
+     		strain,
+     		edgecorrections,
+     		modelname}
+     		}
+    		,
+    		pos = Position[data, {"#", "Electronic", "band", "structure:"}][[1, 1]];
+    		pos2 = evpos[[1, 1]];
+    		bands = prc /@ (data[[pos + 2 ;; pos2 - 1]]);
+    
+    		pos = pos2;
+    		pos2 = Position[data, {"#", "Velocity", "operator", "matrices:"}][[1, 1]];
+    		len = Length[bands] - 1;
+    		evec = Partition[prc /@ (data[[pos + 1 ;; pos2 - 1]]), len];
+    
+    		pos = pos2;
+    		pos2 = Position[data, {"#", "Finished", "on", ___}][[1, 1]];
+    		v = Flatten[#, {{2}, {3}, {1}}] & /@ Fold[
+       			Partition,
+       			prc /@ (data[[pos + 1 ;; pos2 - 1]]),
+       			{len, 3}
+       		](* end Fold *);
+    		{
+    		bands,
+     		evec,
+     		v,
+     		{hoppingintegrals,
+     		overlappingintegrals,
+     		strain,
+     		edgecorrections,
+     		modelname}
+     		}
+    	](* end If *)
+   	
+   ](* end Switch *)
+  
+  ](* end Block *)
+SyntaxInformation[ReadElectronicBands1D] = {"ArgumentsPattern" -> {OptionsPattern[]}};
 
 End[] (* End Private Context *)
 

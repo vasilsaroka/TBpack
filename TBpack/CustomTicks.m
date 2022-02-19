@@ -625,7 +625,7 @@ Minor tick calculation
  *)
 
 
-Options[LogTicks]={ExtraTicks->{},TickPreTransformation->Identity,TickPostTransformation->Identity,ShowFirst->True,ShowLast->True,ShowTickLabels->True,ShowMinorTicks->True,TickLabelStart->0,TickLabelStep->1,TickRange->{-Infinity,Infinity},TickLabelRange->{-Infinity,Infinity},DecimalDigits->Automatic,MajorTickLength->0.010,MinorTickLength->0.005,TickLengthScale->1,TickDirection->In,TickReverse->False,MajorTickStyle->{},MinorTickStyle->{},MinorTickIndexRange->{1,Infinity},LogPlot->False};
+Options[LogTicks]={ExtraTicks->{},TickPreTransformation->Identity,TickPostTransformation->Identity,ShowFirst->True,ShowLast->True,ShowTickLabels->True,ShowMinorTicks->True,TickLabelStart->0,TickLabelStep->1,TickRange->{-Infinity,Infinity},TickLabelRange->{-Infinity,Infinity},DecimalDigits->Automatic,MajorTickLength->0.010,MinorTickLength->0.005,TickLengthScale->1,TickDirection->Inward,TickReverse->False,MajorTickStyle->{},MinorTickStyle->{},MinorTickIndexRange->{1,Infinity},LogPlot->False};
 
 
 LogTicks::oldsyntax="The number of minor subdivisions no longer needs to be specified for LogTicks (see CustomTicks manual for new syntax).";LogTicks::minorsubdivs="Number of minor subdivisions `1` specified for LogTicks is not 1 or \[LeftCeiling]base\[RightCeiling]-1 (i.e., \[LeftCeiling]base\[RightCeiling]-2 tick marks) and so is being ignored.";

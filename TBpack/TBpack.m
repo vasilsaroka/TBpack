@@ -6,13 +6,13 @@
 (* :Title: TBpack *)
 (* :Author: Vasil A. Saroka <40.ovasil@gmail.com> *)
 (* :Context: TBpack` *)
-(* :Version: 0.3.0 *)
-(* :Date: 2021-03-04 *)
+(* :Version: 0.5.0 *)
+(* :Date: 2022-02-19 *)
 
 (* :Mathematica Version: 10.0+ *)
 (* :Copyright: (c) 2020 Vasil A. Saroka *)
 
-BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optics`","TBpack`Sneg`"}];
+BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optimization`","TBpack`Optics`","TBpack`Sneg`"}];
 
 Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
 
@@ -41,7 +41,7 @@ ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"NumberOfKpoints\" , \"\[Rule]\" , StyleBox[\"value\",\"TI\"]}]\)] uses specified by \!\(\*StyleBox[\"value\",\"TI\"]\) the number of \!\(\*StyleBox[\"k\",\"TI\"]\)-points in a uniform grid of 1D reciprocal space.
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"EigenVectors\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"]}]\)] returns a list of electronic energy bands, eigenvectors and velocity operator matrices.
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"ParallelEvaluation\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"]}]\)] calculates in parallel for different \!\(\*StyleBox[\"k\",\"TI\"]\)-points.
-ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"RelaxGeometry\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"], \",\" , \"Path2OptimizationProgramm\" , \"\[Rule]\" , \"{\", StyleBox[\"integer\",\"TI\"], \",\" , StyleBox[\"path\",\"TI\"] , \"}\"}]\)] uses the geometry optimization of the unit cell by the programm set by \!\(\*StyleBox[\"number\",\"TI\"]\) and located at \!\(\*StyleBox[\"path\",\"TI\"]\).
+ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"RelaxGeometry\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"], \",\" , \"OptimizationProgram\" , \"\[Rule]\" , \"{\", StyleBox[\"integer\",\"TI\"], \",\" , StyleBox[\"path\",\"TI\"] , \",\", StyleBox[\"fname\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] , \"}\"}]\)] uses geometry optimization of the unit cell by the program set by \!\(\*StyleBox[\"integer\",\"TI\"]\), located at \!\(\*StyleBox[\"path\",\"TI\"]\), with executable \!\(\*StyleBox[\"fname\",\"TI\"]\) and options \!\(\*StyleBox[\"opts\",\"TI\"]\).
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"Path2Save\" , \"\[Rule]\" , StyleBox[\"path\",\"TI\"]}]\)] saves the results of the calculation in a file located at \!\(\*StyleBox[\"path\",\"TI\"]\).";
 
 (* for Options *)
@@ -63,11 +63,28 @@ EigenVectors::usage = "Option in some functions taking values \!\(\*StyleBox[\"T
 TBModelParameters::usage = "Option in some functions setting a list of the tight-binding parameters: {\!\(\*RowBox[{StyleBox[\"HoppingIntegrals\",\"TI\"], \",\" , StyleBox[\"OverlappingIntegrals\",\"TI\"], \",\" , StyleBox[\"StrainExponent\",\"TI\"], \",\" , StyleBox[\"EdgeCorrections\",\"TI\"]}]\)}.";
 RelaxGeometry::usage = "Option in some functions specifying if the geometry optimization should be performed and choosing the optimization program.";
 NumberOfKpoints::usage = "Option in some functions specifying the number of \!\(\*StyleBox[\"k\",\"TI\"]\)-points in the uniform 1D grid.";
-Path2OptimizationProgramm::usage = "Option in some functions specifying the type of and the path to the programm that is to run geometry optimization: \!\(\*RowBox[{\"{\", StyleBox[\"type\",\"TI\"], \",\", StyleBox[\"path\",\"TI\"] ,\"}\"}]\).";
-Path2Save::usage = "Option in some functions setting the path to save the results of calculations. By default, it is !\(\*StyleBox[\"$HomeDirectory\",\"TI\"]\)."
+Krange::usage = "Option in some functions specifying the range of \!\(\*StyleBox[\"k\",\"TI\"]\)-space to be meshed.";
+OptimizationProgram::usage = "Option in some functions specifying the type of, path to, an executable file name and other options for the program that is to run geometry optimization: \!\(\*RowBox[{\"{\", StyleBox[\"type\",\"TI\"], \",\", StyleBox[\"path\",\"TI\"],\",\", StyleBox[\"fname\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] ,\"}\"}]\).";
+OptimizationFunction::usage = "Option in some functions specifying a name and list options for the function that is to run geometry optimization: \!\(\*RowBox[{\"{\", StyleBox[\"fun\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] ,\"}\"}]\).";
+Path2Save::usage = "Option in some functions setting the path to save the results of calculations. By default, it is \*StyleBox[\"$HomeDirectory\",\"TI\"]."
+
+(* for general options used in and across TBpack subpackages, such as DataAnalysis, Optimization and etc. *)
+Path2File::usage = "Option specifying a path to a file directory in such functions as \*StyleBox[\"ReadElectronicBands1D\",\"TI\"].";
+FileName::usage = "Option specifying the name of the file to be processed or executed by such functions as \*StyleBox[\"ReadElectronicBands1D\",\"TI\"].";
+LatticeConstant::usage = "Option specifying the scale of the 2D hexagonal lattice in \[Angstrom].";
+BondLengthDelta::usage = "Option setting in \[Angstrom] the maximum deviation of the bond length in the unit cell from the explicitly specified bond length value.";
+InputScriptTemplate::usage = "Option in some functions for providing an external program script template.";
+
+
+(* Constants *)
+$TBpackDirectory::usage = "$TBpackDirectory gives directory where TBpack.m file is located.";
+
+
 
 
 Begin["`Private`"]
+
+$TBpackDirectory = DirectoryName[$InputFileName];
 
 (* Error messages *)
 Hamiltonian::optlength = "HoppingIntegrals, OverlappingIntegrals, HoppingDistantes lists and elements of EdgeCorrections matrix must have the same lengths." 
@@ -566,17 +583,24 @@ SyntaxInformation[ElectronicStructure] = {"ArgumentsPattern" -> {_, OptionsPatte
 
 
 (* 1D structures electronic energy bands *)
+(* Error messages *)
+ElectronicBands1D::nkp = "NumberOfKpoint must be a positive integer.";
+
+(* Options *)
 Options[ElectronicBands1D] = {
-	TBModelParameters->{{0,3.12,0,0},{1,0,0,0},3.0,{{{0,0,0,0},{0,0,0,0},{0,0,0,0}},{{0,0,0,0},{0,0,0,0},{0,0,0,0}},{{0,0,0,0},{0,0,0,0},{0,0,0,0}}},"Partoens2006"},
+	TBModelParameters->{{0,3.12,0,0},{1,0,0,0},3,{{{0,0,0,0},{0,0,0,0},{0,0,0,0}},{{0,0,0,0},{0,0,0,0},{0,0,0,0}},{{0,0,0,0},{0,0,0,0},{0,0,0,0}}},"Partoens2006"},
 	HoppingDistances->{0, 1.42, 2.45951, 2.84},
-	HoppingDistanceDelta -> 0.05,
+	HoppingDistanceDelta->0.05,
+	SuperCellSize->1,
 	Efield->{0,0,0},
 	Bfield->{0,0,0},
-	NumberOfKpoints->100,
+	NumberOfKpoints->50,
+	Krange->Automatic,
 	EigenVectors->False,
 	ParallelEvaluation->True,
 	RelaxGeometry->False,
-	Path2OptimizationProgramm->{None,""},
+	(*OptimizationProgram->{1,Automatic,Automatic,{}},*)
+	OptimizationFunction->{Automatic,{}},
 	Path2Save->$HomeDirectory
 };
 ElectronicBands1D[unitcell_List, translationvector_List, OptionsPattern[]] := Catch[Module[
@@ -590,40 +614,57 @@ ElectronicBands1D[unitcell_List, translationvector_List, OptionsPattern[]] := Ca
    	
    	hoppingdistances = OptionValue[HoppingDistances],
    	hoppingdistancedelta = OptionValue[HoppingDistanceDelta],
+   	supercellsize = OptionValue[SuperCellSize],
    	efield = OptionValue[Efield],
    	bfield = OptionValue[Bfield],
    	
    	numberofkpoints = OptionValue[NumberOfKpoints],
-   	path2programm = OptionValue[Path2OptimizationProgramm],
+   	krange = OptionValue[Krange],
+   	(*optimizationprogram = OptionValue[OptimizationProgram],*)
+   	optimizationfunction = OptionValue[OptimizationFunction],
    	path2save = OptionValue[Path2Save],
    	opflag = OptionValue[RelaxGeometry],
     
     hlen, ecdim,
     
-    opprefix, programmname,
+    opprefix, programname,
    	
-   	opdata, 
+   	opfun, opdata, 
    	opUnitCell, opT,
    	UnitCell, T,
    	
-   	k1, k2, dk, krange,
+   	k1, k2, dk, klist,
    
    	data,
    	bands,
    	
    	stream, text,
-   	nd
-
+   	nd, 
+   	(* matrix formating *)
+   	wfformat, vmformat
 },
 
-nd = ToString@PaddedForm[1.0 #,{5+2,5},ExponentFunction->(If[-16<#<16,Null,#]&)]&; (* number display function *)
+(* Checking arguments and options *)
+If[
+  	Not[IntegerQ[numberofkpoints]] || numberofkpoints < 1,
+	Message[ElectronicBands1D::nkp];
+	Throw[$Failed]
+];
+
+nd = Function[{x},
+		If[
+		NumericQ[x],
+		ToString@PaddedForm[1.0 Chop[x,10^-15],{7+2,7},ExponentFunction->(If[-16<#<16,Null,#]&)],
+		"Null"
+		]
+]; (* number display function *)
 
 hlen = Length[hoppingintegrals];
 ecdim = Dimensions[edgecorrections];
 
 (*------------------------------------- Data file header ----------------------------------*)
 (* open stream for the log file *)
-stream = OpenWrite[FileNameJoin[{path2save,"Electronic_Bands_"<>DateString[{"Year","Month","Day","_time_","Hour","_","Minute","_","Second"}]<>".txt"}],FormatType-> OutputForm,CharacterEncoding->"ASCII",PageWidth->Infinity];
+stream = OpenWrite[FileNameJoin[{path2save,"ElectronicBands1D_"<>DateString[{"Year","Month","Day","_at_","Hour","_","Minute","_","Second"}]<>".txt"}],FormatType-> OutputForm,CharacterEncoding->"ASCII",PageWidth->Infinity];
 Write[stream,"# Created by TBpack \n# Wolfram Mathematica "<>$Version];
 Write[stream,"# ElectronicBands1D started on "<>DateString[]];
 
@@ -634,39 +675,31 @@ Table["t"<>ToString[i-1]<>" = "<>nd[hoppingintegrals[[i]]],{i,hlen}],
 "\n# Overlapping integrals",
 Table["s"<>ToString[i-1]<>" = "<>nd[overlappingintegrals[[i]]],{i,hlen}],
 "\n# Strain exponent","beta = "<>nd[strain],
-"\n# Edge corrections to the hopping integrals, eV",
+"\n# Edge corrections, eV",
 Table["dt"<>ToString[k-1]<>"_"<>ToString[i]<>"_"<>ToString[j]<>" = "<>nd[edgecorrections[[i,j,k]]]<>If[k == ecdim[[3]],"\n",""],{i,ecdim[[1]]},{j,ecdim[[2]]},{k,ecdim[[3]]}],"\n"};
 Scan[Write[stream,#]&,text];
    
 
-  (*------------------------------ OPTIMIZATION ----------------------------------*)
+  (*------------------------------ UNIT CELL GEOMETRY OPTIMIZATION ----------------------------------*)
   (* unitcell optimization flag: 
   opflag = True or False;
   True - perform unit cell geometry optimization; 
-  False - skip optimization *)
-  opprefix = If[opflag, "Optimized", "Ideal"];
-  
-  (*------------------------- OPTIMIZATION PROGRAMME GHOICE -----------------------*)
-  (* path2programm first element: 1 - lammps; 2 - GULP; *)
-  programmname = Switch[path2programm[[1]], 1, "lammps", 2, "gulp", _, ""];
-  
-  
+  False - skip optimization *) 
   If[
    		opflag,
-   		opdata = Switch[
-     						path2programm[[1]],
-     						1, 
-     						(* must be defined in the subpackage TBpack`Optimization` *)
-     						OptimizationByLammps[unitcell, translationvector, path2programm[[2]]],
-     						2, 
-     						(* must be defined in the subpackage TBpack`Optimization` *)
-     						OptimizationByGULP[unitcell, translationvector, path2programm[[2]]]
-     			](* end Switch *);
+   		opprefix = "Optimized";
+   		opfun = optimizationfunction[[1]];
+   		
+   		opfun = If[opfun === Automatic, OptimizationByLAMMPS, opfun];
+   		programname = ToString[opfun];
+   		opdata = opfun[unitcell, translationvector, Sequence@@(optimizationfunction[[2]])];
    		UnitCell = opdata[[1, 1]];
    		T = opdata[[1, 2]];
    		opUnitCell = opdata[[2, 1]];
    		opT = opdata[[2, 2]];
    		,
+   		programname = "";
+   		opprefix = "Ideal";
    		UnitCell = unitcell;
    		T = translationvector;
    		opUnitCell = unitcell;
@@ -677,28 +710,40 @@ Scan[Write[stream,#]&,text];
   
 (*------------------------------------- Data file header ---------------------------*)
 (* system under consideration *)
-Write[stream,"\n# "<>opprefix<>" system under consideration: "<>programmname];
+Write[stream,"\n# "<>opprefix<>" system under consideration: "<>programname];
 (* unit cell *)
 Scan[Write[stream,#]&,Flatten@{"unit cell atoms (x, y, z), Angstrom",Row[nd/@#,"\t"]&/@(opUnitCell)}];
 (* translation vector *)
-Scan[Write[stream,#]&,Flatten@{"\ntranslation vector (x, y, z), Angstrom",Row[nd/@(opT),"\t"]}];
+Scan[Write[stream,#]&,{"\n# Translation vector (x, y, z), Angstrom",Row[nd/@(opT),"\t"]}];
 (* hopping distances *)
-text=Flatten@{"\nHopping distances to the n-th order nearest-neighbors, Angstrom",Table[Row[{ToString[i-1]<>" order :",nd[hoppingdistances[[i]]]},"\t"],{i,hlen}]};
+text=Flatten@{"\n# Hopping distances, Angstrom",Table[Row[{ToString[i-1]<>" order :",nd[hoppingdistances[[i]]]},"\t"],{i,hlen}]};
 Scan[Write[stream,#]&,text];
 Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistancedelta]];
-
+Scan[Write[stream,#]&,{"\n# Electric field (Ex, Ey, Ez), V/Angstrom",Row[Table[nd[efield[[i]]],{i,Length[efield]}],"\t"]}];
+Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[[i]]],{i,Length[bfield]}],"\t"]}];
   
   
     
   (*-------------------------- BRILLOUIN ZONE SAMPLING ----------------------------*)
-
-  k1 = 0;
-  k2 = Pi/Sqrt[T.T]; (* The half of the Brillouin zone *)
-  dk = (k2 - k1)/(numberofkpoints - 1); (* step *)
-  krange = Table[T/Sqrt[T.T] i, {i, k1, k2, dk}]; (* range *)
+  (* kinterval is either Automatic or {kmin, kmax} *)
+  If[
+  		krange === Automatic,
+  		k1 = 0;
+  		k2 = Pi/Sqrt[T.T] (* The half of the Brillouin zone *)
+  		,
+  		k1 = krange[[1]];
+  		k2 = krange[[2]]
+  ];
+  
+  If[
+  		numberofkpoints == 1,
+  		klist = {k1 T/Sqrt[T.T]},
+  		dk = (k2 - k1)/(numberofkpoints - 1); (* step *)
+  		klist = Table[T/Sqrt[T.T] i, {i, k1, k2, dk}]; (* klist *)
+  ];
   (*--------------------------------------------------------------------------------*)
-  
-  
+
+    	 
   (*----------------------------  CALCULATION -------------------------------------*)
   data = ElectronicStructure[{UnitCell,opUnitCell}, 
   		TranslationVectors -> {{T}, {opT}}, 
@@ -706,11 +751,12 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
     	OverlappingIntegrals -> overlappingintegrals,
     	HoppingDistances -> hoppingdistances,
     	StrainExponent -> strain,
-    	Kpoint -> krange,
+    	Kpoint -> klist,
     	Efield -> efield,
     	Bfield -> bfield, 
     	EdgeCorrections -> edgecorrections,
-    	HoppingDistanceDelta -> hoppingdistancedelta, 
+    	HoppingDistanceDelta -> hoppingdistancedelta,
+    	SuperCellSize -> supercellsize,
     	EigenVectors -> OptionValue[EigenVectors],
     	ParallelEvaluation -> OptionValue[ParallelEvaluation]
     	];
@@ -724,22 +770,20 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
    		
    		(*------------------------------------- Data file body ---------------------------*)
    		Write[stream,"\n# Electronic band structure:"];
-		Scan[Write[stream,#]&,Flatten@{"k, Angstrom^-1 \t E, eV",Row[nd/@Reverse[#],"\t"]&/@Transpose[bands]}];
+		Scan[Write[stream,#]&,Flatten@{"E, eV \t (last element of each column) k, Angstrom^-1",Row[nd/@#,"\t"]&/@bands}];
 		Write[stream,"\n# Eigenvectors:"];
+		(*format wave function data and write them into the text file*)
+		wfformat = Function[{x}, Append[Row[nd/@#, "\t"]&/@x,"\n"]];
    		Scan[Write[stream,#]&,
-   			Flatten@MapThread[
-   					Function[{kp,wf},{"\nk = "<>nd[kp]<>" Angstrom^-1",Row[nd/@#,"\t"]&/@Reverse[wf]}],
-   					{Last[bands],data[[2]]}
-   					]
+   			Flatten@Map[wfformat,data[[2]]]
    		](* end Scan *);
    		Write[stream,"\n# Velocity operator matrices:"];
-   		Do[Scan[Write[stream,#]&,
-   			Flatten@MapThread[
-   					Function[{kp,vm},{"\nk = "<>nd[kp]<>" Angstrom^-1, V"<>{"x","y","z"}[[i]]<>":",Row[nd/@#,"\t"]&/@(vm[[All,All,i]])}],
-   					{Last[bands],data[[3]]}
-   					]
-   		](* end Scan *),{i,3}](* end Do *);
-   		Write[stream,"\n#Finished on "<>DateString[]];
+   		(*format velocity matrix elements data and write them into the text file*)
+   		vmformat = Function[{x}, Append[Map[Row[nd/@#, "\t"]&,Flatten[x, {{3}, {1}, {2}}],{2}],"\n"]];
+   		Scan[Write[stream,#]&,
+   			Flatten@Map[vmformat,data[[3]]]
+   		](* end Scan *);
+   		Write[stream,"\n# Finished on "<>DateString[]];
 		Close[stream];
    		(*------------------------------------- Data file end ----------------------------*)
    		
@@ -748,11 +792,11 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
    		Join[
     		{bands},
     		Rest@data,
-    		{hoppingintegrals},
-    		{overlappingintegrals},
-    		{strain},
-    		{edgecorrections},
-    		{modelname}
+    		{{hoppingintegrals,
+    		overlappingintegrals,
+    		strain,
+    		edgecorrections,
+    		modelname}}
     	]
    		,
    		(*------------------------  DATA TRANSFORMATION -----------------------------------*)
@@ -761,8 +805,8 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
    		
    		(*------------------------------------- Data file body ---------------------------*)
    		Write[stream,"\n# Electronic band structure:"];
-		Scan[Write[stream,#]&,Flatten@{"k, Angstrom^-1 \t E, eV",Row[nd/@Reverse[#],"\t"]&/@Transpose[bands]}];
-		Write[stream,"\n#Finished on "<>DateString[]];
+		Scan[Write[stream,#]&,Flatten@{"E, eV \t (last element of each column) k, Angstrom^-1",Row[nd/@#,"\t"]&/@bands}];
+		Write[stream,"\n# Finished on "<>DateString[]];
 		Close[stream];
 		(*------------------------------------- Data file end ----------------------------*)
    		
@@ -770,11 +814,11 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
    
    		Join[
     		{bands},
-    		{hoppingintegrals},
-    		{overlappingintegrals},
-    		{strain},
-    		{edgecorrections},
-    		{modelname}
+    		{{hoppingintegrals,
+    		overlappingintegrals,
+    		strain,
+    		edgecorrections,
+    		modelname}}
     		]
    ](* end If EigenVectors *)
 ](* end Module *)

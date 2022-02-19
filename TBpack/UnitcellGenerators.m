@@ -30,7 +30,6 @@ VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numbero
 
 
 (* Options *)
-LatticeConstant::usage = "Option specifying the scale of the 2D hexagonal lattice in \[Angstrom].";
 EdgeType::usage = "Option specifying the type of the edge in some unit cell generators of nanostructures based on the 2D hexagonal lattice.";
 RefinedEdge::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the nanoribbon edge should be refined from dangling atoms.";
 TranslationAxis::usage = "Option specifying the direction of translation in some unit cell generators of 1D structures.";
@@ -56,7 +55,7 @@ A120::usage = "Constant equal to 4 and setting the zigzag-shaped nanoribbon supe
 Begin["`Private`"] (* Begin Private Context *)
  
 Options[Nanotube] = {
-	LatticeConstant -> 1.42
+	TBpack`LatticeConstant -> 1.42
 	};
 Nanotube[n_Integer, m_Integer, OptionsPattern[]]:=Catch[
 Module[
@@ -66,7 +65,7 @@ Module[
 	CylindricalToCartesian,
 	qfunc,lowqfunc,upqfunc,
 (*-------------- variables ----------------*)
-	a0 = OptionValue[LatticeConstant],
+	a0 = OptionValue[TBpack`LatticeConstant],
 	i,j,
 	a,a1,a2,
 	L,r,Cc,theta,
@@ -208,14 +207,14 @@ Oy = 2;
 Oz = 3;
 
 Options[Nanoribbon] = {
-	LatticeConstant -> 1.42,
+	TBpack`LatticeConstant -> 1.42,
 	EdgeType -> Zigzag,
 	TranslationAxis -> Oy
 	};
 Nanoribbon[numberofchains_Integer, OptionsPattern[]] := Module[
 {
 	nanoribbontype = OptionValue[EdgeType],
-	a0 = OptionValue[LatticeConstant],
+	a0 = OptionValue[TBpack`LatticeConstant],
 	dir = OptionValue[TranslationAxis],
 	
 	a, vec, p1, p2, p,
@@ -275,7 +274,7 @@ SyntaxInformation[Nanoribbon] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
 
 (* Chiral nanoribbon atomic coordinates by nanotube unrolling. Achiral nanoribbons can be also generated. *)
 Options[CNanoribbon] = {
-	LatticeConstant->1.42,
+	TBpack`LatticeConstant->1.42,
 	RefinedEdge->True,
 	TranslationAxis -> Oy
 	};
@@ -284,7 +283,7 @@ CNanoribbon[n_Integer, m_Integer, OptionsPattern[]] := Module[
 	(*-------------- functions ----------------*)
 	qfunc,lowqfunc,upqfunc,
 	(*-------------- variables ----------------*)
-	a0 = OptionValue[LatticeConstant],
+	a0 = OptionValue[TBpack`LatticeConstant],
 	edgeflag = OptionValue[RefinedEdge],
 	dir = OptionValue[TranslationAxis],
 	
@@ -453,7 +452,7 @@ Z120 = 2;
 A60 = 3;
 A120 = 4;
 Options[ZigzagShapedNanoribbon] = {
-	LatticeConstant -> 1.42,
+	TBpack`LatticeConstant -> 1.42,
 	EdgeType -> Z60,
 	TranslationAxis -> Oy,
 	ApexPoint -> 1
@@ -463,7 +462,7 @@ ZigzagShapedNanoribbon[l1_Integer, l2_Integer, w1_Integer, w2_Integer, OptionsPa
   	rtype = OptionValue[EdgeType],
   	dir = OptionValue[TranslationAxis],
   	apexpoint = OptionValue[ApexPoint],
-   	a0 = OptionValue[LatticeConstant], 
+   	a0 = OptionValue[TBpack`LatticeConstant], 
    	a, a1, a2,
    	l1c, l2c, L1c, L2c, Wc,
    	data, UnitCell, T, pn, rm
@@ -487,7 +486,7 @@ L2c = l2 l2c;
   
 Wc = If[rtype == 3 || rtype == 4, 1/3, 1] (w1 l1c + w2 l2c); (* width vector coordinates expressed by means of l1c, l2c basis *)
  
-data = ZSNR[L1c[[1]], L1c[[2]], L2c[[1]], L2c[[2]], Wc[[1]], Wc[[2]], LatticeConstant -> a0, ApexPoint -> apexpoint];
+data = ZSNR[L1c[[1]], L1c[[2]], L2c[[1]], L2c[[2]], Wc[[1]], Wc[[2]], TBpack`LatticeConstant -> a0, ApexPoint -> apexpoint];
 UnitCell = data[[1]];
 T = data[[2]];
   
@@ -505,14 +504,16 @@ Return[{UnitCell, T, a0}]
 ](* end Module *);
 SyntaxInformation[ZigzagShapedNanoribbon] = {"ArgumentsPattern" -> {_, _, _, _, OptionsPattern[]}};
   
+(* Error messages *)
+ZSNR::veccoord = "The coordinates (`1`,`2`) are irrelevant";
 
 Options[ZSNR] = {
-	LatticeConstant -> 1.42,
+	TBpack`LatticeConstant -> 1.42,
 	ApexPoint -> 1
 };
 ZSNR[l11_Integer, l12_Integer, l21_Integer, l22_Integer, w1_, w2_, OptionsPattern[]] := Catch[Module[
    {
-    a0 = OptionValue[LatticeConstant],
+    a0 = OptionValue[TBpack`LatticeConstant],
     apexpoint = OptionValue[ApexPoint],
     
     \[Delta] = 0.05,
@@ -523,8 +524,6 @@ ZSNR[l11_Integer, l12_Integer, l21_Integer, l22_Integer, w1_, w2_, OptionsPatter
     col, vec, d,
     t, lbl, dd, g
     },
-   (* Errors *)
-   ZSNR::veccoord = "The coordinates (`1`,`2`) are irrelevant";
    
    RPQ[p_, r0_, v_, \[Delta]_] := Module[
      {

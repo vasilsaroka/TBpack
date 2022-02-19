@@ -1,10 +1,10 @@
 (* Paclet Info File *)
 
-(* created 2021/04/08*)
+(* created 2022/02/19*)
 
 Paclet[
     Name -> "TBpack",
-    Version -> "0.4.0",
+    Version -> "0.5.0",
     MathematicaVersion -> "10.0+",
     Description -> "Tight-binding calculations in Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
@@ -24,7 +24,7 @@ Paclet[
     URL -> "https://github.com/vasilsaroka/TBpack",
     Support -> "https://t.me/vasilsaroka",
     Icon -> "Logo_3.png",
-    UUID -> "MaTeX documentation embeded",
+    UUID -> "TBpack-e9a2c698-48f6-49e0-8194-d7cd44976257",
     Location -> "https://github.com/vasilsaroka/TBpack",
     Extensions -> 
         {
