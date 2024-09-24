@@ -147,7 +147,17 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
  - Open the documentation center and search for `Hamiltonian` to get started.
  
  **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/view/vasilsaroka/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
- 
+
+## TBpack for WLJS Notebooks - Electron application
+   The [Electron application](https://github.com/JerryI/wolfram-js-frontend/releases) is an open-source javascript-based cross-platform graphical user interface for running Wolfram Language code via a [Wolfram Engine](https://www.wolfram.com/engine/). It is an actively developed [project](https://github.com/JerryI/wolfram-js-frontend) that is getting popularity due to its simplicity and ability to combine Wolfram Language with Javescript and Markdown. While WLJS notebooks are not superior to the original Mathematica notebooks, they do have some features such as gpt-based copilot, powerful command palette system, and enhanced animation capbilitites that may transform them into a useful companion if not a real contender of original notebooks. 
+   
+   We have release a special patch v0.5.1 of TBpack that can be installed into the Electron application.  
+   ### Installation guide
+   - Install [Wolfram Engine](https://www.wolfram.com/engine/) (14.0 or higher)
+   - Install [Electron application](https://jerryi.github.io/wljs-docs/) (2.5.6 or higher)
+   - The automated installation of TBpack:
+
+     Copy-paste the below function into a WLSJ notebook cell. Evaluate the cell to make the definition of this function known to the Wolfram Engine. In the next cell type and evaluate `InstallTBpack[]`.
 
 ## Supporting the project
    We believe everyone deserves access to knowledge that is grounded in science and integrity. That is why we keep our code open for all users, regardless of where they live or what they can afford to pay. This means more people can be better educated and inspired to make an impact on the global wellbeing. We have no billionaire owner, meaning only your donations power our work and ensure it can remain open for all. Every contribution, however big or small, makes a real difference for TBpack future. If you find it useful, consider [supporting the project](https://paypal.me/vasilsaroka?locale.x=en_GB). 
