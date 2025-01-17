@@ -160,11 +160,11 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
 
      Copy-paste the below function into a WLSJ notebook cell. Evaluate the cell, for example by pressing `Shift+Enter`, to make the definition of this function known to the Wolfram Engine. In the next cell, type `InstallTBpackIn2Electron[]` and evaluate it.
 
-           Options[InstallTBpackIn2Electron]={Mehtod->"Install" (* or "Uninstall" *) };
+           Options[InstallTBpackIn2Electron]={Method->"Install" (* or "Uninstall" *) };
            InstallTBpackIn2Electron[OptionsPattern[]]:=Block[
            {
               method=OptionValue[Method],
-              pacletsrepository, tbpackdirectory, message1, message2, jsonreleases, info, url, message, tempfile, 
+              pacletsrepository, tbpackdirectory, message1, message2, jsonreleases, info, pos, url, message, tempfile, 
               version = "v0.5.1" (* special TBpack patch for Electron *),
               giturl = "https://api.github.com/repos/vasilsaroka/TBpack/releases",
               deletedirectory
