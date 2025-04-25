@@ -228,7 +228,7 @@ Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO
       - Restart Electron application to make TBpack visible for ``Needs["TBpack`"]``.
 
    ### WLJS Notebook Demo
-   - Evaluate ``Needs[TBpack`]`` to load TBpack into the Wolfram Engine session run in Electron application.
+   - Evaluate ``Needs["TBpack`"]`` to load TBpack into the Wolfram Engine session run in Electron application.
    - Test TBpack using `AtomicStructure[Nanotube[5, 5]]`:
      ![WLJS Notebook Demo](https://github.com/user-attachments/assets/3a7b937f-36dd-42e8-85db-b3ec23bc5a72)
 
