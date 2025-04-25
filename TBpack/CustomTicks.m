@@ -125,7 +125,7 @@ FractionDigitsBase::usage="Option for FractionDigits.";
 LimitTickRange::usage="LimitTickRange[{x1,x2},ticks] selects those ticks with coordinates in the range x1...x2.  (The range check on the coordinate allows a tolerance, of 10^-10, so that legitimate ticks at the edge of the range are not cut off due to roundoff error.)";
 LimitTickLabelRange::usage="LimitTickLabelRange[{x1,x2},ticks] retains the labels on those ticks with coordinates approximately in the range x1...x2, stripping the labels from all others.  (The range check on the coordinate allows a tolerance, of 10^-10, so that legitimate ticks at the edge of the range are not cut off due to roundoff error.)";
 StripTickLabels::usage="StripTickLabels[ticks] removes any text labels from ticks.";
-TransformTicks::usage="StripTickLabels[positionfcn,lengthfcn,ticks] transforms the positions and lengths of all tick marks in a list.  Tick marks must be specified in full form, or at least with an explicit pair of in and out lengths.";
+TransformTicks::usage="TransformTicks[positionfcn,lengthfcn,ticks] transforms the positions and lengths of all tick marks in a list.  Tick marks must be specified in full form, or at least with an explicit pair of in and out lengths.";
 
 
 AugmentTicks::usage="AugmentTicks[labelfunction,lengthlist,stylelist,ticks] augments any ticks in ticklist to full form.";

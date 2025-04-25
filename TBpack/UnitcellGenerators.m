@@ -191,8 +191,8 @@ If[
 	cu = Complement[Coord,u]; (* atomic coordinates of the rest of the atoms *)
 	unew = # - T&/@u; (* shift of the edge atoms onto opposite side by substracting translation vector T*)
 	Coord = Join[cu,unew];
-	Return[Chop@{Coord,T,a0}],
-	Return[Chop@{Coord,T,a0}]
+	Return[Chop@{Coord,{T},a0}],
+	Return[Chop@{Coord,{T},a0}]
 ](* end If *)
 ](* end Module *);
 ](* Catch braket *)(* end Function Nanotube *)
@@ -266,7 +266,7 @@ If[
 	T = rm.T
 ];
 
-{unitcell,T,a0}
+{unitcell,{T},a0}
 
 ](* end Module *);
 SyntaxInformation[Nanoribbon] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
@@ -278,6 +278,8 @@ Options[CNanoribbon] = {
 	RefinedEdge->True,
 	TranslationAxis -> Oy
 	};
+
+
 CNanoribbon[n_Integer, m_Integer, OptionsPattern[]] := Module[
 {
 	(*-------------- functions ----------------*)
@@ -411,7 +413,7 @@ If[
 	(* a normal vector to the plane defined by T and Ox-, Oy-, or Oz-axis *)
 	pn = Cross[T, {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}[[dir]]];
 	If[
-		Sqrt[pn.pn] =!= 0,
+		Sqrt[pn.pn] < 10^-6,
 		(* if the normal vector well defined then reorient the structure so that translation vector is directed along the chosen axis *)
 		rm = If[
 				Head[a0]===Symbol, 
@@ -422,7 +424,7 @@ If[
 		T = rm.T
 	];
 	
-	Chop@{coord[[2]],T,a0,(* edge atoms *)coord[[1]]}
+	Chop@{coord[[2]],{T},a0}
 	,
 	
 	(* a normal vector to the plane defined by T and Ox-, Oy- or Oz-axis *)
@@ -439,7 +441,7 @@ If[
 		T = rm.T
 	];
 	
-	Chop@{coord, T, a0}
+	Chop@{coord, {T}, a0}
 ]
 
 ](* end Module *);
@@ -488,7 +490,7 @@ Wc = If[rtype == 3 || rtype == 4, 1/3, 1] (w1 l1c + w2 l2c); (* width vector coo
  
 data = ZSNR[L1c[[1]], L1c[[2]], L2c[[1]], L2c[[2]], Wc[[1]], Wc[[2]], TBpack`LatticeConstant -> a0, ApexPoint -> apexpoint];
 UnitCell = data[[1]];
-T = data[[2]];
+T = data[[2,1]];
   
 (* a normal vector to the plane defined by T and Ox-, Oy- or Oz-axis *)
 pn = Cross[T, {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}[[dir]]];
@@ -500,7 +502,7 @@ If[
 	T = rm.T
 ];
 
-Return[{UnitCell, T, a0}]
+Return[{UnitCell, {T}, a0}]
 ](* end Module *);
 SyntaxInformation[ZigzagShapedNanoribbon] = {"ArgumentsPattern" -> {_, _, _, _, OptionsPattern[]}};
   
@@ -628,7 +630,7 @@ ZSNR[l11_Integer, l12_Integer, l21_Integer, l22_Integer, w1_, w2_, OptionsPatter
    graphenesheet = # + shift & /@ Flatten[{A, B}, 2];
    
    {NNQ[Select[graphenesheet, InCell[#, L1, L2, W] &], L1 - L2], 
-    L1 - L2, a0}
+    {L1 - L2}, a0}
    ](* end Module *)
   ](* end Catch *);
 SyntaxInformation[ZSNR] = {"ArgumentsPattern" -> {_, _, _, _, _, _, OptionsPattern[]}};
@@ -715,7 +717,7 @@ IVGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Cat
     
      		unitcellnew = 
       		lfun@Delete[unitcell, {{1}, {sz+1}, {(sz^2 + 3 sz + 2)/2}}];
-      		{unitcellnew, {2 x0, 0, 0}, a0}
+      		{unitcellnew, {}, a0}
       		,
      		"HEX", 
      		sz = size - 1;
@@ -728,9 +730,12 @@ IVGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Cat
      		rest = unitcell[[{1, sz + 1, (sz^2 + 3 sz + 2)/2}]];
     
      		unitcellnew = lfun@Flatten[Table[RotationMatrix[\[Pi]/3 i, {0, 0, 1}].({1, 1, (-1)^(i - 1)} (# + (a1 + a2)/3)) & /@unitcell, {i, 6}], 1];
-     		{unitcellnew, {4 x0, 0, 0}, a0}
+     		{unitcellnew, {}, a0}
      	](* end Switch shape *),
     	2,(* armchair type QD *)
+    	
+    	(* 31/07/2022: this redefinition is needed to get correct coordinates for the armchair QDs *)
+    	a1 = {-1,1,1} a1; 
     
 	    lfun = Flatten[Table[# + ((i - 1) {0, 0, interlayerdistance} + If[EvenQ[i], ({-1, 1, 1} a1 + a2)/3, {0, 0, 0}]) & /@ #,{i, numberoflayers}]
        , 1] &;(* end Flatten *)(* layer function *)
@@ -747,7 +752,7 @@ IVGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Cat
        		1]; (* triangle unitcell *)
      
 	   		unitcellnew = lfun@unitcell;
-       		{unitcellnew, {2 x0, 0, 0}, a0}
+       		{unitcellnew, {}, a0}
      		,
      		"HEX",
      		l0 = {0, 0, 0};(* origin *)
@@ -763,7 +768,7 @@ IVGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Cat
      		rsel = Append[Select[bpar, ((-(Sqrt[3]/3) #[[1]] + x0 > #[[2]]) && #[[1]] > a0 Cos[\[Pi]/6]) &], {-1, 1, 1} a1 + {0, 0, Deltalb/2}];(* rotation symmetry element *)
      		unitcell = Flatten[Table[RotationMatrix[\[Pi]/3 i, {0, 0, 1}].({1, 1, (-1)^(i - 1)} (# - {0, a0, 0})) & /@ rsel, {i, 6}], 1];
      		unitcellnew = lfun@unitcell;
-     		{unitcellnew, {4 x0, 0, 0}, a0}
+     		{unitcellnew, {}, a0}
      	](* end Switch shape *)
     
    ](* end Switch type *)
@@ -1012,13 +1017,13 @@ VGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Modu
     		Switch[
      				shape,
      				"TRI(r)",
-     				{unitcellnew, {4 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"HEX(r)",
-     				{unitcellnew, {4 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"TRI", 
-     				{unitcellnew, {2 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"HEX", 
-     				{unitcellnew, {4 x0, 0, 0}, a0}
+     				{unitcellnew, {}, a0}
      		](* end Switch *),
     		2,(* armchair type QD *)
     
@@ -1095,13 +1100,13 @@ VGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Modu
     		Switch[
      				shape,
      				"TRI(r)",
-     				{unitcellnew, {4 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"HEX(r)",
-     				{unitcellnew, {4 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"TRI", 
-     				{unitcellnew, {2 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"HEX", 
-     				{unitcellnew, {4 x0, 0, 0}, a0}
+     				{unitcellnew, {}, a0}
      		](* end Switch *),
     		3,(* Mixed edge type QQ *)
     		Switch[
@@ -1141,9 +1146,9 @@ VGroupQuantumDot[size_Integer, numberoflayers_Integer, OptionsPattern[]] := Modu
     		Switch[
      				shape,
      				"CIR",
-     				{unitcellnew, {4 x0, 0, 0}, a0},
+     				{unitcellnew, {}, a0},
      				"CIR(r)",
-     				{unitcellnew, {4 x0, 0, 0}, a0}
+     				{unitcellnew, {}, a0}
      		](* end Switch *)
     
     ](* end Switch type *)

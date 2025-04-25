@@ -1,7 +1,10 @@
 (* Wolfram Language Package *)
 
 BeginPackage["TBpack`Optics`"]
-(* Exported symbols added here with SymbolName::usage *)  
+
+Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
+
+(* Usage messages: use here String Representation of Boxes to get formatting similar to built-in functions *)
 
 (* Functions *)
 OpticalAbsorption1D::usage = "OpticalAbsorption1D[\!\(\*StyleBox[\"bands\",\"TI\"], \*StyleBox[\"wavefunctions\",\"TI\"], \*StyleBox[\"velocityoperators\",\"TI\"], \*StyleBox[\"frequencyrange\",\"TI\"], \*StyleBox[\"numberofpoints\",\"TI\"], \*StyleBox[\"gaussianbroadening\",\"TI\"], \*StyleBox[\"polarization\",\"TI\"] \)] returns optical absorption spectrum for the 1D structure and linear polarization of the incident light.";
@@ -16,8 +19,7 @@ Begin["`Private`"] (* Begin Private Context *)
 (* This function works for the zero temperature and the intrinsic \
 position of the Fermi level *)
 
-(* Note: this function uses input from the ElectronicBands1D20190127 \
-function *)
+(* Note: this function uses input from the ElectronicBands1D function *)
 
 OpticalAbsorption1D = Compile[
    {
@@ -87,5 +89,7 @@ OpticalAbsorption1D = Compile[
 
 
 End[] (* End Private Context *)
+
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]]
 
 EndPackage[]

@@ -6,16 +6,18 @@ BeginPackage["TBpack`DataAnalysis`", {"TBpack`MaTeX`","TBpack`CustomTicks`"}]
 (* Functions *)
 ListOfBonds::usage = "ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"]] returns point pairs from \*StyleBox[\"unitcell\",\"TI\"] such that distance between the points is \*StyleBox[\"bondlength\",\"TI\"] \[PlusMinus] 0.05 \[Angstrom].
 ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"], BondLengthDelta \[Rule] \*StyleBox[\"value\",\"TI\"]] returns point pairs from \*StyleBox[\"unitcell\",\"TI\"] such that distance between the points is \*StyleBox[\"bondlength\",\"TI\"] \[PlusMinus] \*StyleBox[\"value\",\"TI\"] \[Angstrom].
-ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"], Dimentionality \[Rule] 2] returns a list of pairs \*RowBox[{\"{\", \"{\", StyleBox[SubscriptBox[\"x\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"y\",\"1\"],\"TI\"] , \"}\" , \",\" , \"{\", StyleBox[SubscriptBox[\"x\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"y\",\"2\"],\"TI\"] ,\"}\" ,\"}\"}].";
+ListOfBonds[\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"bondlength\",\"TI\"], PlaneProjection \[Rule] {1,1,0}] returns a list of pairs \*RowBox[{\"{\", \"{\", StyleBox[SubscriptBox[\"x\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"y\",\"1\"],\"TI\"] , \"}\" , \",\" , \"{\", StyleBox[SubscriptBox[\"x\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"y\",\"2\"],\"TI\"] ,\"}\" ,\"}\"}].";
 AtomicStructure::usage = "AtomicStructure[{\*StyleBox[\"unitcell\",\"TI\"], \*StyleBox[\"tr\",\"TI\"], \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"]}] returns the ball-and-stick model of a \*StyleBox[\"system\",\"TI\"] specified by the unit cell \*StyleBox[\"unitcell\",\"TI\"], translation vector \*StyleBox[\"tr\",\"TI\"] and the lattice constant \*StyleBox[SubscriptBox[\"a\",\"0\"],\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], \*StyleBox[\"options\",\"TI\"]] uses option settings specified in \*StyleBox[\"options\",\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], NumberOfUnitCells \[Rule] \*StyleBox[\"value\",\"TI\"]] returns the number of unit cells set by \*StyleBox[\"value\",\"TI\"]. 
-AtomicStructure[\*StyleBox[\"system\",\"TI\"], Dimensionality \[Rule] 2] returns the \*StyleBox[\"system\",\"TI\"] projection to the \*StyleBox[\"xy\",\"TI\"]-plane.
+AtomicStructure[\*StyleBox[\"system\",\"TI\"], PlaneProjection \[Rule] {1,1,0}] returns the \*StyleBox[\"system\",\"TI\"] projection to the \*StyleBox[\"xy\",\"TI\"]-plane.
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], AtomEnumeration \[Rule] \*StyleBox[\"True\",\"TI\"]] enumerates atom sites in the \*StyleBox[\"system\",\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], FontSize \[Rule] \*StyleBox[\"value\",\"TI\"]] sets the font size for the atom enumeration labels to \*StyleBox[\"value\",\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], ImageSize \[Rule] \*StyleBox[\"value\",\"TI\"]] sets the image size of the produced graphics to \*StyleBox[\"value\",\"TI\"].
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], AtomColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the atom color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], BondColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the bond color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.
+AtomicStructure[\*StyleBox[\"system\",\"TI\"], AtomSize \[Rule] \*StyleBox[\"asize\",\"TI\"]] sets the atom size to \*StyleBox[\"asize\",\"TI\"] in displayed graphics.
+AtomicStructure[\*StyleBox[\"system\",\"TI\"], BondSize \[Rule] \*StyleBox[\"bsize\",\"TI\"]] sets the bond size to \*StyleBox[\"bsize\",\"TI\"] in displayed graphics.
 AtomicStructure[\*StyleBox[\"system\",\"TI\"], TextColor \[Rule] \*StyleBox[\"color\",\"TI\"]] sets the label text color to \*StyleBox[\"color\",\"TI\"] in displayed graphics.";
 ReciprocalVectors::usage = "ReciprocalVectors[\*StyleBox[\"list\",\"TI\"]] returns a list of reciprical vectors for the given \*StyleBox[\"list\",\"TI\"] of the primitive translations.
 ReciprocalVectors[{\*StyleBox[\"tr\",\"TI\"] }] for a 1D lattice with the primitive translation \*StyleBox[\"tr\",\"TI\"].
@@ -68,11 +70,13 @@ ReadElectronicBands1D[\!\(Output \[Rule] \*StyleBox[\"form\",\"TI\"] \)] imports
 
 (* Options *)
 NumberOfUnitCells::usage = "Option setting the number of unit cell to be displayed.";
-Dimensionality::usage = "Option setting the number of dimensions used in displaying an object.";
+PlaneProjection::usage = "Option setting the 2D plane used for displaying an object.";
 AtomEnumeration::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the atom numbers should be displayed."
 AtomColor::usage = "Option setting the color of the atoms displayed in graphical objects.";
-BondColor::usage = "Option setting the color of the bonds displayed in graphical objects."
-TextColor::usage = "Option setting the color of the text displayed in graphical objects."
+BondColor::usage = "Option setting the color of the bonds displayed in graphical objects.";
+AtomSize::usage = "Option setting the size of atoms displayed in graphical objects.";
+BondSize::usage = "Option setting the size of bonds displayed in graphical objects.";
+TextColor::usage = "Option setting the color of the text displayed in graphical objects.";
 Labels::usage = "Option for plotting functions setting the labels such as plot title, axes label, frame label and legends.";
 PlotAppearance::usage = "Option for plotting functions setting the way they are presented.";
 TitlePosition::usage = "Option for plotting funcitons setting the position of the title within the plot.";
@@ -96,109 +100,260 @@ TBpackPalette::usage = "The list of standard colors used by default in plotting 
 
 Begin["`Private`"] (* Begin Private Context *)
 
+(* A test function to determine whether a given list is a list of 3D vectors *)
+ListOf3DVectorsQ = MatchQ[#,List[arg__?(VectorQ[#] && Length[#] == 3 &)]] &;
+
+(* Error messages *)
+ListOfBonds::arg1str = 
+     "The first argument of ListOfBonds must be a list of 3-component vectors.";
+ListOfBonds::badopt = "PlaneProjection option of ListOfBonds must be one of the following: {1,1,0} for XY-plane, {1,0,1} for XZ-plane, {0,1,1} for YZ-plane or {1,1,1} for the full 3D space."
+
 Options[ListOfBonds] = {
-		Dimensionality -> 3,
+		PlaneProjection -> {1,1,1},
 		TBpack`BondLengthDelta -> 0.05
 		};
-ListOfBonds[unitcell_List, bondlength_, OptionsPattern[]] := Module[
+ListOfBonds[unitcell_List, bondlength_, OptionsPattern[]] :=Catch[ Module[
 {
-	dim = OptionValue[Dimensionality],
+	projection = OptionValue[PlaneProjection],
 	delta = OptionValue[TBpack`BondLengthDelta],
 	len, vec,
 	bondlist = {}
 },
 
+(* If not a list of points in 3D space; this test is added on 29/07/2022 *)
+If[
+	!ListOf3DVectorsQ[unitcell],
+	Message[ListOfBonds::arg1str];
+    Throw[$Failed]
+];
+
 len = Length@unitcell;
 
-Do[
-	vec = unitcell[[i]] - unitcell[[j]];
-	If[
-		Abs[Sqrt[vec.vec] - bondlength] < delta,
-		AppendTo[bondlist,Switch[
-									dim,
-									2,
-									Most/@{unitcell[[i]],unitcell[[j]]},
-									3,
-									{unitcell[[i]],unitcell[[j]]}
-							](* end Switch *)
-		](* end AppendTo *)
-	](* end If *),
-{i,1,len-1},
-{j,i+1,len}
-](* end Do *);
+Switch[
+		projection,
+		{1,1,0}(* XY-plane projection *),
+		Do[
+			vec = unitcell[[i]] - unitcell[[j]];
+			If[
+				Abs[Sqrt[vec.vec] - bondlength] < delta,
+				AppendTo[bondlist, {unitcell[[i,{1,2}]],unitcell[[j,{1,2}]]}](* end AppendTo *)
+			](* end If *),
+		{i,1,len-1},
+		{j,i+1,len}
+		](* end Do *),
+		{1,0,1}(* XZ-plane projection *),
+		Do[
+			vec = unitcell[[i]] - unitcell[[j]];
+			If[
+				Abs[Sqrt[vec.vec] - bondlength] < delta,
+				AppendTo[bondlist, {unitcell[[i,{1,3}]],unitcell[[j,{1,3}]]}](* end AppendTo *)
+			](* end If *),
+		{i,1,len-1},
+		{j,i+1,len}
+		](* end Do *),
+		{0,1,1}(* YZ-plane projection *),
+		Do[
+			vec = unitcell[[i]] - unitcell[[j]];
+			If[
+				Abs[Sqrt[vec.vec] - bondlength] < delta,
+				AppendTo[bondlist, {unitcell[[i,{2,3}]],unitcell[[j,{2,3}]]}](* end AppendTo *)
+			](* end If *),
+		{i,1,len-1},
+		{j,i+1,len}
+		](* end Do *),
+		{1,1,1}(* full 3D space *),
+		Do[
+			vec = unitcell[[i]] - unitcell[[j]];
+			If[
+				Abs[Sqrt[vec.vec] - bondlength] < delta,
+				AppendTo[bondlist, {unitcell[[i]],unitcell[[j]]}](* end AppendTo *)
+			](* end If *),
+		{i,1,len-1},
+		{j,i+1,len}
+		](* end Do *),
+		_,
+		Message[ListOfBonds::badopt];
+    	Throw[$Failed]
+](* end Switch *);
 Return[bondlist]
-](* end Module *);
+](* end Module *)](* end Catch *);
 SyntaxInformation[ListOfBonds] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
+
+(* Error messages *)
+AtomicStructure::optargmma = "Mismatch of `2`: `1`";
+AtomicStructure::argfmt = "Wrong `2` argument format: `1`";
 
 Options[AtomicStructure] = {
 	TBpack`BondLengthDelta -> 0.05,
-	NumberOfUnitCells -> 1,
-	Dimensionality -> 3,
+	NumberOfUnitCells -> Automatic,
+	PlaneProjection -> {1,1,1},
 	AtomEnumeration -> False,
 	AtomColor -> Gray,
 	BondColor -> Gray,
+	AtomSize -> 0.3,
+	BondSize -> 0.1,
 	TextColor -> White,
 	FontSize -> 10,
 	ImageSize -> {300}
 };
 
 (* 2D structure visualization is not included *)
-AtomicStructure[system_List, OptionsPattern[]]:=Module[
+AtomicStructure[system_List, OptionsPattern[]]:=Catch[Module[
 {
 	bondlengthdelta = OptionValue[TBpack`BondLengthDelta],
 	lim = OptionValue[NumberOfUnitCells],
-	dim = OptionValue[Dimensionality],
+	projection = OptionValue[PlaneProjection],
 	acolor = OptionValue[AtomColor],
 	bcolor = OptionValue[BondColor],
+	asize = OptionValue[AtomSize],
+	bsize = OptionValue[BondSize],
 	tcolor = OptionValue[TextColor],
 	imagesize = OptionValue[ImageSize],
 	fontsize = OptionValue[FontSize],
+	
+	tdim,
+	tlen,
 	unitcell, T, a0,
+	T1,T2,T3,
 	u,v,
 	
 	counter = 0,
 	antiacolor,
 	antibcolor,
 	
-	nd,
+	nd,ppbgfun,ppagfun,
 	AntiColor
 },
 
-AntiColor[color_] := Module[
-  {
-   list, gr,
-   r, g, b
-   },
-  list = List @@ color;
-  Switch[
-   		Length@list,
-   		1, {gr} = list; GrayLevel[1 - gr],
-   		3, {r, g, b} = list; RGBColor @@ {1 - r, 1 - g, 1 - b}
-   ](* end Switch *)](* end Module *);
-
-nd = ToString@PaddedForm[1.0 #,{5,3},ExponentFunction->(If[-16<#<16,Null,#]&)]&; (* number display function *);
-
-antiacolor = AntiColor[acolor];
-antibcolor = AntiColor[bcolor];
-
-(* system = {unitcell,translationvector,lattice constant} *)
+(* system = {unitcell,translationvectors,lattice constant} *)
 unitcell = system[[1]];
 T = system[[2]];
 a0 = system[[3]];
 
-(* TODO: generalize to 2 and 3 dimensions 12/08/2020 *)
-u = Flatten[Table[(# + T (i-1))&/@unitcell,{i,lim}],1];
+(* Checking arguments and options *)
+
+(* translation vector T is supposed to be provided in the form: 
+{} - 0D; {T1} - 1D; {T1,T2} - 2D; {T1,T2,T3} - 3D, 
+where each Tn = {Tx,Ty,Tz}.
+*)
+tdim = Dimensions[T];
+If[
+	(tdim =!= {0}) && (tdim =!= {1,3}) && (tdim =!= {2,3}) && (tdim =!= {3,3}),
+	Message[AtomicStructure::argfmt,"the second element of the argument is the list of translations vectors that must be an empty list or a list of three-component numerical vectors (up to three such vectors).",system];
+	Throw[$Failed]
+];
+
+(*
+NumberOfUnitCells option must be Automatic or
+{} - 0D; {n1} - 1D; {n1,n2} - 2D; {n1,n2,n3} - 3D,
+with ni being an integer. Automatic is allowed for all dimensions, it sets 
+{} - 0D; {1} - 1D; {1,1} - 2D; {1,1,1} - 3D.
+*)
+tlen = tdim[[1]];
+If[
+	lim === Automatic,
+	lim = Table[1,{i,tlen}],
+	If[
+		Not[(Length[lim] === tlen && And @@ (IntegerQ /@ lim))],
+		Message[AtomicStructure::optargmma,Row[{lim,T}," and "],"NumberOfUnitCells option, which must be a list of integers, and translation vectors given in the second element of the argument"];
+		Throw[$Failed]
+	]
+];
+
+
+(* 29/11/2024: New anti-color function that must work with Directives via substitutions *)
+AntiColor[directive_] := Module[
+  {
+   csubs
+   },
+  csubs = {
+  	RGBColor[r_, g_, b_] :> RGBColor[1 - r, 1 - g, 1 - b],
+  	GrayLevel[g_] :> GrayLevel[1 - g],
+  	Opacity[op_] :> Opacity[1-op]
+  };
+  directive/.csubs
+  ](* end Module *);   
+   
+
+nd = ToString@PaddedForm[1.0 #,{5,3},ExponentFunction->(If[-16<#<16,Null,#]&)]&; (* number display function *);
+
+(* define anti-colors that will be used for highlighting the elements on the mouse-over event *)
+antiacolor = AntiColor[acolor];
+antibcolor = AntiColor[bcolor];
+
+(* plane projection graphics functions: ppbgfun [for bonds] and ppagfun [for atoms] *)
+ppbgfun=Tooltip[
+				Mouseover[
+					{bcolor,AbsoluteThickness[10 bsize],Line[#1]},
+					{bcolor,AbsoluteThickness[30 bsize],Line[#1],antibcolor,AbsoluteThickness[10 bsize],Line[#1]}
+					](* end Mouseover *),
+				v = #1[[2]] - #1[[1]];
+				nd[Sqrt[v.v]]<>" \[Angstrom]",
+				TooltipStyle -> {Background -> White}
+			](*end Tooltip *)&;
+ppagfun=Tooltip[
+				counter++;
+				Mouseover[
+							{
+								acolor,Disk[#1[[#2]],asize],
+								If[
+									OptionValue[AtomEnumeration],
+									{tcolor,Text[Style[ToString[counter],fontsize],#1[[#2]]]},
+									{}
+								](* end If AtomicEnumeration *)
+							},
+							{
+								EdgeForm[acolor],antiacolor,Disk[#1[[#2]],asize]
+							}
+						](* end Mouseover *),
+				ToString[counter]<>": ("<>nd[(#1[[#2[[1]]]])]<>","<>nd[(#1[[#2[[2]]]])]<>") \[Angstrom]",
+				TooltipStyle->{Background->White}
+			](* end Tooltip *)&;
+
+
+
+(* generalize to 2 and 3 dimensions 12/08/2020 *)
+(*u = Flatten[Table[(# + T (i-1))&/@unitcell,{i,lim}],1];*)
+
+(* 28/03/2025: u is the unitcell + requested additional unitcells *)
+u = Switch[
+	tlen,
+	0,
+		unitcell,
+	1,
+		T1 = T[[1]];
+		Flatten[Table[(#1 + (i-1) T1)&/@unitcell,{i,lim[[1]]}],1],
+	2,
+		T1 = T[[1]];
+		T2 = T[[2]];
+		
+		Flatten[Table[(#1 + (i-1) T1 + (j-1) T2)&/@unitcell,{i,lim[[1]]},{j,lim[[2]]}],2],
+	3,
+		T1 = T[[1]];
+		T2 = T[[2]];
+		T3 = T[[3]];
+		Flatten[Table[(#1 + (i-1) T1 + (j-1) T2 + (k-1) T3)&/@unitcell,{i,lim[[1]]},{j,lim[[2]]},{k,lim[[3]]}],3]
+](* end Switch *);
 
 Switch[
-		dim,
-		3,
+		projection,
+		{1,1,0}(* XY-plane projection *),
+		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
+			ppagfun[#,{1,2}]&/@u},ImageSize->imagesize],
+		{1,0,1}(* XZ-plane projection *),
+		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
+			ppagfun[#,{1,3}]&/@u},ImageSize->imagesize],
+		{0,1,1}(* YZ-plane projection *),
+		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
+			ppagfun[#,{2,3}]&/@u},ImageSize->imagesize],
+		{1,1,1},
 		Graphics3D[{
 			Specularity[GrayLevel[1],100],
 			Tooltip[
 				counter++;
 				Mouseover[
 							{
-								acolor,Sphere[#,0.3],
+								acolor,Sphere[#,asize],
 								If[
 									OptionValue[AtomEnumeration],
 									{tcolor,Text[Style[counter,fontsize],#]},
@@ -206,98 +361,59 @@ Switch[
 								](* end If AtomicEnumeration *)
 							},
 							{
-								antiacolor,Sphere[#,0.3]
+								antiacolor,Sphere[#,asize]
 							}
 						](* end Mouseover *)
-				,"("<>nd[#[[1]]]<>","<>nd[#[[2]]]<>","<>nd[#[[3]]]<>") \[Angstrom]",
+				,ToString[counter]<>": ("<>nd[#[[1]]]<>","<>nd[#[[2]]]<>","<>nd[#[[3]]]<>") \[Angstrom]",
 				TooltipStyle -> {Background -> White}
 			](* end Tooltip *)&/@u,
 			Tooltip[
 				Mouseover[
-					{bcolor,Tube[#,0.1]},
-					{antibcolor,Tube[#,0.1]}
+					{bcolor,Tube[#,bsize]},
+					{antibcolor,Tube[#,bsize]}
 					](* end Mouseover *),
 							v = #[[2]] - #[[1]];
 							nd[Sqrt[v.v]]<>" \[Angstrom]",
 							TooltipStyle -> {Background -> White }
-			](* end Tooltip *)&/@ListOfBonds[u, a0, Dimensionality->3, BondLengthDelta->bondlengthdelta]
+			](* end Tooltip *)&/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta]
 			},
 			Boxed->False,
 			Lighting-> "Neutral",
 			ImageSize->imagesize],
-		2,
-		Graphics[{
-			
-			Tooltip[
-				Mouseover[
-					{bcolor,AbsoluteThickness[1],Line[#]},
-					{antibcolor,AbsoluteThickness[3],Line[#],bcolor,AbsoluteThickness[1],Line[#]}
-					](* end Mouseover *),
-				v = #[[2]] - #[[1]];
-				nd[Sqrt[v.v]]<>" \[Angstrom]",
-				TooltipStyle -> {Background -> White}
-			](*end Tooltip *)&/@ListOfBonds[u, a0, Dimensionality->2, BondLengthDelta->bondlengthdelta],
-			Tooltip[
-				counter++;
-				Mouseover[
-							{
-								acolor,Disk[Most@#,0.3],
-								If[
-									OptionValue[AtomEnumeration],
-									{tcolor,Text[Style[ToString[counter],fontsize],Most@#]},
-									{}
-								](* end If AtomicEnumeration *)
-							},
-							{
-								EdgeForm[acolor],antiacolor,Disk[Most@#,0.3]
-							}
-						](* end Mouseover *),
-				"("<>nd[#[[1]]]<>","<>nd[#[[2]]]<>") \[Angstrom]",
-				TooltipStyle->{Background->White}
-			](* end Tooltip *)&/@u
-			},ImageSize->imagesize]
+		_,
+		Message[ListOfBonds::badopt];
+    	Throw[$Failed]
 ](* end Switch *)
-](* end Module *);
+](* end Module *)](* end Catch *);
 SyntaxInformation[AtomicStructure] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
 
 
 (* Error messages *)
-ReciprocalVectors::falseargumentstructure = 
-     "The argument of the \!\(\*
-StyleBox[\"ReciprocalVectors\",\nFontSlant->\"Italic\"]\) must be a \
-list of 3-component vectors, numeric or symbolic.";
-ReciprocalVectors::badargument = "The argument of the \!\(\*
-StyleBox[\"ReciprocalVectors\",\nFontSlant->\"Italic\"]\) contains or \
-was reduced to dependent vectors.";
-ReciprocalVectors::somevaluesdroped = 
-     "One or more last unzero vector components were droped during \
-evaluation.";
+ReciprocalVectors::arg1str = "The argument of ReciprocalVectors must be a list of 3-component vectors, numeric or symbolic.";
+ReciprocalVectors::badargument = "The argument of ReciprocalVectors contains or was reduced to dependent vectors.";
+ReciprocalVectors::somevaluesdroped = "One or more last unzero vector components were droped during evaluation.";
 
 ReciprocalVectors[listofvectors_] := Catch[
    Module[
     {
      list, len,
      k, b, eq,
-     testfunction,
      f
      },
     
-    testfunction = (MatchQ[#, 
-         List[arg__?(VectorQ[#] && Length[#] == 3 &)]] && 
-        Length[#] <= 3) &;
     If[
      	VectorQ[listofvectors] && Length[listofvectors] == 3 ,
      	list = {listofvectors},
      	list = listofvectors;
      ];
-    
+	
+	len = Length[list];
+	
     If[
-     	! testfunction[list],
-     	Message[ReciprocalVectors::falseargumentstructure];
+     	! (ListOf3DVectorsQ[list] && len <= 3),
+     	Message[ReciprocalVectors::arg1str];
      	Throw[$Failed]
      ];
-    
-    len = Length[list];
     
     f = If[
        		! MatchQ[Take[#, len - 3], List[arg__?(# == 0 &)]],
@@ -330,7 +446,7 @@ ReciprocalVectors[listofvectors_] := Catch[
 
 
 (* Error messages *)
-FermiEnergy::argument = "The \!\(\*StyleBox[\"Most\",\"TI\"]\) part of the argument of \!\(\*StyleBox[\"FermiEnergy\",\nFontSlant->\"Italic\"]\) must be a numeric matrix.";
+FermiEnergy::arg1str = "The \!\(\*StyleBox[\"Most\",\"TI\"]\) part of the argument of \!\(\*StyleBox[\"FermiEnergy\",\nFontSlant->\"Italic\"]\) must be a numeric matrix.";
 
 FermiEnergy[bands_List] := Catch[
    Module[
@@ -343,7 +459,7 @@ FermiEnergy[bands_List] := Catch[
     (* ------------------------------Test of the arguments-----------------------------*)
     If[
      	(!MatrixQ[Most@bands, NumericQ]),
-     	Message[FermiEnergy::argument];
+     	Message[FermiEnergy::arg1str];
      	Throw[$Failed]
      ];
     
@@ -365,7 +481,7 @@ FermiEnergy[bands_List] := Catch[
 
 
 (* Error messages *)
-EnergyGap::argument = "The \!\(\*StyleBox[\"Most\",\"TI\"]\) part of the argument of \!\(\*StyleBox[\"EnergyGap\",\nFontSlant->\"Italic\"]\) must be a numeric matrix.";
+EnergyGap::arg1str = "The \!\(\*StyleBox[\"Most\",\"TI\"]\) part of the argument of \!\(\*StyleBox[\"EnergyGap\",\nFontSlant->\"Italic\"]\) must be a numeric matrix.";
 
 EnergyGap[bands_List] := Catch[
    Module[
@@ -378,7 +494,7 @@ EnergyGap[bands_List] := Catch[
     (* ------------------------------Test of the arguments-----------------------------*)
     If[
      	(!MatrixQ[Most@bands, NumericQ]),
-     	Message[EnergyGap::argument];
+     	Message[EnergyGap::arg1str];
      	Throw[$Failed]
      ];
     
@@ -853,6 +969,7 @@ ReadElectronicBands1D[OptionsPattern[]] := Block[
    strain,
    edgecorrections,
    modelname,
+   hamiltoniangauge,
    len,
    evec, v,
    
@@ -983,6 +1100,10 @@ ReadElectronicBands1D[OptionsPattern[]] := Block[
    	(*modelname*)
    	pos = Position[data, {"#", "Model", "name:", ___}][[1, 1]];
    	modelname = StringJoin @@ data[[pos, 4 ;; All]];
+   	
+   	(*hamiltonian gauge*)
+   	pos = Position[data, {"#", "Hamiltonian", "gauge:", _}][[1, 1]];
+   	hamiltoniangauge = data[[pos, 4]];   
    
    	evpos = Position[data, {"#", "Eigenvectors:"}];
    	If[

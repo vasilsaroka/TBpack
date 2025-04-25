@@ -1,6 +1,5 @@
 (* ::Package:: *)
 
-(* TODO: 30/04/2020: Add BerryPhase function, perhaps to Optics module *)
 (* Mathematica Package  *)
 
 (* :Title: TBpack *)
@@ -12,7 +11,7 @@
 (* :Mathematica Version: 10.0+ *)
 (* :Copyright: (c) 2020 Vasil A. Saroka *)
 
-BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optimization`","TBpack`Optics`","TBpack`Sneg`"}];
+BeginPackage["TBpack`", {"TBpack`UnitcellGenerators`", "TBpack`DataAnalysis`","TBpack`Optimization`","TBpack`Optics`","TBpack`Topology`","TBpack`Sneg`"}]
 
 Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
 
@@ -26,10 +25,10 @@ Hamiltonian[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"TranslationVe
 
 ElectronicStructure::usage = "ElectronicStructure[\!\(\*RowBox[{\"{\", StyleBox[SubscriptBox[\"unitcell\",\"1\"],\"TI\"],\",\", StyleBox[SubscriptBox[\"unitcell\",\"2\"],\"TI\"], \"}\"}]\)] calculates electronic energy levels for a system presented by the \!\(\*StyleBox[\"unitcell\",\"TI\"]\) list of ideal \!\(\*StyleBox[SubscriptBox[\"unitcell\",\"1\"],\"TI\"]\) and relaxed \!\(\*StyleBox[SubscriptBox[\"unitcell\",\"2\"],\"TI\"]\).
 ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"options\",\"TI\"]}]\)] calculates electronic energy levels for a system using specified option settings.
-ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"EigenVectors\", \"\[Rule]\", StyleBox[\"True\",\"TI\"] }]\)] returns a list of electronic energy levels, eigenvectors and velocity operator matrices.
+ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"EigenVectors\", \"\[Rule]\", \"True\" }]\)] returns a list of electronic energy levels, eigenvectors and velocity operator matrices.
 ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"TranslationVectors\" ,\"\[Rule]\", \"{{\", StyleBox[SubscriptBox[\"tr\",\"11\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"tr\",\" 12\"],\"TI\"], \",\" , \"\[Ellipsis]\" , \"},{\" , StyleBox[SubscriptBox[\"tr\",\" 21\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"tr\",\" 22\"],\"TI\"], \",\" , \"\[Ellipsis]\",\"}}\" }]\)] uses ideal \!\(\*StyleBox[SubscriptBox[\"tr\",\"1n\"],\"TI\"]\) and relaxed \!\(\*StyleBox[SubscriptBox[\"tr\",\"2n\"],\"TI\"]\) translation vectors and the \!\(\*StyleBox[\"k\",\"TI\"]\)-point {0,0,0}.
 ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"TranslationVectors\" ,\"\[Rule]\", \"{\", StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"] , \",\" , StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"], \"}\", \",\" , Kpoint, \"\[Rule]\", StyleBox[\"klist\",\"TI\"] }]\)] uses the list of \!\(\*StyleBox[\"k\",\"TI\"]\)-points \!\(\*StyleBox[\"klist\",\"TI\"]\).
-ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"TranslationVectors\" ,\"\[Rule]\", \"{\", StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"] , \",\" , StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"], \"}\", \",\" , Kpoint, \"\[Rule]\", StyleBox[\"klist\",\"TI\"], \",\" , ParallelEvaluation, \"\[Rule]\", StyleBox[\"True\",\"TI\"] }]\)] calculates in parallel for different elements of \!\(\*StyleBox[\"klist\",\"TI\"]\).";
+ElectronicStructure[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , \"TranslationVectors\" ,\"\[Rule]\", \"{\", StyleBox[SubscriptBox[\"tr\",\"1\"],\"TI\"] , \",\" , StyleBox[SubscriptBox[\"tr\",\"2\"],\"TI\"], \"}\", \",\" , Kpoint, \"\[Rule]\", StyleBox[\"klist\",\"TI\"], \",\" , ParallelEvaluation, \"\[Rule]\", \"True\" }]\)] calculates in parallel for different elements of \!\(\*StyleBox[\"klist\",\"TI\"]\).";
 
 ElectronicBands1D::usage = "ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"]}]\)] calculates electronic energy bands for a 1D system presented by \!\(\*StyleBox[\"unitcell\",\"TI\"]\) and the translation vector \!\(\*StyleBox[\"tr\",\"TI\"]\). 
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , StyleBox[\"options\",\"TI\"]}]\)] calculates electronic energy bands using specified options.
@@ -39,9 +38,9 @@ ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"Efield\" , \"\[Rule]\" , StyleBox[\"vector\",\"TI\"]}]\)] uses specified external electric field set by 3 Cartesian component \!\(\*StyleBox[\"vector\",\"TI\"]\).
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"Bfield\" , \"\[Rule]\" , StyleBox[\"vector\",\"TI\"]}]\)] uses specified external magnetic field set by 3 Cartesian component \!\(\*StyleBox[\"vector\",\"TI\"]\).
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"NumberOfKpoints\" , \"\[Rule]\" , StyleBox[\"value\",\"TI\"]}]\)] uses specified by \!\(\*StyleBox[\"value\",\"TI\"]\) the number of \!\(\*StyleBox[\"k\",\"TI\"]\)-points in a uniform grid of 1D reciprocal space.
-ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"EigenVectors\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"]}]\)] returns a list of electronic energy bands, eigenvectors and velocity operator matrices.
-ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"ParallelEvaluation\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"]}]\)] calculates in parallel for different \!\(\*StyleBox[\"k\",\"TI\"]\)-points.
-ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"RelaxGeometry\" , \"\[Rule]\" , StyleBox[\"True\",\"TI\"], \",\" , \"OptimizationProgram\" , \"\[Rule]\" , \"{\", StyleBox[\"integer\",\"TI\"], \",\" , StyleBox[\"path\",\"TI\"] , \",\", StyleBox[\"fname\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] , \"}\"}]\)] uses geometry optimization of the unit cell by the program set by \!\(\*StyleBox[\"integer\",\"TI\"]\), located at \!\(\*StyleBox[\"path\",\"TI\"]\), with executable \!\(\*StyleBox[\"fname\",\"TI\"]\) and options \!\(\*StyleBox[\"opts\",\"TI\"]\).
+ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"EigenVectors\" , \"\[Rule]\" , \"True\"}]\)] returns a list of electronic energy bands, eigenvectors and velocity operator matrices.
+ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"ParallelEvaluation\" , \"\[Rule]\" , \"True\"}]\)] calculates in parallel for different \!\(\*StyleBox[\"k\",\"TI\"]\)-points.
+ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"RelaxGeometry\" , \"\[Rule]\" , \"True\", \",\" , \"OptimizationProgram\" , \"\[Rule]\" , \"{\", StyleBox[\"integer\",\"TI\"], \",\" , StyleBox[\"path\",\"TI\"] , \",\", StyleBox[\"fname\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] , \"}\"}]\)] uses geometry optimization of the unit cell by the program set by \!\(\*StyleBox[\"integer\",\"TI\"]\), located at \!\(\*StyleBox[\"path\",\"TI\"]\), with executable \!\(\*StyleBox[\"fname\",\"TI\"]\) and options \!\(\*StyleBox[\"opts\",\"TI\"]\).
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"Path2Save\" , \"\[Rule]\" , StyleBox[\"path\",\"TI\"]}]\)] saves the results of the calculation in a file located at \!\(\*StyleBox[\"path\",\"TI\"]\).";
 
 (* for Options *)
@@ -55,7 +54,10 @@ Efield::usage = "Option setting the Cartesian components of a homogeneous extern
 Bfield::usage = "Option setting the Cartesian components of a homogeneous external magnetic field in T.";
 EdgeCorrections::usage = "Option setting the hopping integral edge corrections in eV corresponding to coordination number 1 and 2 in the 2D hexagonal lattice.";
 HoppingDistanceDelta::usage = "Option setting the largest absolute deviation in \[Angstrom] for which the hopping distance is still considered as matching to the coressponding tight-binding hopping integral, see V. A. Saroka, K. G. Batrakov, and L. A. Chernozatonskii, Phys. Solid State 56, 2135 (2014).";
-SuperCellSize::usage = "Option specifying how many unit cells are contained in the supercell: 0D- 1; 1D- \!\(\*RowBox[{ \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\"}]\); 2D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"2\"]\); 3D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"3\"]\), where \!\(\*StyleBox[\"n\",\"TI\"]\) is a positive integer option value."
+SuperCellSize::usage = "Option specifying how many unit cells are contained in the supercell: 0D- 1; 1D- \!\(\*RowBox[{ \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\"}]\); 2D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"2\"]\); 3D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"3\"]\), where \!\(\*StyleBox[\"n\",\"TI\"]\) is a positive integer option value.";
+HamiltonianGauge::usage = "Option specifying which gauge, Basis I (Periodic) or Basis II (Canonical) to use for the Hamiltonian construction.
+See Sec. 4.2.5 in \!\(\*TemplateBox[{\"J. Cayssol, J.N. Fuchs, J. Phys. Mater. 4, 034007 (2021)\", \"https://doi.org/10.1088/2515-7639/abf0b5\"}, \"HyperlinkURL\"]\)
+See also \!\(\*TemplateBox[{\"C. Bena, G. Montambaux, New J. Phys. 11, 095003 (2009)\", \"https://doi.org/10.1088/1367-2630/11/9/095003\"}, \"HyperlinkURL\"]\)";
 
 ParallelEvaluation::usage = "Option in some functions taking values \!\(\*StyleBox[\"True\",\"TI\"]\) or \!\(\*StyleBox[\"False\",\"TI\"]\) to specify choice of between usage of \!\(\*StyleBox[\"ParalleTable\",\"TI\"]\) and \!\(\*StyleBox[\"Table\",\"TI\"]\).";
 EigenVectors::usage = "Option in some functions taking values \!\(\*StyleBox[\"True\",\"TI\"]\) or \!\(\*StyleBox[\"False\",\"TI\"]\) to specify usage of \!\(\*StyleBox[\"Eigenvalues\",\"TI\"]\) or \!\(\*StyleBox[\"Eigensystem\",\"TI\"]\).";
@@ -80,14 +82,17 @@ InputScriptTemplate::usage = "Option in some functions for providing an external
 $TBpackDirectory::usage = "$TBpackDirectory gives directory where TBpack.m file is located.";
 
 
-
-
 Begin["`Private`"]
 
 $TBpackDirectory = DirectoryName[$InputFileName];
 
 (* Error messages *)
-Hamiltonian::optlength = "HoppingIntegrals, OverlappingIntegrals, HoppingDistantes lists and elements of EdgeCorrections matrix must have the same lengths." 
+Hamiltonian::optfmt = "Wrong `2` option format: `1`";
+Hamiltonian::optmma = "Mismatch of `2` options: `1`";
+Hamiltonian::argfmt = "Wrong `2` argument format: `1`";
+Hamiltonian::argmma = "Mismatch of `2` arguments: `1`";
+Hamiltonian::optargmma = "Mismatch of `2`: `1`";
+Hamiltonian::guage = "Option value `1` must be either \"Periodic\" or \"Canonical\".";
 
 (* System tigh-binding Hamiltonian and overlapping matrices *)
 Options[Hamiltonian] = {
@@ -105,10 +110,12 @@ Options[Hamiltonian] = {
 		{{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}}
 		},
 	HoppingDistanceDelta -> 0.05,
-	SuperCellSize -> 1};
+	SuperCellSize -> 1,
+	HamiltonianGauge -> "Canonical"
+};
 	
 Hamiltonian[unitcell_List, OptionsPattern[]] := Catch[
-Module[
+Block[
 {
 	translationvectors = OptionValue[TranslationVectors],
 	hoppingintegrals = OptionValue[HoppingIntegrals],
@@ -121,6 +128,9 @@ Module[
 	edgecorrections = OptionValue[EdgeCorrections],
 	hoppingdistancedelta = OptionValue[HoppingDistanceDelta],
 	supercellsize = OptionValue[SuperCellSize],
+	hamiltoniangauge = OptionValue[HamiltonianGauge],
+	
+	efopt,
 	
 	tlen,len,
 	supercell,unum,
@@ -134,7 +144,9 @@ Module[
 	
 	H,S,hij,sij,
 	r1,r2,r12,
-	t,s,
+	R1,R2list,R12,
+	hi,oi,
+	t,s,symbflag,
 	idealbondlength,
 	optimizedbondlength,
 	relbonddeformation,
@@ -148,31 +160,27 @@ Module[
 	hlen,etest,
 	
 	hd,
-	hdfun,
-	hifun,
-	oifun,
 	
 	(* subfunctions *)
 	U,
-	realnumbersQ
+	realnumbersQ,
+	realnumberQ
 	
 },
 
-(*
-Error messages:
-
-Hamiltonian4TBpack::arg1="The argument `1` should be a list of points in 3D space.";Hamiltonian4TBpack::arg2="The argument `1` should be a list numeric vectors of 3D space or a list of lists of such vectors up to 3 ones.";
-Hamiltonian4TBpack::inconsarg="Arguments `1` , `2` must have the same lengths which is less than length of `3`.";
-
-tf1=MatchQ[#1,{arg___?(VectorQ[#1,NumericQ]&&Length[#1]==3&)}]&;tf2=(MatchQ[#1,{arg___?(VectorQ[#1,NumericQ]&&Length[#1]==3&)}]&&Length[#1]<=3)&;
-
-If[!And@@(tf1/@unitcell),Throw[Message[Hamiltonian4TBpack::arg1,unitcell]]];
-If[!And@@(tf2/@translationvectors),Throw[Message[Hamiltonian4TBpack::arg2,translationvectors]]];
-If[!(Length@hoppingintegrals==Length@overlappingintegrals<=Length@nnlengthlist),Throw[Message[Hamiltonian4TBpack::inconsarg,hoppingintegrals,overlappingintegrals,nnlengthlist]]];
-
-*)
-
 (* Checking arguments and options *)
+(* unitcell argument format *)
+If[
+	Length[unitcell] === 2,
+	If[
+		Not[VectorQ[unitcell[[1]], Length[#] === 3 &] && VectorQ[unitcell[[2]], Length[#] === 3 &]],
+		Message[Hamiltonian::argfmt,"unitcell[[1]] or unitcell[[2]] is not a vector of lists with length 3","unitcell"];
+		Throw[$Failed]
+	],
+	Message[Hamiltonian::argfmt,"Lenght[unitcell] !=2 ","unitcell"];
+	Throw[$Failed]
+];
+
 If[
 	!SameQ[
 			Length[hoppingintegrals],
@@ -180,7 +188,31 @@ If[
 			Length[hoppingdistances],
 			Dimensions[edgecorrections][[3]]
 	](* end SameQ *),
-	Message[Hamiltonian::optlength];
+	Message[Hamiltonian::optmma,{hoppingintegrals,overlappingintegrals,hoppingdistances,edgecorrections},"HoppingIntegrals, OverlapingIntegrals, HoppingDistances and EdgeCorections"];
+	Throw[$Failed]
+];
+
+(* Efield option *)
+If[
+	VectorQ[efield] && Length[efield] == 3,
+	(* efield is a 3-component Cartesian vector setting the electrostatic field strength *)
+	efopt = 1,
+	(* if efield is not a 3-component Cartesian vector (i.e. electrostatic field strength) 
+	 then it is assumed to be a pure function defining in eV an electrostatic potential 
+	 in space as function of x, y and z. 
+	*)
+	If[
+		Head[efield] === Function,
+		efopt = 2,
+		Message[Hamiltonian::optfmt,efield,"Efield"];
+		Throw[$Failed]
+	]
+];
+
+(* HamiltonianGauge option *)
+If[
+	(hamiltoniangauge =!= "Periodic") && (hamiltoniangauge =!= "Canonical"),
+	Message[Hamiltonian::guage,hamiltoniangauge];
 	Throw[$Failed]
 ];
 
@@ -195,6 +227,7 @@ realnumbersQ[n1_,n2_]:=(
 							(Head[n1] === Real && Head[n2] === Integer) ||
 							(Head[n1] === Integer && Head[n2] === Integer)
 );
+realnumberQ[n_]:=((Head[n] === Real) || (Head[n] === Integer));
 (*------------------------------------------------------*)
 
 
@@ -256,14 +289,15 @@ bondconfiglist = Table[
     	bondvector = r2 - r1;
     	idealbondlength = Sqrt[bondvector.bondvector];
     	Do[
+    		hd = hoppingdistances[[n]];
     		If[
     			If[
-					realnumbersQ[idealbondlength,hoppingdistances[[n]]],
-					Abs[idealbondlength - hoppingdistances[[n]]] < hoppingdistancedelta,
+					realnumbersQ[idealbondlength,hd],
+					Abs[idealbondlength - hd] < hoppingdistancedelta,
 					(* if idealbondlength and given hoppingdistance are not a real numbers 
 						then they can be treated symbolically, so an exact comparison is attempted *)
 					(* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *)
-					hoppingdistances[[n]] === (idealbondlength/.Sqrt[x_^2] :> x)
+					hd === (Simplify[idealbondlength]/.Sqrt[x_^2] :> x)
 				]
 				, 
       			AppendTo[bondvectorlist[[n]], bondvector]
@@ -281,7 +315,14 @@ cnlist = Length/@(bondconfiglist[[;;,2,2]]);
 H = ConstantArray[0,{len,len}];
 S = ConstantArray[0,{len,len}];
 
-(* Hamiltonian and overlap matrix elements filling *)
+(*Hamiltonian and overlap matrix elements filling*)
+(* Two gauges (bases) are available as described in 
+[1] C.Bena and G.Montambaux,New J.Phys.11,095003 (2009);
+[2] J.Cayssol and J.N.Fuchs,J.Phys.Mater.4,034007 (2021).*)
+Switch[
+   hamiltoniangauge,
+   "Canonical",
+   (* Hamiltonian and overlap matrix elements filling *)
 Do[
 	hij = 0;
 	sij = 0;
@@ -294,136 +335,330 @@ Do[
 		
 		(* Summation over nearest neighbours of various orders *)
 		Do[
-			
+			hd = hoppingdistances[[l]];
+			symbflag = False;
 			If[
 				(*========= This If section makes decision if the loop should be evaluated and how the hoppping and overlapping integrals must be set ==========================*)
+				(* case 1 *)
 				If[
-					realnumbersQ[idealbondlength,hoppingdistances[[l]]],
+					realnumberQ[idealbondlength] && realnumberQ[hd],
 					If[
-						Abs[hoppingdistances[[l]] - idealbondlength] < hoppingdistancedelta,
-						t = If[ListQ[hoppingintegrals[[l]]], hoppingintegrals[[l, 1]], hoppingintegrals[[l]]];
-						s = If[ListQ[overlappingintegrals[[l]]], overlappingintegrals[[l, 1]], overlappingintegrals[[l]]];
-			
-						(* correct hopping integral due to the environmental (surrounding) effect *)
-						(* hopping integrals format
-						{
-							{t0,{t01,testfun01},{t02,testfun02}, ...}, 
-							{t1,{t11,testfun11},{t12,testfun12}, ...},
-							{t2,{t21,testfun21},{t22,testfun22}, ...},
-							...
-						}
-						overlapping integrals format 
-						{
-							{s0,s01,s02,...}
-							{s1,s11,s12,...},
-							{s2,s21,s22,...}
-							...
-						}
-						test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
-						the test functions run on ideal structure vectors r1, r2
-						*)
-						If[
-							ListQ[hoppingintegrals[[l]]],
-							hlen = Length[hoppingintegrals[[l]]];
+						Abs[hd - idealbondlength] < hoppingdistancedelta,
 						
+						hi = hoppingintegrals[[l]];
+						oi = overlappingintegrals[[l]];
+						If[
+							ListQ[hi],
+							(* hopping integral is a list *)
+							hlen = Length[hi];
 							If[
 								hlen > 1,
-						
+								(* hopping integral is a list of length > 1 *)
+								(* here it is implied 
+								hopping integrals format
+								{
+									{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+									{t1,{t11,testfun11},{t12,testfun12}, ...},
+									{t2,{t21,testfun21},{t22,testfun22}, ...},
+									...
+								}
+								overlapping integrals format 
+								{
+									{s0,s01,s02,...}
+									{s1,s11,s12,...},
+									{s2,s21,s22,...}
+									...
+								}
+								test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+								the test functions run on ideal structure vectors r1, r2
+								*)
+								(* asign the default values of the hopping and overlapping integrals *)
+								t = hi[[1]];
+								s = oi[[1]];
 								Do[
-									etest = hoppingintegrals[[l, m, 2]];
+									etest = hi[[m, 2]];
 									(*Print[bondconfiglist[[i]]];*)
 									If[
 										etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
-										(*Print["Yes"];*)							
-										t = hoppingintegrals[[l, m, 1]];
-										s = overlappingintegrals[[l,m]]
+										(*Print["Yes"];*)		
+										t = hi[[m, 1]];
+										s = oi[[m]];
+										(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+										If[
+												Head[t] === Function,
+												t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										] (* end If t is a pure function *);
+										If[
+												Head[s] === Function,
+												s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										](* end If s is a pure function *)
 									],
-								{m, 2, hlen}]
-							];
+								{m, 2, hlen}],
+								(* hopping integral is a list of length <=1 *)
+								If[
+									hlen == 1,
+									(* here it is implied 
+									hopping integrals format
+									{{t0},{t1},{t2},...}
+									overlapping integrals format
+									{{s0},{s1},{s2},...}
+									or
+									{s0,s1,s2,...}
+									*)
+									t = hi[[1]];
+									s = If[ListQ[oi], oi[[1]], oi];	
+									(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+									If[
+										Head[t] === Function,
+										t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+									] (* end If t is a pure function *);
+									If[
+										Head[s] === Function,
+										s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+									](* end If s is a pure function *),
+									(* wrong hopping integral specification *)
+									(* Throw exception *)
+									Message[Hamiltonian::optfmt,hoppingintegrals,"HoppingIntegrals (empty lists)"];
+									Throw[$Failed]
+								]								
+							],
+							(* hopping integral is not a list *)
+							(* here it is implied 
+							hopping integrals format
+							{t0,t1,t2,...}
+							overlapping integrals format
+							{{s0},{s1},{s2},...}
+							or
+							{s0,s1,s2,...}
+							*)
+							t = hi;
+							s = If[ListQ[oi], oi[[1]], oi];	
+							(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+							If[
+								Head[t] === Function,
+								t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+							] (* end If t is a pure function *);
+							If[
+								Head[s] === Function,
+								s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+							](* end If s is a pure function *)
 						] (* end If hopping integral as a list*);
 						(* Evaluate the rest of the code in the loop? Yes*)
 						True,
 						(* Evaluate the rest of the code in the loop? No*)
 						False
 					],
-					(* if idealbondlength and given hoppingdistance are not a real numbers 
-					then they are treated symbolically, and an exact comparison is attempted *)
+					(* case 2 *)
 					If[
-						hoppingdistances[[l]] === (idealbondlength/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *),
-						t = If[ListQ[hoppingintegrals[[l]]], hoppingintegrals[[l, 1]], hoppingintegrals[[l]]];
-						s = If[ListQ[overlappingintegrals[[l]]], overlappingintegrals[[l, 1]], overlappingintegrals[[l]]];
-			
-						(* correct hopping integral due to the environmental (surrounding) effect *)
-						(* hopping integrals format
-						{
-							{t0,{t01,testfun01},{t02,testfun02}, ...}, 
-							{t1,{t11,testfun11},{t12,testfun12}, ...},
-							{t2,{t21,testfun21},{t22,testfun22}, ...},
-							...
-						}
-						overlapping integrals format 
-						{
-							{s0,s01,s02,...}
-							{s1,s11,s12,...},
-							{s2,s21,s22,...}
-							...
-						}
-						test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
-						the test functions run on ideal structure vectors r1, r2
-						*)
+						realnumberQ[idealbondlength] && Not[realnumberQ[hd]],
+						(* unit cell atomic coordinates are provided in a numerical form, while the hopping distance is not numerical *)
+						(* check if the hopping distance is pure function *)
 						If[
-							ListQ[hoppingintegrals[[l]]],
-							hlen = Length[hoppingintegrals[[l]]];
-						
+							Head[hd] === Function, 
+							(* hoppingdistance is a pure function *)
+							hd = hd[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
 							If[
-								hlen > 1,
-						
-								Do[
-									etest = hoppingintegrals[[l, m, 2]];
-									(*Print[bondconfiglist[[i]]];*)
-									If[
-										etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
-										(*Print["Yes"];*)							
-										t = hoppingintegrals[[l, m, 1]];
-										s = overlappingintegrals[[l,m]]
-									],
-								{m, 2, hlen}]
-							];
-						] (* end If hopping integral as a list*);
-						(* Evaluate the rest of the code in the loop? Yes*)
-						True,
-						(* not a real number or a valid symbolic expression *)
-				
-						(* check if the hopping distance is defined via a pure function with boolean output, this allows us to address a range of hopping distances in a similar fashion;
-						for the range of hopping distances the hopping and overlapping integrals are set as pure functions too *)
-						hdfun = hoppingdistances[[l]];
-						hd = hdfun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
-						If[
-							(hd === True),
-							(* hopping distance is a pure function with boolean output True *)
-							hifun = hoppingintegrals[[l]];
-							oifun = overlappingintegrals[[l]];
-							t = hifun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
-							s = oifun[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
-							(*Print["Yes"];*)
-							(* Evaluate the rest of the code in the loop? Yes *)
-							True,
-							(* hopping distance is not a pure function with boolean output True (also not a real number or valid symbolic expression) *)
+								BooleanQ[hd],
+								(* hopping distance is a pure function with a boolean output *)
+								If[
+									hd === True,
+									(* hopping distance is a pure function with boolean output True *)
+									(* when hopping distance is a pure function with boolean output then hopping and overlapping integrals must be pure functions of 10 arguments with the predefined meanings *)
+									t = hoppingintegrals[[l]];
+									s = overlappingintegrals[[l]];
+									t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+									s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+									(*Print["Yes"];*)
+									(* Evaluate the rest of the code in the loop? Yes *)
+									True,
+									(* Evaluate the rest of the code in the loop? No *)
+									False
+								](* if hd True *),
+								(* hoppind distance is a pure function but with not a boolean output *)
+								(* Thow exception *)
+								Message[Hamiltonian::optfmt,hoppingdistances,"HoppingDistances (pure function with not boolean output)"];
+								Throw[$Failed]
+							](*If hd boolean *)
+							,
+							(* hoppind distance is not a pure function; it may be a symbolic expression but it will not match the number anyway
+							therefore, the loop must not be evaluated *)
+							(* 29/10/2022: bug fixing code *)
 							(* Evaluate the rest of the code in the loop? No *)
 							False
-						](* if hd True *)
-					](* If symbolic comparison successful *)
-				](* If real numbers are given for hopping distances *)
+							(* end bug fixing code *)
+						](* If hd is a pure function *),
+						(* case 3 *)
+						If[
+							Not[realnumberQ[idealbondlength]] && Not[realnumberQ[hd]],
+							(* both unitcell atomic coordinates and hopping distance are not real numbers *)
+							(* check if the hoppingdistance is pure function *)
+							If[
+								Head[hd] === Function, 
+								(* hoppingdistance is a pure function *)
+								hd = hd[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+								If[
+									BooleanQ[hd],
+									(* hopping distance is a pure function with a boolean output *)
+									If[
+										hd === True,
+										(* hopping distance is a pure function with boolean output True *)
+										symbflag = True;
+										idealbondlength = (Simplify[idealbondlength]/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *);
+										(* when hopping distance is a pure function with boolean output then hopping and overlapping integrals must be pure functions of 10 arguments with the predefined meanings *)
+										t = hoppingintegrals[[l]];
+										s = overlappingintegrals[[l]];
+										t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+										s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+										(*Print["Yes"];*)
+										(* Evaluate the rest of the code in the loop? Yes *)
+										True,
+										(* Evaluate the rest of the code in the loop? No *)
+										False
+									](* if hd True *),
+									(* hoppind distance is a pure function but with not a boolean output *)
+									(* Thow exception *)
+									Message[Hamiltonian::optfmt,hoppingdistances,"HoppingDistances (pure function with not boolean output)"];
+									Throw[$Failed]
+								](*If hd boolean *),
+								(* hopping distance is not a pure function *)
+								(* try symbolic comparison *)
+								(* if idealbondlength and given hopping distance are not a real numbers 
+					then they are treated symbolically, and an exact comparison is attempted *)
+								If[
+									idealbondlength = (Simplify[idealbondlength]/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *);
+									hd === idealbondlength,
+									symbflag = True;
+									(* same code as for numerical values *)
+									hi = hoppingintegrals[[l]];
+									oi = overlappingintegrals[[l]];
+									If[
+										ListQ[hi],
+										(* hopping integral is a list *)
+										hlen = Length[hi];
+										If[
+											hlen > 1,
+											(* hopping integral is a list of length > 1 *)
+											(* here it is implied 
+											hopping integrals format
+											{
+												{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+												{t1,{t11,testfun11},{t12,testfun12}, ...},
+												{t2,{t21,testfun21},{t22,testfun22}, ...},
+												...
+											}
+											overlapping integrals format 
+											{
+												{s0,s01,s02,...}
+												{s1,s11,s12,...},
+												{s2,s21,s22,...}
+												...
+											}
+											test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+											the test functions run on ideal structure vectors r1, r2
+											*)
+											(* asign the default values of the hopping and overlapping integrals *)
+											t = hi[[1]];
+											s = oi[[1]];
+											Do[
+												etest = hi[[m, 2]];
+												(*Print[bondconfiglist[[i]]];*)
+												If[
+													etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
+													(*Print["Yes"];*)		
+													t = hi[[m, 1]];
+													s = oi[[m]];
+													(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+													If[
+														Head[t] === Function,
+														t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+													] (* end If t is a pure function *);
+													If[
+														Head[s] === Function,
+														s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+													](* end If s is a pure function *)
+												],
+											{m, 2, hlen}],
+											(* hopping integral is a list of length <=1 *)
+											If[
+												hlen == 1,
+												(* here it is implied 
+												hopping integrals format
+												{{t0},{t1},{t2},...}
+												overlapping integrals format
+												{{s0},{s1},{s2},...}
+												or
+												{s0,s1,s2,...}
+												*)
+												t = hi[[1]];
+												s = If[ListQ[oi], oi[[1]], oi];	
+												(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+												If[
+													Head[t] === Function,
+													t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+												] (* end If t is a pure function *);
+												If[
+													Head[s] === Function,
+													s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+												](* end If s is a pure function *),
+												(* wrong hopping integral specification *)
+												(* Throw exception *)
+												Message[Hamiltonian::optfmt,hoppingintegrals,"HoppingIntegrals (empty lists)"];
+												Throw[$Failed]
+											]								
+										],
+										(* hopping integral is not a list *)
+										(* here it is implied 
+										hopping integrals format
+										{t0,t1,t2,...}
+										overlapping integrals format
+										{{s0},{s1},{s2},...}
+										or
+										{s0,s1,s2,...}
+										*)
+										t = hi;
+										s = If[ListQ[oi], oi[[1]], oi];	
+										(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with a predifined meaning *)							
+										If[
+											Head[t] === Function,
+											t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										] (* end If t is a pure function *);
+										If[
+											Head[s] === Function,
+											s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										](* end If s is a pure function *)
+									] (* end If hopping integral as a list*);
+									(* Evaluate the rest of the code in the loop? Yes*)
+									True,
+									(* a pair of equivalent symbolic expressions *)
+									(* Evaluate the rest of the code in the loop? No *)
+									False
+								](* If symbolic comparison *)
+							](* If hd is a pure function *),
+							(* case 4 *)
+							(* unitcell atomic coordinates are not numeric, while hopping distance is. This means they do not match and the loop 
+							must not be evaluated *)
+							(* 29/10/2022: bug fixing code *)
+							(* Evaluate the rest of the code in the loop? No *)
+							False
+							(* end bug fixing code *)
+						] (* end If case 3 *)
+					](* end If case 2 *)
+				](* end If case 1: hopping distance and unitcell atomic coordinates are real numbers *)
 					
 				(*========= This code section make decision if the hoppping and overlapping integrals must be used and how they are set ==========================*)
 				,
 				
 	
 				r1 = unitcell[[2,i]];
-				r2 = supercell[[2,c,j]];				
-				r12 = r1 - r2; (* bondvector for optimized geometry *)
-				optimizedbondlength = Sqrt[r12.r12];
-
+				r2 = supercell[[2,c,j]];			
+				(* symbolic and numeric cases are treated differently *)
+				If[
+					symbflag,	
+					r12 = Simplify[r1 - r2]; (* bondvector for optimized geometry *)
+					optimizedbondlength = Simplify[Sqrt[r12.r12]]/. Sqrt[x_^2] :> x,
+					r12 = r1 - r2; (* bondvector for optimized geometry *)
+					optimizedbondlength = Sqrt[r12.r12]
+				];
 				(* 
 				The effect of strain is taken into account as in the paper: 
 				Ribeiro,R.M.,Pereira,V.M.,Peres,N.M.R.,Briddon,P.R.,and Castro Neto,A.H. 
@@ -452,15 +687,10 @@ Do[
 				(* electrostatic on-site energy *)
 				tE = If[
 							l == 1,
-							If[
-								VectorQ[efield, NumericQ] && Length[efield] == 3,
-								(* efield is a 3-component Cartesian vector setting the electrostatic field strength *)
-								U[r1,efield],
-								(* if efield is not a 3-component Cartesian vector (i.e. electrostatic field strength) 
-								   then it is assumed to be a pure function defining in eV an electrostatic potential 
-								   in space as function of x, y and z. 
-								*)
-								efield[r1[[1]], r1[[2]], r1[[3]]]
+							Switch[
+								efopt,
+								1, U[r1,efield],
+								2, efield[r1[[1]], r1[[2]], r1[[3]]]
 							],
 				 0];
 				
@@ -476,11 +706,407 @@ Do[
 	S[[i,j]] = sij,
 {i, 1, len},
 {j, 1, len}
-](* end Do *);
+](* end Do *),   
+   "Periodic",
+   (* centers of the unitcells for periodic gauge *)
+   R1 = Total[unitcell[[2]]]/len;
+   R2list = Total[supercell[[2]], {2}]/len;
+   
+   (* Hamiltonian and overlap matrix elements filling *)
+Do[
+	hij = 0;
+	sij = 0;
+	
+	(* Summation over adjecent unitcells *)
+	Do[
+		r1 = unitcell[[1,i]];
+		r2 = supercell[[1,c,j]];
+		R12 = R1 - R2list[[c]]; (* for periodic gauge *)
+		r12 = r1 - r2; (* bondvector for ideal geometry *)
+		idealbondlength = Sqrt[r12.r12];
+		
+		(* Summation over nearest neighbours of various orders *)
+		Do[
+			hd = hoppingdistances[[l]];
+			symbflag = False;
+			If[
+				(*========= This If section makes decision if the loop should be evaluated and how the hoppping and overlapping integrals must be set ==========================*)
+				(* case 1 *)
+				If[
+					realnumberQ[idealbondlength] && realnumberQ[hd],
+					If[
+						Abs[hd - idealbondlength] < hoppingdistancedelta,
+						
+						hi = hoppingintegrals[[l]];
+						oi = overlappingintegrals[[l]];
+						If[
+							ListQ[hi],
+							(* hopping integral is a list *)
+							hlen = Length[hi];
+							If[
+								hlen > 1,
+								(* hopping integral is a list of length > 1 *)
+								(* here it is implied 
+								hopping integrals format
+								{
+									{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+									{t1,{t11,testfun11},{t12,testfun12}, ...},
+									{t2,{t21,testfun21},{t22,testfun22}, ...},
+									...
+								}
+								overlapping integrals format 
+								{
+									{s0,s01,s02,...}
+									{s1,s11,s12,...},
+									{s2,s21,s22,...}
+									...
+								}
+								test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+								the test functions run on ideal structure vectors r1, r2
+								*)
+								(* asign the default values of the hopping and overlapping integrals *)
+								t = hi[[1]];
+								s = oi[[1]];
+								Do[
+									etest = hi[[m, 2]];
+									(*Print[bondconfiglist[[i]]];*)
+									If[
+										etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
+										(*Print["Yes"];*)		
+										t = hi[[m, 1]];
+										s = oi[[m]];
+										(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+										If[
+												Head[t] === Function,
+												t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										] (* end If t is a pure function *);
+										If[
+												Head[s] === Function,
+												s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										](* end If s is a pure function *)
+									],
+								{m, 2, hlen}],
+								(* hopping integral is a list of length <=1 *)
+								If[
+									hlen == 1,
+									(* here it is implied 
+									hopping integrals format
+									{{t0},{t1},{t2},...}
+									overlapping integrals format
+									{{s0},{s1},{s2},...}
+									or
+									{s0,s1,s2,...}
+									*)
+									t = hi[[1]];
+									s = If[ListQ[oi], oi[[1]], oi];	
+									(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+									If[
+										Head[t] === Function,
+										t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+									] (* end If t is a pure function *);
+									If[
+										Head[s] === Function,
+										s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+									](* end If s is a pure function *),
+									(* wrong hopping integral specification *)
+									(* Throw exception *)
+									Message[Hamiltonian::optfmt,hoppingintegrals,"HoppingIntegrals (empty lists)"];
+									Throw[$Failed]
+								]								
+							],
+							(* hopping integral is not a list *)
+							(* here it is implied 
+							hopping integrals format
+							{t0,t1,t2,...}
+							overlapping integrals format
+							{{s0},{s1},{s2},...}
+							or
+							{s0,s1,s2,...}
+							*)
+							t = hi;
+							s = If[ListQ[oi], oi[[1]], oi];	
+							(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+							If[
+								Head[t] === Function,
+								t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+							] (* end If t is a pure function *);
+							If[
+								Head[s] === Function,
+								s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+							](* end If s is a pure function *)
+						] (* end If hopping integral as a list*);
+						(* Evaluate the rest of the code in the loop? Yes*)
+						True,
+						(* Evaluate the rest of the code in the loop? No*)
+						False
+					],
+					(* case 2 *)
+					If[
+						realnumberQ[idealbondlength] && Not[realnumberQ[hd]],
+						(* unit cell atomic coordinates are provided in a numerical form, while the hopping distance is not numerical *)
+						(* check if the hopping distance is pure function *)
+						If[
+							Head[hd] === Function, 
+							(* hoppingdistance is a pure function *)
+							hd = hd[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+							If[
+								BooleanQ[hd],
+								(* hopping distance is a pure function with a boolean output *)
+								If[
+									hd === True,
+									(* hopping distance is a pure function with boolean output True *)
+									(* when hopping distance is a pure function with boolean output then hopping and overlapping integrals must be pure functions of 10 arguments with the predefined meanings *)
+									t = hoppingintegrals[[l]];
+									s = overlappingintegrals[[l]];
+									t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+									s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+									(*Print["Yes"];*)
+									(* Evaluate the rest of the code in the loop? Yes *)
+									True,
+									(* Evaluate the rest of the code in the loop? No *)
+									False
+								](* if hd True *),
+								(* hoppind distance is a pure function but with not a boolean output *)
+								(* Thow exception *)
+								Message[Hamiltonian::optfmt,hoppingdistances,"HoppingDistances (pure function with not boolean output)"];
+								Throw[$Failed]
+							](*If hd boolean *)
+							,
+							(* hoppind distance is not a pure function; it may be a symbolic expression but it will not match the number anyway
+							therefore, the loop must not be evaluated *)
+							(* 29/10/2022: bug fixing code *)
+							(* Evaluate the rest of the code in the loop? No *)
+							False
+							(* end bug fixing code *)
+						](* If hd is a pure function *),
+						(* case 3 *)
+						If[
+							Not[realnumberQ[idealbondlength]] && Not[realnumberQ[hd]],
+							(* both unitcell atomic coordinates and hopping distance are not real numbers *)
+							(* check if the hoppingdistance is pure function *)
+							If[
+								Head[hd] === Function, 
+								(* hoppingdistance is a pure function *)
+								hd = hd[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+								If[
+									BooleanQ[hd],
+									(* hopping distance is a pure function with a boolean output *)
+									If[
+										hd === True,
+										(* hopping distance is a pure function with boolean output True *)
+										symbflag = True;
+										idealbondlength = (Simplify[idealbondlength]/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *);
+										(* when hopping distance is a pure function with boolean output then hopping and overlapping integrals must be pure functions of 10 arguments with the predefined meanings *)
+										t = hoppingintegrals[[l]];
+										s = overlappingintegrals[[l]];
+										t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+										s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j];
+										(*Print["Yes"];*)
+										(* Evaluate the rest of the code in the loop? Yes *)
+										True,
+										(* Evaluate the rest of the code in the loop? No *)
+										False
+									](* if hd True *),
+									(* hoppind distance is a pure function but with not a boolean output *)
+									(* Thow exception *)
+									Message[Hamiltonian::optfmt,hoppingdistances,"HoppingDistances (pure function with not boolean output)"];
+									Throw[$Failed]
+								](*If hd boolean *),
+								(* hopping distance is not a pure function *)
+								(* try symbolic comparison *)
+								(* if idealbondlength and given hopping distance are not a real numbers 
+					then they are treated symbolically, and an exact comparison is attempted *)
+								If[
+									idealbondlength = (Simplify[idealbondlength]/.Sqrt[x_^2] :> x) (* Sqrt[x_^2] :> x means that all symbols in the expression are stand for positive real numbers *);
+									hd === idealbondlength,
+									symbflag = True;
+									(* same code as for numerical values *)
+									hi = hoppingintegrals[[l]];
+									oi = overlappingintegrals[[l]];
+									If[
+										ListQ[hi],
+										(* hopping integral is a list *)
+										hlen = Length[hi];
+										If[
+											hlen > 1,
+											(* hopping integral is a list of length > 1 *)
+											(* here it is implied 
+											hopping integrals format
+											{
+												{t0,{t01,testfun01},{t02,testfun02}, ...}, 
+												{t1,{t11,testfun11},{t12,testfun12}, ...},
+												{t2,{t21,testfun21},{t22,testfun22}, ...},
+												...
+											}
+											overlapping integrals format 
+											{
+												{s0,s01,s02,...}
+												{s1,s11,s12,...},
+												{s2,s21,s22,...}
+												...
+											}
+											test functions for fixed first index such as testfun01, ..., testfun0n must not contain intersecting conditions
+											the test functions run on ideal structure vectors r1, r2
+											*)
+											(* asign the default values of the hopping and overlapping integrals *)
+											t = hi[[1]];
+											s = oi[[1]];
+											Do[
+												etest = hi[[m, 2]];
+												(*Print[bondconfiglist[[i]]];*)
+												If[
+													etest[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j], 
+													(*Print["Yes"];*)		
+													t = hi[[m, 1]];
+													s = oi[[m]];
+													(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+													If[
+														Head[t] === Function,
+														t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+													] (* end If t is a pure function *);
+													If[
+														Head[s] === Function,
+														s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+													](* end If s is a pure function *)
+												],
+											{m, 2, hlen}],
+											(* hopping integral is a list of length <=1 *)
+											If[
+												hlen == 1,
+												(* here it is implied 
+												hopping integrals format
+												{{t0},{t1},{t2},...}
+												overlapping integrals format
+												{{s0},{s1},{s2},...}
+												or
+												{s0,s1,s2,...}
+												*)
+												t = hi[[1]];
+												s = If[ListQ[oi], oi[[1]], oi];	
+												(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with the predifined meanings *)							
+												If[
+													Head[t] === Function,
+													t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+												] (* end If t is a pure function *);
+												If[
+													Head[s] === Function,
+													s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+												](* end If s is a pure function *),
+												(* wrong hopping integral specification *)
+												(* Throw exception *)
+												Message[Hamiltonian::optfmt,hoppingintegrals,"HoppingIntegrals (empty lists)"];
+												Throw[$Failed]
+											]								
+										],
+										(* hopping integral is not a list *)
+										(* here it is implied 
+										hopping integrals format
+										{t0,t1,t2,...}
+										overlapping integrals format
+										{{s0},{s1},{s2},...}
+										or
+										{s0,s1,s2,...}
+										*)
+										t = hi;
+										s = If[ListQ[oi], oi[[1]], oi];	
+										(* 10/10/2022: added possibility to set t and s as a pure function of 10 arguments with a predifined meaning *)							
+										If[
+											Head[t] === Function,
+											t = t[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										] (* end If t is a pure function *);
+										If[
+											Head[s] === Function,
+											s = s[r1[[1]], r1[[2]], r1[[3]], r2[[1]], r2[[2]], r2[[3]], bondconfiglist[[i]], bondconfiglist[[j]], i, j]
+										](* end If s is a pure function *)
+									] (* end If hopping integral as a list*);
+									(* Evaluate the rest of the code in the loop? Yes*)
+									True,
+									(* a pair of equivalent symbolic expressions *)
+									(* Evaluate the rest of the code in the loop? No *)
+									False
+								](* If symbolic comparison *)
+							](* If hd is a pure function *),
+							(* case 4 *)
+							(* unitcell atomic coordinates are not numeric, while hopping distance is. This means they do not match and the loop 
+							must not be evaluated *)
+							(* 29/10/2022: bug fixing code *)
+							(* Evaluate the rest of the code in the loop? No *)
+							False
+							(* end bug fixing code *)
+						] (* end If case 3 *)
+					](* end If case 2 *)
+				](* end If case 1: hopping distance and unitcell atomic coordinates are real numbers *)
+					
+				(*========= This code section make decision if the hoppping and overlapping integrals must be used and how they are set ==========================*)
+				,
+				
+	
+				r1 = unitcell[[2,i]];
+				r2 = supercell[[2,c,j]];
+
+				(* symbolic and numeric cases are treated differently *)
+				If[
+					symbflag,
+					R12 = Simplify[R12];	(* for periodic gauge *)
+					optimizedbondlength = Simplify[Sqrt[r12.r12]]/. Sqrt[x_^2] :> x,
+					optimizedbondlength = Sqrt[r12.r12]
+				];
+				(* 
+				The effect of strain is taken into account as in the paper: 
+				Ribeiro,R.M.,Pereira,V.M.,Peres,N.M.R.,Briddon,P.R.,and Castro Neto,A.H. 
+				"Strained graphene:tight-binding and density functional calculations", 
+				New Journal of Physics,11(11),115002 (2009). 
+				http://doi.org/10.1088/1367-2630/11/11/115002 
+				*)
+				relbonddeformation = If[l==1,0,(optimizedbondlength - idealbondlength)/idealbondlength];
+
+
+				(* Generalization of the Landau gauge to the arbitrary direction of the B :
+				 eq.(24) from J.-C.Charlier and S.Roche,Rev.Mod.Phys.79,677 (2007).*)
+				mflux = (r2 + r1)[[1]]/2 bfield[[3]] (r2 - r1)[[2]] + ((r2 + r1)[[2]]/2  bfield[[1]] - (r2 + r1)[[1]]/2  bfield[[2]]) (r2 - r1)[[3]]; (* magnetic flux *)
+				mphase = Pi mflux/mfluxquanta;(* magnetic phase *)
+				
+				sphase = k.R12;(* space phase for periodic gauge *)
+
+				(* hoppingintegrals edge corrections due to the coordination number *)
+				dt = If[
+						(cnlist[[i]] == 0)||(cnlist[[j]] == 0),
+						0,
+						edgecorrections[[cnlist[[i]],cnlist[[j]],l]]
+				]; (* end If edge correction *)
+				
+				
+				(* electrostatic on-site energy *)
+				tE = If[
+							l == 1,
+							Switch[
+								efopt,
+								1, U[r1,efield],
+								2, efield[r1[[1]], r1[[2]], r1[[3]]]
+							],
+				 0];
+				
+								
+				hij = hij + Exp[- strain relbonddeformation] (t + dt + tE) Exp[I (sphase - mphase)];
+				sij = sij + Exp[- strain relbonddeformation] s Exp[I (sphase - mphase)];
+	
+				Break[];
+			](* end If *),
+		{l, 1, Length[hoppingintegrals]}](* end Do *),
+		{c, 1, unum}](* end Do *);
+	H[[i,j]] = hij;
+	S[[i,j]] = sij,
+{i, 1, len},
+{j, 1, len}
+](* end Do *)
+](* end Switch *);
+    
+
 {H, S}
-](* end Module *)
+](* end Block *)
 ](* end Catch *);
 SyntaxInformation[Hamiltonian] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
+
 
 (* Electronic energy levels *)
 (* In addition to the explicitely specified new options with their default values, 
@@ -490,7 +1116,7 @@ for ElectronicStructure function.
 *)
 (* ParallelTable does not work properly! The package context must be added to DistributedContexts option of ParallelTable!  *)
 ElectronicStructure[unitcell_List, OptionsPattern[{ParallelEvaluation->True,EigenVectors->False,Kpoint->{{0,0,0}},Hamiltonian}]]:=Catch[
-Module[
+Block[
 {
 	translationvectors = OptionValue[TranslationVectors],
 	hoppingintegrals = OptionValue[HoppingIntegrals],
@@ -503,6 +1129,7 @@ Module[
 	edgecorrections = OptionValue[EdgeCorrections],
 	hoppingdistancedelta = OptionValue[HoppingDistanceDelta],
 	supercellsize = OptionValue[SuperCellSize],
+	hamiltoniangauge = OptionValue[HamiltonianGauge],
 	
 	bands,m,k,
 	data,
@@ -512,23 +1139,9 @@ Module[
 	ordering
 },
 
-(* hoppingintegrals_?(VectorQ[#,NumericQ]&) 
-overlappingintegrals_?(VectorQ[#,NumericQ]&)
-\[Beta]_?NumericQ
-*)
-
-(*
-ElectronicBands::klist="The argument must be a list of vectors three element long each.";
-
-tf=VectorQ[#,(ListQ[#]&&Length[#]==3&)]&;
-
-If[!tf@klist,Throw[Message[ElectronicBands::klist,unitcell]]];
-*)
-
-(* First argument structure: unitcell={idealunitcell,optimizedunitcell};
-   TranslationVectors option value structure: translationvectors={idealtranslationvectors,optimizedtranslationvectors} *)
+(* Checking arguments and options *)
 	
-(*--------------------------- Body of the fucntion ---------------------------------*)
+(*--------------------------- Body of the function ---------------------------------*)
 m = Hamiltonian[unitcell,
 							TranslationVectors->translationvectors,
 							HoppingIntegrals->hoppingintegrals,
@@ -540,12 +1153,15 @@ m = Hamiltonian[unitcell,
 							Bfield->bfield,
 							EdgeCorrections->edgecorrections,
 							HoppingDistanceDelta->hoppingdistancedelta,
-							SuperCellSize->supercellsize
+							SuperCellSize->supercellsize,
+							HamiltonianGauge->hamiltoniangauge
 ];
 	
 If[
 	OptionValue[EigenVectors],
-	(*velocity operator in the gradient (effective mass) approximation*)
+	(* velocity operator in the gradient (effective mass) approximation; 
+	   N.B.: Gradient approximation does not work for the periodic gauge of Hamiltonian!
+	*)
 	vm = D[m[[1]]/.k->{kx,ky,kz},{{kx,ky,kz}}];
 	data = If[
 				OptionValue[ParallelEvaluation],
@@ -577,7 +1193,7 @@ If[
 	];(* end If ParallelEvaluation*)
 	Transpose[bands]
 ](* end If EigenVectors *)
-](* end Module *)
+](* end Block *)
 ](* end Catch *);
 SyntaxInformation[ElectronicStructure] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
 
@@ -592,6 +1208,7 @@ Options[ElectronicBands1D] = {
 	HoppingDistances->{0, 1.42, 2.45951, 2.84},
 	HoppingDistanceDelta->0.05,
 	SuperCellSize->1,
+	HamiltonianGauge->"Canonical",
 	Efield->{0,0,0},
 	Bfield->{0,0,0},
 	NumberOfKpoints->50,
@@ -599,18 +1216,18 @@ Options[ElectronicBands1D] = {
 	EigenVectors->False,
 	ParallelEvaluation->True,
 	RelaxGeometry->False,
-	(*OptimizationProgram->{1,Automatic,Automatic,{}},*)
 	OptimizationFunction->{Automatic,{}},
 	Path2Save->$HomeDirectory
 };
-ElectronicBands1D[unitcell_List, translationvector_List, OptionsPattern[]] := Catch[Module[
+ElectronicBands1D[unitcell_List, translationvector_List, OptionsPattern[]] := Catch[Block[
 {
-  	(* model parameters *)
+  	modelname = OptionValue[TBModelParameters][[5]],
+   	hamiltoniangauge = OptionValue[HamiltonianGauge],
+   	(* model parameters *)
   	hoppingintegrals = OptionValue[TBModelParameters][[1]],
   	overlappingintegrals = OptionValue[TBModelParameters][[2]],
   	strain = OptionValue[TBModelParameters][[3]],
   	edgecorrections = OptionValue[TBModelParameters][[4]],
-   	modelname = OptionValue[TBModelParameters][[5]],
    	
    	hoppingdistances = OptionValue[HoppingDistances],
    	hoppingdistancedelta = OptionValue[HoppingDistanceDelta],
@@ -669,7 +1286,8 @@ Write[stream,"# Created by TBpack \n# Wolfram Mathematica "<>$Version];
 Write[stream,"# ElectronicBands1D started on "<>DateString[]];
 
 text=Flatten@{
-"\n# Model name: "<>modelname,	
+"\n# Model name: "<>modelname,
+"\n# Hamiltonian gauge: "<>hamiltoniangauge,	
 "\n# Hopping integrals, eV",
 Table["t"<>ToString[i-1]<>" = "<>nd[hoppingintegrals[[i]]],{i,hlen}],
 "\n# Overlapping integrals",
@@ -722,7 +1340,6 @@ Write[stream,"\n# Hopping distance delta, Angstrom\ndelta = "<>nd[hoppingdistanc
 Scan[Write[stream,#]&,{"\n# Electric field (Ex, Ey, Ez), V/Angstrom",Row[Table[nd[efield[[i]]],{i,Length[efield]}],"\t"]}];
 Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[[i]]],{i,Length[bfield]}],"\t"]}];
   
-  
     
   (*-------------------------- BRILLOUIN ZONE SAMPLING ----------------------------*)
   (* kinterval is either Automatic or {kmin, kmax} *)
@@ -757,6 +1374,7 @@ Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[
     	EdgeCorrections -> edgecorrections,
     	HoppingDistanceDelta -> hoppingdistancedelta,
     	SuperCellSize -> supercellsize,
+    	HamiltonianGauge -> hamiltoniangauge,
     	EigenVectors -> OptionValue[EigenVectors],
     	ParallelEvaluation -> OptionValue[ParallelEvaluation]
     	];
@@ -766,7 +1384,7 @@ Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[
    		OptionValue[EigenVectors],
    		(*------------------------ DATA TRANSFORMATION -----------------------------------*)
    		(* reduction to the 1D form data representation *)
-   		bands = Append[Most@First@data, (Sqrt[Total[#^2]]) & /@ Last[First@data]];
+   		bands = Append[Most@First@data, (Sign[T.#] Sqrt[Total[#^2]]) & /@ Last[First@data]];
    		
    		(*------------------------------------- Data file body ---------------------------*)
    		Write[stream,"\n# Electronic band structure:"];
@@ -801,7 +1419,10 @@ Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[
    		,
    		(*------------------------  DATA TRANSFORMATION -----------------------------------*)
    		(* reduction to the 1D form data representation *)
-   		bands = Append[Most@data, (Sqrt[Total[#^2]]) & /@ Last[data]];
+   		bands = Append[Most@data, (Sign[T.#] Sqrt[Total[#^2]]) & /@ Last[data]]; (* (Sqrt[Total[#^2]]) code converts negative k-points to positive, 
+   		this is not always good. For instance, it does not allow to plot energy bands in the range -pi to pi. The new code 
+   		(Sign[T.#] Sqrt[Total[#^2]]) effectively picks up the sign based on k-vector alignment or anti-alignment with the 
+   		translation vector T. *)
    		
    		(*------------------------------------- Data file body ---------------------------*)
    		Write[stream,"\n# Electronic band structure:"];
@@ -821,7 +1442,7 @@ Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[
     		modelname}}
     		]
    ](* end If EigenVectors *)
-](* end Module *)
+](* end Block *)
 ](* end Catch *);
 SyntaxInformation[ElectronicBands1D] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
 

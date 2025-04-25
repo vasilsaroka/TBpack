@@ -41,6 +41,8 @@ Begin["`Private`"]; (* Begin Private Context *)
 
 (********* Helper and compatibility functions *********)
 
+
+
 runProcess[args___] := RunProcess[args, ProcessEnvironment -> $environment]
 
 (* Fix for StringDelete not being available in M10.0 *)
@@ -117,6 +119,7 @@ findLaTeX[] := findLaTeX[$OperatingSystem]
 
 findLaTeX["Windows"] :=
     Quiet@Check[AbsoluteFileName@First@ReadList["!where pdflatex.exe", String, 1], None]
+
 
 findLaTeX["MacOSX"] :=
     Quiet@Check[If[FileExistsQ["/Library/TeX/texbin/pdflatex"], "/Library/TeX/texbin/pdflatex", None], None]
@@ -258,20 +261,25 @@ checkConfig[] :=
 fixSystemPath[] :=
     Module[{texpath, pathList, pathSeparator},
       If[Not[$configOK], Return[$Failed]];
-      texpath = AbsoluteFileName@DirectoryName@ExpandFileName[$config["pdfLaTeX"]];
+      texpath = Quiet@AbsoluteFileName@DirectoryName@ExpandFileName[$config["pdfLaTeX"]];
       pathSeparator = If[$OperatingSystem === "Windows", ";", ":"];
       (* Suppress messages generated when the path does not exist (::nffil in 10.0, ::fdnfnd in 10.3+)
          or when the path is an empty string "" (::fstr in 11.3-, ::badfile in 12.0+).
          Use General:: because different M versions associate the message with different heads. *)
       pathList = Quiet[
-        AbsoluteFileName /@ StringSplit[$environment["PATH"], pathSeparator],
-        {General::nffil, General::fdnfnd, General::fstr, General::badfile}
-      ];
+      	AbsoluteFileName /@ StringSplit[$environment["PATH"], pathSeparator],
+        {General::nffil, 
+         General::fdnfnd, 
+         General::fstr, 
+         General::badfile, 
+         General::zfname (*25/04/2025: added by Vasil to fix empty string message upon initialization of the package *)}
+      ](* end Quiet *);
       If[Not@MemberQ[pathList, texpath],
         $environment["PATH"] = $environment["PATH"] <> pathSeparator <> texpath
       ];
       $environment["PATH"]
     ]
+
 
 
 (********** Initialization code **********)
@@ -304,6 +312,8 @@ ConfigureMaTeX[rules : (_Rule|_RuleDelayed)...] :=
 
 ranid[] := StringJoin@RandomChoice[CharacterRange["a", "z"], 16]
 
+
+
 getWorkingDir[] :=
     Replace[
       $config["WorkingDirectory"],
@@ -314,7 +324,7 @@ getWorkingDir[] :=
             AbsoluteFileName@CreateDirectory@FileNameJoin[{$TemporaryDirectory, StringJoin["MaTeX_", ranid[]]}]
           ]
     ];
-
+    
 (* Create temporary directory *)
 $dirpath := $dirpath = getWorkingDir[]
 
@@ -613,6 +623,8 @@ MaTeX[tex_, opt:OptionsPattern[]] := With[{result = MaTeX[{tex}, opt]}, If[resul
 
 
 BlackFrame = Directive[AbsoluteThickness[0.5], Black];
+
+
 
 End[]; (* End Private Context *)
 
