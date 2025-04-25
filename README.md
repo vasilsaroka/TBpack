@@ -6,31 +6,6 @@
 # TBpack
 Tight-binding calculations in Mathematica
 
-## TBpack for fun
-[<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="250"/>](https://t.me/HOMO_LUMO_Quantum_Game_bot)
-
-Before putting your hands on **TBpack** application you can get its flavor and spirit by playing a couple of rounds with our Telegram bot. Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO Quantum Game: [@HOMO_LUMO_Quantum_Game_bot](https://t.me/HOMO_LUMO_Quantum_Game_bot) **\***. Use `/rules` to see the rules of the game or have a look at our sample [game video](https://www.youtube.com/watch?v=DUy22OKLgvs) on YouTube.
-
-**\*** *For now the game is not accessible due to being in the process of updating. Sorry for this inconvenience. You will be able to try it soon with new features.*
-
-
-## Hands-on Trial
-Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully functional core functions, excluding visualization and data currating functions. [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackDemo_Logo.png" alt="TBpackDemo_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
-
-   
-   Get **TBpackDemo** immediately in your notebook from Wolfram Cloud by evaluating in Mathematica 10.0+:
-   
-       CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/TBpackDemo.wl"]
-       
-   **TBpackDemo** does not have documentation built-in into Wolfram Documentation Center, only user information messages can be invoked for the core fucntions. The available functions are `Hamiltonian`, `ElectronicStructure`, `ElectronicBands1D`. To get informaiton on the usage of `Hamiltonian` core fucntion, try
-   
-       ?Hamiltonian
-   
-   For a flawless start, you can use our Cloud based demo examples. Download [ExamplesDemo.nb](https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Demo/ExamplesDemo.nb) with examples and follow the instructions inside.
-       
-       
-       
-
 ## Installation guide
  - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackPro_Logo.png" alt="TBpackPro_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
  
@@ -148,6 +123,16 @@ Try our Cloud based demo -- **TBpackDemo**. **TBpackDemo** contains all fully fu
  - Open the documentation center and search for `Hamiltonian` to get started.
  
  **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/view/vasilsaroka/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
+
+## TBpack for fun
+[<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="250"/>](https://t.me/HOMO_LUMO_Quantum_Game_bot)
+
+**TBpack** application is fast enough to be used in games and Telegram bots. 
+
+Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO Quantum Game: [@HOMO_LUMO_Quantum_Game_bot](https://t.me/HOMO_LUMO_Quantum_Game_bot) **\***. Use `/rules` to see the rules of the game or have a look at our sample [game video](https://www.youtube.com/watch?v=DUy22OKLgvs) on YouTube.
+
+**\*** *For now the game is not accessible due to being in the process of updating. Sorry for this inconvenience. You will be able to try it soon with new features.*
+
 
 ## TBpack for WLJS Notebooks - Electron application
    The [Electron application](https://github.com/JerryI/wolfram-js-frontend/releases) is an open-source javascript-based cross-platform graphical user interface for running Wolfram Language code via a [Wolfram Engine](https://www.wolfram.com/engine/). It is an actively developed [project](https://github.com/JerryI/wolfram-js-frontend) that is getting popularity due to its simplicity and ability to combine Wolfram Language with Javescript and Markdown. While WLJS notebooks are not superior to the original Mathematica notebooks, they do have some features such as gpt-based copilot, powerful command palette system, and enhanced animation capbilitites that may transform them into a useful companion if not a real contender of original notebooks. 
