@@ -1,4 +1,5 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/vasilsaroka/TBpack/all.svg)](https://github.com/vasilsaroka/TBpack/releases)
+[![GitHub Latest Release](https://img.shields.io/github/downloads/vasilsaroka/TBpack/v0.5.2.svg)](https://github.com/vasilsaroka/TBpack/releases/tag/v0.5.2)
 [![Github All Releases](https://img.shields.io/github/downloads/vasilsaroka/TBpack/total.svg)](https://github.com/vasilsaroka/TBpack/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Support TBpack](https://img.shields.io/static/v1?label=support&message=5$&color=green&style=flat&logo=paypal)](https://paypal.me/vasilsaroka?locale.x=en_GB)
@@ -17,18 +18,6 @@ Tight-binding calculations in Mathematica
    
        ResourceFunction["InstallTBpack"][Method->"Uninstall"]
    **Note: This and other options below may not work if the [latest release](https://github.com/vasilsaroka/TBpack/releases) is a special patch intended for example for a WLJS notebook. If this is the case, use the last option of this section with ``PacletInstall["url"]`` specifying explicitly a version of TBpack released for Mathematica.**
-   
- - The automated management of TBpack paclet in Mathematica 10.0+:
- 
-   To install the latest version of the TBpack from this GitHub repo, evaluate
-   
-        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
-        InstallTBpack[]
-        
-   To find all installed versions on your PC and to uninstall chosen (all) version (s), evaluate
-   
-        CloudGet["https://www.wolframcloud.com/obj/vasil.saroka/TBpack/Services/InstallTBpack"];
-        InstallTBpack[Method->"Uninstall"]
         
  - The automated installation option for Mathematica 10.0+:
  
