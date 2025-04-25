@@ -18,7 +18,15 @@ Tight-binding calculations in Mathematica
    
        ResourceFunction["InstallTBpack"][Method->"Uninstall"]
    **Note: This and other options below may not work if the [latest release](https://github.com/vasilsaroka/TBpack/releases) is a special patch intended for example for a WLJS notebook. If this is the case, use the last option of this section with ``PacletInstall["url"]`` specifying explicitly a version of TBpack released for Mathematica.**
+
         
+ - In Mathematica 12.1+ ``PacletInstall["url"]`` can be used for the installation straight away:
+        
+        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v<version>/TBpack-<version>.paclet"]  
+   where `<version>` stands for any existing version of the application. For example,
+   
+       PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
+
  - The automated installation option for Mathematica 10.0+:
  
    Copy-paste the below function into a Mathematica notebook cell. Evaluate the cell to make the definition of this function known to Mathematica. In the next cell type and evaluate `InstallTBpack[]`.
@@ -73,13 +81,6 @@ Tight-binding calculations in Mathematica
         
    Insert `path2paclet` via Mathematica's Insert → File Path... menu command.
    
- - In Mathematica 12.1+ ``PacletInstall["url"]`` can be used for the installation straight away:
-        
-        PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v<version>/TBpack-<version>.paclet"]  
-   where `<version>` stands for any existing version of the application. For example,
-   
-       PacletInstall["https://github.com/vasilsaroka/TBpack/releases/download/v0.2.0/TBpack-0.2.0.paclet"]
-
    
 ## Demo
  - Evaluate ``<<TBpack` `` to load the application into the Mathematica session.
