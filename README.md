@@ -1,6 +1,11 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/vasilsaroka/TBpack/all.svg)](https://github.com/vasilsaroka/TBpack/releases)
-[![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads-pre/vasilsaroka/TBpack/latest/total?label=downloads%20v0.5.2)
- ](https://github.com/vasilsaroka/TBpack/releases/tag/v0.5.2)
+[![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads-pre/vasilsaroka/TBpack/latest/total?label=downloads latest)
+ ](https://github.com/vasilsaroka/TBpack/releases)
+
+[![GitHub Downloads (all assets, specific tag)](https://img.shields.io/github/downloads/vasilsaroka/TBpack/v0.5.2/total?label=downloads%20v0.5.2)](https://github.com/vasilsaroka/TBpack/releases/tag/v0.5.2)
+
+
+
 [![Github All Releases](https://img.shields.io/github/downloads/vasilsaroka/TBpack/total.svg)](https://github.com/vasilsaroka/TBpack/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Support TBpack](https://img.shields.io/static/v1?label=support&message=5$&color=green&style=flat&logo=paypal)](https://paypal.me/vasilsaroka?locale.x=en_GB)
