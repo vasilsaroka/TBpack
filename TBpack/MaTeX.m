@@ -15,6 +15,8 @@
 
 BeginPackage["TBpack`MaTeX`"];
 
+Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
+
 MaTeX::usage = "\
 MaTeX[\"texcode\"] compiles texcode using LaTeX and returns the result as Mathematica graphics.  texcode must be valid inline math-mode LaTeX code.
 MaTeX[expression] converts expression to LaTeX using TeXForm, then compiles it and returns the result.
@@ -627,5 +629,7 @@ BlackFrame = Directive[AbsoluteThickness[0.5], Black];
 
 
 End[]; (* End Private Context *)
+
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]]
 
 EndPackage[];

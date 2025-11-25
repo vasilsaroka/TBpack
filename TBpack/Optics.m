@@ -16,8 +16,7 @@ OpticalAbsorption1D::usage = "OpticalAbsorption1D[\!\(\*StyleBox[\"bands\",\"TI\
 Begin["`Private`"] (* Begin Private Context *) 
 
 
-(* This function works for the zero temperature and the intrinsic \
-position of the Fermi level *)
+(* This function works for the zero temperature and the intrinsic position of the Fermi level *)
 
 (* Note: this function uses input from the ElectronicBands1D function *)
 
@@ -83,9 +82,9 @@ OpticalAbsorption1D = Compile[
       	{j, tdatalen}];
      {xrange[[i]], Re@r},
      {i, numberofpoints}]
-    ](* end Module *), RuntimeAttributes -> {Listable}, 
-   RuntimeOptions -> "Speed", Parallelization -> True, 
-   CompilationTarget -> "C"](* end Compile *);
+    ](* end Module *), 
+    RuntimeAttributes -> {Listable}, RuntimeOptions -> "Speed", Parallelization -> True
+   ](* end Compile *);
 
 
 End[] (* End Private Context *)

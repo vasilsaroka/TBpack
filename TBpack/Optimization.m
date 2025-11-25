@@ -1,6 +1,9 @@
 (* Wolfram Language Package *)
 
 BeginPackage["TBpack`Optimization`"]
+
+Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
+
 (* Exported symbols added here with SymbolName::usage *)  
 
 (* for Functions *)
@@ -480,5 +483,7 @@ SyntaxInformation[OptimizationByGULP] = {"ArgumentsPattern" -> {_, _, OptionsPat
 
 
 End[] (* End Private Context *)
+
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]]
 
 EndPackage[]

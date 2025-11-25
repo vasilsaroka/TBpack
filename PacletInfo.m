@@ -1,10 +1,10 @@
 (* Paclet Info File *)
 
-(* created 2025/04/24*)
+(* created 2025/11/25*)
 
 Paclet[
     Name -> "TBpack",
-    Version -> "0.5.2",
+    Version -> "0.6.1",
     WolframVersion -> "10.0+",
     Description -> "Tight-binding calculations in Mathematica.",
     Creator -> "Vasil Saroka <40.ovasil@gmail.com>",
@@ -18,11 +18,11 @@ Paclet[
     Keywords -> 
         {"crystal", "lattice", "molecule", "nanostructure", "Hamiltonian", "tight-binding", "energy levels", "eigenvalues", "eigenvectors", "electronic structure", "band structure"}
 ,
-    Publisher -> "TBpack Ltd.",
+    Publisher -> "",
     URL -> "https://github.com/vasilsaroka/TBpack",
     Support -> "https://t.me/vasilsaroka",
     Icon -> "Logo_3.png",
-    UUID -> "TBpack-e9a2c698-48f6-49e0-8194-d7cd44976257",
+    UUID -> "",
     Location -> "https://github.com/vasilsaroka/TBpack",
     Extensions -> 
         {

@@ -1,6 +1,9 @@
 (* Wolfram Language Package *)
 
 BeginPackage["TBpack`UnitcellGenerators`"]
+
+Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
+
 (* Exported symbols added here with SymbolName::usage *)  
 
 
@@ -8,7 +11,7 @@ BeginPackage["TBpack`UnitcellGenerators`"]
 Nanotube::usage = "Nanotube[\*RowBox[{StyleBox[\"n\",\"TI\"], \",\" , StyleBox[\"m\",\"TI\"]}]] retuns a list of atomic coordinates of the nanotube, its translation vector and the lattice constant used.";
 Nanoribbon::usage = "Nanoribbon[\*StyleBox[\"n\",\"TI\"]] returns a list of atomic coordinate of a \*StyleBox[\"Zigzag\",\"TI\"] nanoribbon, its translation vector and the lattice constant used.
 Nanoribbon[\*RowBox[{StyleBox[\"n\",\"TI\"], \",\" , StyleBox[\"options\",\"TI\"]}]] generates atomic coordinates with specified options.
-Nanoribbon[\*StyleBox[\"n\",\"TI\"], EdgeType \[Rule] value] generates \*StyleBox[\"Zigzag\",\"TI\"], \*StyleBox[\"Armchair\",\"TI\"] and \*StyleBox[\"Bearded\",\"TI\"] nanoribbon for \*StyleBox[\"value\",\"TI\"] equal to 1, 2 and 3, respectively"; 
+Nanoribbon[\*StyleBox[\"n\",\"TI\"], EdgeType \[Rule] value] generates \*StyleBox[\"Zigzag\",\"TI\"], \*StyleBox[\"Armchair\",\"TI\"], \*StyleBox[\"Bearded\",\"TI\"], and \*StyleBox[\"Twig\",\"TI\"] nanoribbon for \*StyleBox[\"value\",\"TI\"] equal to 1, 2, 3, and 4, respectively"; 
 CNanoribbon::usage = "CNanoribbon[\*RowBox[{StyleBox[\"n\",\"TI\"], \",\", StyleBox[\"m\",\"TI\"]}]] returns a list of atomic coordinate of a nanoribbon by effectively unrolling a nanotube with the chirality vector \*RowBox[{\"(\", StyleBox[\"n\",\"TI\"], \",\", StyleBox[\"m\",\"TI\"] ,\")\"}].
 CNanoribbon[\*RowBox[{StyleBox[\"n\",\"TI\"], \",\", StyleBox[\"m\",\"TI\"]}], RefinedEdge \[Rule] \*StyleBox[\"True\",\"TI\"]] refines the edge of the ribbon from the dangling atoms.";
 ZigzagShapedNanoribbon::usage = "ZigzagShapedNanoribbon[\*RowBox[{StyleBox[SubscriptBox[\"l\",\"1\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"l\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"w\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"w\",\"2\"],\"TI\"] }]] returns a list of atomic coordinates of a \*StyleBox[\"Z60\",\"TI\"] zigzag-shaped nanoribbon, its translation vector and the lattice constant used.
@@ -16,12 +19,12 @@ ZigzagShapedNanoribbon[\*RowBox[{StyleBox[SubscriptBox[\"l\",\"1\"],\"TI\"], \",
 ZigzagShapedNanoribbon[\*RowBox[{StyleBox[SubscriptBox[\"l\",\"1\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"l\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"w\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"w\",\"2\"],\"TI\"] }], EdgeType \[Rule] \*StyleBox[\"value\",\"TI\"]] generates \*StyleBox[\"Z60\",\"TI\"], \*StyleBox[\"Z120\",\"TI\"], \*StyleBox[\"A60\",\"TI\"] and \*StyleBox[\"A120\",\"TI\"] nanoribbons for \*StyleBox[\"value\",\"TI\"] equal to 1, 2, 3, and 4, respectively.
 ZigzagShapedNanoribbon[\*RowBox[{StyleBox[SubscriptBox[\"l\",\"1\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"l\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"w\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"w\",\"2\"],\"TI\"] }], TranslationAxis \[Rule] \*StyleBox[\"value\",\"TI\"]] sets the nanoribbon translation vector along \*StyleBox[\"Ox\",\"TI\"]- or \*StyleBox[\"Oy\",\"TI\"]-axis  for \*StyleBox[\"value\",\"TI\"] equal to 1 or 2, respectively.
 ZigzagShapedNanoribbon[\*RowBox[{StyleBox[SubscriptBox[\"l\",\"1\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"l\",\"2\"],\"TI\"], \",\", StyleBox[SubscriptBox[\"w\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"w\",\"2\"],\"TI\"] }], ApexPoint \[Rule] \*StyleBox[\"integer\",\"TI\"]] sets the apex point to one of the four positions denoted by the \*StyleBox[\"integer\",\"TI\"].";
-IVGroupQuantumDot::usage = "IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}]] returns a list of atomic coordinates for a graphene quantum dot, an effective translation vector (roughly double the size of the dot) and the lattice constant.
+IVGroupQuantumDot::usage = "IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}]] returns a list of atomic coordinates for a graphene quantum dot, an effective empty translation vector and the lattice constant.
 IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], \*StyleBox[\"options\",\"TI\"]] generates a list of atomic coordinates for a quantum dot with the specified options.
 IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], ChemicalElement \[Rule] \*StyleBox[\"label\",\"TI\"]] returns a list of atomic coordinates for a quantum dot of the 2D material made of the element set by \*StyleBox[\"label\",\"TI\"].
 IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], EdgeType \[Rule] \*StyleBox[\"value\",\"TI\"]] returns a list of atomic coordinates for a quantum dot with \*StyleBox[\"Zigzag\",\"TI\"] and \*StyleBox[\"Armchair\",\"TI\"] edges for \*StyleBox[\"value\",\"TI\"] equal to 1 and 2, respectively.
 IVGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], Shape \[Rule] \*StyleBox[\"value\",\"TI\"]] returns a list of atomic coordinates for a quantum dot with \*StyleBox[\"triangular\",\"TI\"] and \*StyleBox[\"hexagonal\",\"TI\"] shapes for \*StyleBox[\"value\",\"TI\"] equal to \"TRI\" and \"HEX\", respectively.";
-VGroupQuantumDot::usage = "VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}]] returns a list of atomic coordinates for a phosphorene quantum dot, an effective translation vector (roughly double the size of the dot) and the lattice constant.
+VGroupQuantumDot::usage = "VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}]] returns a list of atomic coordinates for a phosphorene quantum dot, an effective empty translation vector and the lattice constant.
 VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], \*StyleBox[\"options\",\"TI\"]] generates a list of atomic coordinates for a quantum dot with the specified options.
 VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], ChemicalElement \[Rule] \*StyleBox[\"label\",\"TI\"]] returns a list of atomic coordinates for a quantum dot of the 2D material made of the element set by \*StyleBox[\"label\",\"TI\"].
 VGroupQuantumDot[\*RowBox[{StyleBox[\"size\",\"TI\"], \",\" , StyleBox[\"numberoflayers\",\"TI\"]}], EdgeType \[Rule] \*StyleBox[\"value\",\"TI\"]] returns a list of atomic coordinates for a quantum dot with \*StyleBox[\"Zigzag\",\"TI\"], \*StyleBox[\"Armchair\",\"TI\"] and \*StyleBox[\"Mixed\",\"TI\"] edges for \*StyleBox[\"value\",\"TI\"] equal to 1, 2 and 3, respectively.
@@ -42,6 +45,7 @@ Shape::usage = "Option specifying the shape of nanostructures in some unit cell 
 Zigzag::usage = "Constant equal to 1 setting the EdgeType option value.";
 Armchair::usage = "Constant equal to 2 setting the EdgeType option value.";
 Bearded::usage = "Constant equal to 3 setting the EdgeType option value.";
+Twig::usage = "Constant equal to 4 setting the EdgeType option value.";
 Mixed::usage = "Constant equal to 3 setting the EdgeType option value in \*StyleBox[\"VGroupQuantumDots\",\"TI\"]";
 Ox::usage = "Constant equal to 1 setting the TranslationAxis option value.";
 Oy::usage = "Constant equal to 2 setting the TranslationAxis option value.";
@@ -199,9 +203,10 @@ If[
 SyntaxInformation[Nanotube] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
 
 
-Zigzag = 1;
+Zigzag   = 1;
 Armchair = 2;
-Bearded = 3;
+Bearded  = 3;
+Twig     = 4;
 Ox = 1;
 Oy = 2;
 Oz = 3;
@@ -231,24 +236,30 @@ a2 = a {1,0,0};
 
 Switch[
 		nanoribbontype,
-		1,
+		1,(* zigzag *)
 		p1 = {{0,0,0},{0,0,0} + vec[[1]]};
 		p2 = {{a0,0,0},{a0,0,0} + vec[[2]]};
 		p = {p1,p2};
 		tv = {3 a0,0,0};
 		T = a {0,1,0},
-		2,
+		2,(* armchair *)
 		p1 = {{0,0,0},{a0, 0,0}};
 		p2 = {{0,0,0} + vec[[1]],{a0,0,0} + vec[[2]]};
 		p = {p1,p2};
 		tv = a {0,1,0};
 		T = {3 a0,0,0},
-		3,
+		3,(* bearded *)
 		p1 = {{0,0,0},{0,a0,0}};
 		p2 = {{0,0,0} + a1,{0,a0,0} + a1};
 		p = {p1,p2};
 		tv = {0,3 a0,0};
-		T = a2
+		T = a2,
+		4, (* twig *)
+		p1 = {{0,0,0},{0,0,0} - vec[[2]]};
+		p2 = {{a0, 0,0},{a0,0,0} + vec[[2]]};
+		p = {p1,p2};
+		tv = a {0,1,0};
+		T = {3 a0,0,0}
 ](* end Switch *);
 unitcell = Flatten[Table[(#+{(n-1)/2,(n-2)/2}[[Mod[n,2,1]]]tv)&/@p[[Mod[n,2,1]]] ,{n,numberofchains}],1];
 
@@ -1158,5 +1169,8 @@ SyntaxInformation[VGroupQuantumDot] = {"ArgumentsPattern" -> {_, _, OptionsPatte
 
 
 End[] (* End Private Context *)
+
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]] 
+
 
 EndPackage[]

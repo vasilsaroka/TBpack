@@ -5,8 +5,8 @@
 (* :Title: TBpack *)
 (* :Author: Vasil A. Saroka <40.ovasil@gmail.com> *)
 (* :Context: TBpack` *)
-(* :Version: 0.5.0 *)
-(* :Date: 2022-02-19 *)
+(* :Version: 0.6.1 *)
+(* :Date: 2025-11-25 *)
 
 (* :Mathematica Version: 10.0+ *)
 (* :Copyright: (c) 2020 Vasil A. Saroka *)
@@ -43,6 +43,32 @@ ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"RelaxGeometry\" , \"\[Rule]\" , \"True\", \",\" , \"OptimizationProgram\" , \"\[Rule]\" , \"{\", StyleBox[\"integer\",\"TI\"], \",\" , StyleBox[\"path\",\"TI\"] , \",\", StyleBox[\"fname\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] , \"}\"}]\)] uses geometry optimization of the unit cell by the program set by \!\(\*StyleBox[\"integer\",\"TI\"]\), located at \!\(\*StyleBox[\"path\",\"TI\"]\), with executable \!\(\*StyleBox[\"fname\",\"TI\"]\) and options \!\(\*StyleBox[\"opts\",\"TI\"]\).
 ElectronicBands1D[\!\(\*RowBox[{StyleBox[\"unitcell\",\"TI\"], \",\" , StyleBox[\"tr\",\"TI\"] , \",\" , \"Path2Save\" , \"\[Rule]\" , StyleBox[\"path\",\"TI\"]}]\)] saves the results of the calculation in a file located at \!\(\*StyleBox[\"path\",\"TI\"]\).";
 
+ChemicalPotential::usage = "ChemicalPotential[\!\(\*RowBox[{StyleBox[\"bands\",\"TI\"], \",\" , StyleBox[\"temperature\",\"TI\"], \",\" , StyleBox[\"ne\",\"TI\"], \",\" , StyleBox[\"eps\",\"TI\"]}]\)] a compiled function that returns chemical potential for the real matrix \!\(\*StyleBox[\"bands\",\"TI\"]\), \!\(\*StyleBox[\"temperature\",\"TI\"]\) (in K), dopping level \!\(\*StyleBox[\"ne\",\"TI\"]\) expressed as a number of electrons per unit cell (can be fractional) up to the given precision \!\(\*StyleBox[\"eps\",\"TI\"]\).
+The \!\(\*StyleBox[\"bands\",\"TI\"]\) are in the form of the ElectronicStructure \!\(\*StyleBox[\"output\",\"TI\"]\) with the last element dropped, i.e. Most[\!\(\*StyleBox[\"output\",\"TI\"]\)] or Most[First[\!\(\*StyleBox[\"output\",\"TI\"]\)]] if EigenVectors\[Rule]True.";
+
+OccupationNumbers::usage = "OccupationNumbers[\!\(\*RowBox[{StyleBox[\"bands\",\"TI\"], \",\" , StyleBox[\"wavefunctions\",\"TI\"], \",\" , StyleBox[\"\[Mu]\",\"TI\"], \",\" , StyleBox[\"temperature\",\"TI\"]}]\)] a compiled function that returns a list of occupation numbers for the unit cell atomic sites (orbitals) given the real matrix \!\(\*StyleBox[\"bands\",\"TI\"]\), complex array \!\(\*StyleBox[\"wavefunctions\",\"TI\"]\), chemical potential \!\(\*StyleBox[\"\[Mu]\",\"TI\"]\) (in eV) and \!\(\*StyleBox[\"temperature\",\"TI\"]\) (in K).
+The \!\(\*StyleBox[\"bands\",\"TI\"]\) and \!\(\*StyleBox[\"wavefunctions\",\"TI\"]\) are in the form of the ElectronicStructure \!\(\*StyleBox[\"output\",\"TI\"]\), i.e. Most[First[\!\(\*StyleBox[\"output\",\"TI\"]\)]] and Part[\!\(\*StyleBox[\"output\",\"TI\"]\),2], respectively, if EigenVectors\[Rule]True.";
+
+FreeEnergy::usage = "FreeEnergy[\!\(\*RowBox[{StyleBox[\"bands\",\"TI\"], \",\" , StyleBox[\"\[Mu]\",\"TI\"], \",\" , StyleBox[\"temperature\",\"TI\"]}]\)] a compiled function that returns the thermodynamic free energy F=E-TS for the real matrix \!\(\*StyleBox[\"bands\",\"TI\"]\), chemical potential \!\(\*StyleBox[\"\[Mu]\",\"TI\"]\) (in eV) and \!\(\*StyleBox[\"temperature\",\"TI\"]\) (in K).
+The \!\(\*StyleBox[\"bands\",\"TI\"]\) are in the form of the ElectronicStructure \!\(\*StyleBox[\"output\",\"TI\"]\), i.e. Most[\!\(\*StyleBox[\"output\",\"TI\"]\)] or Most[First[\!\(\*StyleBox[\"output\",\"TI\"]\)]] if EigenVectors\[Rule]True.";
+
+HubbardMeanField::usage = "HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\)] calculates spin-up and -down electronic energy bands, chemical potential, occupations and wavefunctions for a system presented by \!\(\*StyleBox[\"unitcell\",\"TI\"]=\*RowBox[{\"{\", StyleBox[SubscriptBox[\"unitcell\",\"1\"],\"TI\"],\",\", StyleBox[SubscriptBox[\"unitcell\",\"2\"],\"TI\"], \"}\"}]\) (same format as in Hamiltonian and ElectronicStructure functions). 
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \!\(\*StyleBox[\"options\",\"TI\"]\)] runs Hubbard mean-field calculations using specified options.
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), HubbardU \[Rule] \!\(\*StyleBox[\"value\",\"TI\"]\)] uses specified electron-electron on-site interaction given as \!\(\*StyleBox[\"value\",\"TI\"]\) (defaults to 3.24 eV, see \!\(\*TemplateBox[{\"G.Z. Magda et al. Nature 514, 608-611 (2014)\", \"https://doi.org/10.1038/nature13831\"}, \"HyperlinkURL\"]\)).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"NumberOfElectrons\"  \[Rule] \!\(\*StyleBox[\"value\",\"TI\"]\)] uses specified electron doping given as \!\(\*StyleBox[\"value\",\"TI\"]\) (defaults to Automatic, i.e. Length[First@\!\(\*StyleBox[\"unitcell\",\"TI\"]\)]).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"SpinConfiguration\" \[Rule] {\!\(\*StyleBox[\"occspindo\",\"TI\"]\), \!\(\*StyleBox[\"occspinup\",\"TI\"]\)}] uses specified average occupation numbers to start the calculation (defaults to Automatic, i.e. FM configuration).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"CMonitor\" \[Rule] True] runs calculation accompanied by the convergence monitor.
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"CMonitor\" \[Rule] {True, {\"Backup\" \[Rule] True}}] saves \"CMonitor\" data to the path specified as Path2Save.
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), MaxIterations \[Rule] \!\(\*StyleBox[\"maxit\",\"TI\"]\)] stops evaluation if \!\(\*StyleBox[\"maxit\",\"TI\"]\) iteration is reached (defaults to 200).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), AccuracyGoal \[Rule] \!\(\*StyleBox[\"ag\",\"TI\"]\)] uses \!\(\*SuperscriptBox[\"10\", StyleBox[\"-ag\",\"TI\"]]\) as a criterion to terminate internal evaluations (defaults to 5).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), Method \[Rule] \!\(\*StyleBox[\"method\",\"TI\"]\)] uses \!\(\*StyleBox[\"method\",\"TI\"]\) to solve Hubbard model (defaults to \"SCE\"; other alternatives are \"SingleShot\",\"NMinimize\", and \"NMinimize+SCE\").
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), Path2Save \[Rule] \!\(\*StyleBox[\"path\",\"TI\"]\)] uses \!\(\*StyleBox[\"path\",\"TI\"]\) to save \"CMonitor\" data (defaults to $HomeDirectory).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"Temperature\" \[Rule] \!\(\*StyleBox[\"value\",\"TI\"]\)] uses temperature given by \!\(\*StyleBox[\"value\",\"TI\"]\) in the Fermi-Dirac distribution (defaults to 4K).
+HubbardMeanField[\!\(\*StyleBox[\"unitcell\",\"TI\"]\), \"ParamagneticTerm\" \[Rule] True] adds the term favoring paramagnetic configuration, see Eq. (10) in \!\(\*TemplateBox[{\"Y. Claveau, B. Arnaud, and S. Di Matteo, Eur. J. Phys. 35, 035023 (2014)\", \"https://doi.org/10.1088/0143-0807/35/3/035023\"}, \"HyperlinkURL\"]\); needed for magnetic phase diagrams.
+  
+Other options are inheritted from Hamiltonian and ElectronicStructure functions and are accessible in the same way. 
+\!\(\*StyleBox[\"Note:\", Bold]\) EigenVectors option is internally set to True and not amendable for the Hubbard model.";
+
 (* for Options *)
 TranslationVectors::usage = "Option specifying the primitive translations in \[Angstrom].";
 HoppingIntegrals::usage = "Option specifying the values of the tight-binding hopping integrals as \!\(\*RowBox[{\"{\" , StyleBox[SubscriptBox[\"t\",\"0\"],\"TI\"] , \",\" , StyleBox[SubscriptBox[\"t\",\"1\"],\"TI\"], \",\" , StyleBox[SubscriptBox[\"t\",\"2\"],\"TI\"] , \"\[Ellipsis]\" , \"}\" }]\) in eV.  See also \!\(\*StyleBox[\"HoppingDistances\",\"TI\"]\).";
@@ -54,7 +80,6 @@ Efield::usage = "Option setting the Cartesian components of a homogeneous extern
 Bfield::usage = "Option setting the Cartesian components of a homogeneous external magnetic field in T.";
 EdgeCorrections::usage = "Option setting the hopping integral edge corrections in eV corresponding to coordination number 1 and 2 in the 2D hexagonal lattice.";
 HoppingDistanceDelta::usage = "Option setting the largest absolute deviation in \[Angstrom] for which the hopping distance is still considered as matching to the coressponding tight-binding hopping integral, see V. A. Saroka, K. G. Batrakov, and L. A. Chernozatonskii, Phys. Solid State 56, 2135 (2014).";
-SuperCellSize::usage = "Option specifying how many unit cells are contained in the supercell: 0D- 1; 1D- \!\(\*RowBox[{ \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\"}]\); 2D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"2\"]\); 3D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"3\"]\), where \!\(\*StyleBox[\"n\",\"TI\"]\) is a positive integer option value.";
 HamiltonianGauge::usage = "Option specifying which gauge, Basis I (Periodic) or Basis II (Canonical) to use for the Hamiltonian construction.
 See Sec. 4.2.5 in \!\(\*TemplateBox[{\"J. Cayssol, J.N. Fuchs, J. Phys. Mater. 4, 034007 (2021)\", \"https://doi.org/10.1088/2515-7639/abf0b5\"}, \"HyperlinkURL\"]\)
 See also \!\(\*TemplateBox[{\"C. Bena, G. Montambaux, New J. Phys. 11, 095003 (2009)\", \"https://doi.org/10.1088/1367-2630/11/9/095003\"}, \"HyperlinkURL\"]\)";
@@ -70,11 +95,14 @@ OptimizationProgram::usage = "Option in some functions specifying the type of, p
 OptimizationFunction::usage = "Option in some functions specifying a name and list options for the function that is to run geometry optimization: \!\(\*RowBox[{\"{\", StyleBox[\"fun\",\"TI\"], \",\", StyleBox[\"opts\",\"TI\"] ,\"}\"}]\).";
 Path2Save::usage = "Option in some functions setting the path to save the results of calculations. By default, it is \*StyleBox[\"$HomeDirectory\",\"TI\"]."
 
-(* for general options used in and across TBpack subpackages, such as DataAnalysis, Optimization and etc. *)
+HubbardU::usage = "Option setting electron-electron interaction in eV for the Hubbard mean-field model."
+
+(* for general options used in and across TBpack subpackages, such as DataAnalysis, Optimization, Topology and etc. *)
 Path2File::usage = "Option specifying a path to a file directory in such functions as \*StyleBox[\"ReadElectronicBands1D\",\"TI\"].";
 FileName::usage = "Option specifying the name of the file to be processed or executed by such functions as \*StyleBox[\"ReadElectronicBands1D\",\"TI\"].";
-LatticeConstant::usage = "Option specifying the scale of the 2D hexagonal lattice in \[Angstrom].";
+LatticeConstant::usage = "Option specifying the scale of a lattice in \[Angstrom].";
 BondLengthDelta::usage = "Option setting in \[Angstrom] the maximum deviation of the bond length in the unit cell from the explicitly specified bond length value.";
+SuperCellSize::usage = "Option specifying how many unit cells are contained in the supercell: 0D- 1; 1D- \!\(\*RowBox[{ \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\"}]\); 2D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"2\"]\); 3D- \!\(\*SuperscriptBox[RowBox[{\"(\", \"2\" , StyleBox[\"n\",\"TI\"], \"+\", \"1\", \")\"}],\"3\"]\), where \!\(\*StyleBox[\"n\",\"TI\"]\) is a positive integer option value.";
 InputScriptTemplate::usage = "Option in some functions for providing an external program script template.";
 
 
@@ -1447,7 +1475,854 @@ Scan[Write[stream,#]&,{"\n# Magnetic field (Bx, By, Bz), T",Row[Table[nd[bfield[
 SyntaxInformation[ElectronicBands1D] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}};
 
 
+(* chemical potential to be used in Hubbard mean-field model *)
+ChemicalPotential = Compile[
+  {
+   {bands, _Real, 2},
+   {Temp, _Real}, 
+   {ne, _Real}, 
+   {eps, _Real}
+   },
+  Block[
+   {
+    xl, xr, xm,
+    cnt, maxit = 10^5,
+    err,
+    
+    kB = 8.617 10^-5(* eV/K *),
+    b, nbnds, nkps,
+    s, en, A, explim = 100,
+    fxm, fxl
+    },
+   (* main constants *)
+   b = 1/(kB Temp);
+   {nbnds, nkps} = Dimensions[bands];
+   (* the sought chemical potential is located somewhere within the band structure range, 
+   therefore initial interval scoping the root is defined by the minimum and maximum energies among all the bands *)
+   xr = Max[bands];(* right boundary *)
+   xl = Min[bands];(* left boundary *)
+    
+   (* ------ Numerical solutions by bisection method --------*)
+   xm = (xl + xr)/2;
+   err = xr - xl;
+   cnt = 0;(* counter is used here *)
+   While[
+    		(err > eps) && (cnt <= maxit),
+    		(*cnt++;*)
+    		(* fun[xm] and fun[xl] *)
+    		fxm = 0.0;
+    		fxl = 0.0;
+    		Do[
+     			en = bands[[i, j]];
+     			A = b (en - xm);
+     			If[
+      				-explim < A < explim,
+      				fxm += 1/(Exp[A] + 1),
+      				If[A < 0, fxm += 1]
+      			](* end If *);
+     			A = b (en - xl);
+     			If[
+      				-explim < A < explim,
+      				fxl += 1/(Exp[A] + 1),
+      				If[A < 0, fxl += 1]
+      			](* end If *)
+     		, {i, nbnds}, {j, nkps}](* end Do *);
+    		fxm = fxm/nkps - ne;
+    		fxl = fxl/nkps - ne;
+    		If[fxm fxl > 0, xl = xm, xr = xm];
+    		xm = (xl + xr)/2;
+    		err = xr - xl
+    	];
+   	xr
+   ](* end Block *), 
+  CompilationOptions -> {
+  	"InlineExternalDefinitions" -> True, 
+  	"InlineCompiledFunctions" -> True, 
+    "ExpressionOptimization" -> True
+    }, 
+  RuntimeOptions -> {"Speed", "EvaluateSymbolically" -> False}
+  ](* end Compile *);
 
+
+OccupationNumbers = Compile[
+   {
+    {bands, _Real, 2},
+    {wavefuncs, _Complex, 3},
+    {mu, _Real}, 
+    {Temp, _Real}
+    }, Block[
+    {
+     kB = 8.617 10^-5(* eV/K *),
+     b, nbnd, nkp,
+     s, A,
+     explim = 100
+     },
+    b = 1/(kB Temp);
+    {nbnd, nkp} = Dimensions[bands];
+    Table[
+     	s = 0.0;
+     	Do[
+      		A = b (bands[[j, k]] - mu);
+      		If[
+       			-explim < A < explim,
+       			s += Abs[wavefuncs[[k, j, i]]]^2 1/(Exp[A] + 1),
+       			If[A < 0, s += Abs[wavefuncs[[k, j, i]]]^2]
+       		](* end If *)
+      	, {k, nkp}, {j, nbnd}](* end Do *);
+     	s/nkp,
+     {i, nbnd}](* end Table *)
+    ](* end Block *), 
+   CompilationOptions -> {
+   	 "InlineExternalDefinitions" -> True, 
+     "InlineCompiledFunctions" -> True, 
+     "ExpressionOptimization" -> True
+   }, 
+   RuntimeOptions -> {"Speed", "EvaluateSymbolically" -> False}
+   ](* end Compile *);
+     
+(* Thermodynamic free energy to be used in Hubbard mean-field model to determine the ground state;
+F = E - TS, where enthropy S is calculated by Eq. (55.3) in Landau vol. V; *)     
+FreeEnergy = Compile[
+   {
+   	{bands, _Real, 2},
+    {mu, _Real},
+    {Temp, _Real}
+    },
+   Block[
+    {
+     kB = 8.617 10^-5(* eV/K *),
+     b, invb, v1, v2,
+     nbnds, nkps,
+     s, en, A,
+     f = 0.0,
+     explim = 100
+     },
+    b = 1/(kB Temp);
+    invb = 1/b;
+    
+    (* bandsup and bandsdo are the matrices of the same size *)
+    {nbnds, nkps} = Dimensions[bands];
+    
+    s = 0.0;
+    Do[
+     	en = bands[[i, j]];
+     	A = b (en - mu);
+     	If[
+      		-explim < A < explim,
+      		f = 1/(Exp[A] + 1);
+      		If[
+       			f < 1,
+       			s += en f + invb (f Log[f] + (1 - f) Log[1 - f]),
+       			s += en f
+       		],
+      		If[A < 0, s += en]
+      	](* end If *)
+     , {i, nbnds}, {j, nkps}](* end Do *);
+    s/nkps
+    ](* end Block *), 
+   CompilationOptions -> {
+   	 "InlineExternalDefinitions" -> True, 
+     "InlineCompiledFunctions" -> True, 
+     "ExpressionOptimization" -> True
+   }, 
+   RuntimeOptions -> {"Speed", "EvaluateSymbolically" -> False}
+   ](* end Compile *);
+     
+(* This is an auxilliary function for the HubbardMeanField iteration; 
+it is an internal function that is not visible outside the package *)
+HubbardMFI[occnumbers_, ne_, uc_, U_, OptionsPattern[{
+    "AccuracyGoal" -> 5,
+    "Temperature" -> 4 (* K *),
+    "ParamagneticTerm" -> True,
+    ParallelEvaluation -> True,
+    Kpoint -> {{0, 0, 0}},
+    Hamiltonian}]] := Block[
+  {
+   muag = OptionValue["AccuracyGoal"],
+   Temp = OptionValue["Temperature"],
+   
+   hoppingintegrals = OptionValue[HoppingIntegrals],
+   
+   eu,
+   t0, t0sup, t0sdo, bdup, bddo,
+   bandsUp, bandsDo, bands,
+   wavefuncsUp, wavefuncsDo,
+   mu
+   },
+  (* occnumbers = {occnumbers <spin down>,occnumbers <spin up>} *)
+  (* Subscript[E, U] term from Eq. (10) in Y. Claveau, B. Arnaud, 
+  and S. Di Matteo, Eur. J. Phys. 35, 035023 (2014): Subscript[E, U] = 
+  U eu *)
+  eu = If[
+  	OptionValue["ParamagneticTerm"],
+  	 -Dot[occnumbers[[1]], occnumbers[[2]]]/ne,
+  	 0
+  ];
+  
+  (* on-site energies are implied to be either pure functions or numbers but not lists with test functions *)
+  t0 = First@hoppingintegrals;
+  If[
+   NumberQ[t0],
+   t0sup = (U (occnumbers[[1, #9]] + eu) + t0) &;
+   t0sdo = (U (occnumbers[[2, #9]] + eu) + t0) &
+   ,
+   t0sup = (U (occnumbers[[1, #9]] + eu)) &;
+   t0sup = 
+    Through[(t0sup + t0)[#1, #2, #3, #4, #5, #6, #7, #8, #9, #10]] &;
+   
+   t0sdo = (U (occnumbers[[2, #9]] + eu)) &;
+   t0sdo = 
+    Through[(t0sdo + t0)[#1, #2, #3, #4, #5, #6, #7, #8, #9, #10]] &;
+   ];
+  
+  (* calculating the energy band structure for the spin up and down electrons *)
+  {bdup, bddo} = ElectronicStructure[uc,
+      TranslationVectors -> OptionValue[TranslationVectors],
+      HoppingIntegrals -> Join[{#}, Rest@hoppingintegrals],
+      OverlappingIntegrals -> OptionValue[OverlappingIntegrals],
+      HoppingDistances -> OptionValue[HoppingDistances],
+      StrainExponent -> OptionValue[StrainExponent],
+      Kpoint -> OptionValue[Kpoint],
+      Efield -> OptionValue[Efield],
+      Bfield -> OptionValue[Bfield],
+      EdgeCorrections -> OptionValue[EdgeCorrections], 
+      HoppingDistanceDelta -> OptionValue[HoppingDistanceDelta],
+      SuperCellSize -> OptionValue[SuperCellSize],
+      HamiltonianGauge -> OptionValue[HamiltonianGauge],
+      EigenVectors -> True,
+      ParallelEvaluation -> OptionValue[ParallelEvaluation]] & /@ {t0sup, t0sdo};
+  
+  (* calculating the chemical potential *)
+  {bandsUp, wavefuncsUp} = bdup[[1 ;; 2]];
+  {bandsDo, wavefuncsDo} = bddo[[1 ;; 2]];
+  bandsUp = Most@bandsUp;
+  bandsDo = Most@bandsDo;
+  bands = Join[bandsUp, bandsDo];
+  (* add energy that is dependent on the given spin configuration and the number of particles *)
+  mu = ChemicalPotential[bands, Temp, ne, 10^-muag];
+  (* calculating occupation numbers for spin down and up electrons and returning the structured output *)
+  {bdup, bddo, mu,
+   {
+    OccupationNumbers[bandsDo, wavefuncsDo, mu, Temp],
+    OccupationNumbers[bandsUp, wavefuncsUp, mu, Temp]
+    }
+   }
+](* end Block *);
+
+(* Error messages *)
+HubbardMeanField::optfmt = "Wrong `2` option format: `1`";
+
+HubbardMeanField[uc_List,
+   OptionsPattern[{
+     HubbardU -> 3.24 (* in eV, see G.Z. Magda et al. Nature 514, 608-611 (2014) *),
+     "NumberOfElectrons" -> Automatic(* per unit cell *),
+     "SpinConfiguration" -> Automatic(* "AFM" or "FM"; "PM" is not recommended *),
+     "CMonitor" -> False,
+     MaxIterations -> 200,
+     AccuracyGoal -> 5,
+     Method -> "SCE",
+     Path2Save -> $HomeDirectory,
+     "Temperature" -> 4 (* K *),
+     "ParamagneticTerm" -> True,
+     ParallelEvaluation -> True,
+     Kpoint -> {{0, 0, 0}},
+     Hamiltonian}]] := Catch[Module[
+   {
+    U = OptionValue[HubbardU],
+    ne = OptionValue["NumberOfElectrons"],
+    spinconfig = OptionValue["SpinConfiguration"],
+    cmonitor = OptionValue["CMonitor"],
+    maxit = OptionValue[MaxIterations],
+    ag = OptionValue[AccuracyGoal],
+    method = OptionValue[Method],
+    path2save = OptionValue[Path2Save],
+    Temp = OptionValue["Temperature"],
+    euterm = OptionValue["ParamagneticTerm"],
+    
+    translationvectors = OptionValue[TranslationVectors], 
+    hoppingintegrals = OptionValue[HoppingIntegrals], 
+    overlappingintegrals = OptionValue[OverlappingIntegrals], 
+    hoppingdistances = OptionValue[HoppingDistances], 
+    strain = OptionValue[StrainExponent],
+    klist = OptionValue[Kpoint],
+    efield = OptionValue[Efield],
+    bfield = OptionValue[Bfield],
+    edgecorrections = OptionValue[EdgeCorrections], 
+    hoppingdistancedelta = OptionValue[HoppingDistanceDelta], 
+    supercellsize = OptionValue[SuperCellSize], 
+    hamiltoniangauge = OptionValue[HamiltonianGauge],
+    parallelevaluation = OptionValue[ParallelEvaluation],
+    
+    len, opts, copts, muag, sce, spindensplot,
+    occnumbers,
+    
+    ctrackfun, ctrackfunF, rpd, norm, 
+    rpdf, d,
+    cpd, cpdf,
+    glist, date, tag, fname,
+    
+    costfun, conds, vars, res , vx, vy
+    },
+    Module[
+    {		
+		conv,
+    	sdpd
+	},
+    
+    len = Length[First@uc];
+    If[ne === Automatic, ne = len];
+    If[
+    	spinconfig === Automatic,
+    	(* ferromagnetic spin configuration with a total spin = 1/2 per unit cell *)
+    	spinconfig = {
+      	ConstantArray[0, len],
+      	ConstantArray[1, len]/ne
+      }
+    ];
+    (* initial spin configuration *)
+    (* spinconfig = {occ. numbers spin do, occ. numbers spin up} *)
+    
+    (* spin density visualization: not always needed but set globally for this function for convenience of development *)
+   	spindensplot[occs_,itnum_] := Block[
+   		{
+   			atlist, sd, mx
+   		},
+   		atlist = First@uc;
+   		sd = 0.5 Plus @@ (occs {-1, 1});
+   		(* rescale the spin density to improve visibility *)
+   		mx = Max[Abs[sd]];
+   		(* tracking division by zero *)
+   		If[mx != 0, sd = 0.6 sd / mx];	 
+    	Framed[Grid[{
+    			{Style["it="<>ToString[itnum],12,Bold]},
+    			{Graphics[{
+    			MapThread[{
+    				If[
+    					#2 > 0, 
+    					Directive[{Opacity[0.5], Red}],
+    					Directive[{Opacity[0.5], Blue}]
+    				](* end If *), 
+           			Disk[Most@#1, Abs[#2]]} &, 
+           			{atlist, sd}
+           			](* end MapThread *), 
+           		Opacity[0.1], Gray, Disk[Most@#, 0.3] & /@ atlist}](* end Graphics *)}
+    	}],RoundingRadius -> 7]
+    ](* end Block *);
+    
+    If[
+    	ListQ[method],
+    	{method,opts} = method,
+    	opts = "NelderMead"
+    ];
+    
+    If[
+    	ListQ[cmonitor],
+    	{cmonitor,copts} = cmonitor;
+    	If[
+    		ListQ[copts],
+    		copts = Association[copts],
+    		Message[HubbardMeanField::optfmt,cmonitor,"\"CMonitor\""];
+			Throw[$Failed]
+    	],
+    	If[
+    		BooleanQ[cmonitor],
+  			copts = Association[{"Backup"->False,"BackupTag"->""}],
+  			Message[HubbardMeanField::optfmt,cmonitor,"\"CMonitor\""];
+			Throw[$Failed]
+    	]
+    ];
+    
+    muag = Min[2 ag, $MachinePrecision];
+    
+    Switch[
+   		method,
+   		"SCE",
+   	    (* function for the self-consistent evaluation (sce) *)
+   	    sce = HubbardMFI[#, ne, uc, U,
+        	"AccuracyGoal" -> muag,
+        	"Temperature" -> Temp,
+        	"ParamagneticTerm" -> euterm,
+        	TranslationVectors -> translationvectors,
+        	HoppingIntegrals -> hoppingintegrals,
+        	OverlappingIntegrals -> overlappingintegrals,
+        	HoppingDistances -> hoppingdistances,
+        	StrainExponent -> strain,
+        	Kpoint -> klist,
+        	Efield -> efield,
+        	Bfield -> bfield,
+        	EdgeCorrections -> edgecorrections, 
+        	HoppingDistanceDelta -> hoppingdistancedelta,
+        	SuperCellSize -> supercellsize,
+        	HamiltonianGauge -> hamiltoniangauge,
+        	ParallelEvaluation -> parallelevaluation
+        ][[4]] &;
+   	    (* sce output structure *)
+   	    (* res = {bdup, bddo, mu, occnumbers} *)
+    
+   	    If[
+    		cmonitor,
+    		(* convergence tracking *)
+			ctrackfun = ListLogPlot[#1, 
+				PlotRange -> {{0, 1.1 maxit},{0.95 #2, 1.05 #3}},
+				PlotStyle -> Directive[{AbsoluteThickness[0.5], Black}], 
+				PlotLabel -> "occ. numbers \[CapitalDelta] convergence", 
+				ImagePadding -> {{60, 10}, {20, 10}}, 
+				ImageSize -> 0.75 {300, 200},
+				GridLines -> {{{maxit,Directive[{Dashed, AbsoluteThickness[1], Opacity[1], Red}]}},None},
+				AxesStyle -> Directive[{AbsoluteThickness[0.5], Opacity[0.5], Black}],
+				Mesh -> All,
+				Joined -> True
+			] &;
+			
+			ctrackfunF = ListPlot[#1, 
+				PlotRange -> {{0, 1.1 maxit},{1.1 #2 - 0.1 #3, 1.1 #3 - 0.1 #2}},
+				PlotStyle -> Directive[{AbsoluteThickness[0.5], Dashed, Black}], 
+				PlotLabel -> "Free energy F convergence", 
+				ImagePadding -> {{60, 10}, {20, 10}}, 
+				ImageSize -> 0.75 {300, 200},
+				GridLines -> {{{maxit,Directive[{Dashed, AbsoluteThickness[1], Opacity[1], Red}]}},None},
+				AxesStyle -> Directive[{AbsoluteThickness[0.5], Opacity[0.5], Black}],
+				Mesh -> All,
+				Joined -> True
+			] &;
+            
+            (* dynamical tracking *)
+    		rpd = {};
+    		rpdf = {};
+			(* scoped by Module *)
+			conv = "";
+    		sdpd = spindensplot[spinconfig,Length[rpd]];
+			(*==================*)
+    		Echo[sdpd, "HubbardMeanField initial spin density:"];
+			Echo[Dynamic[conv], "HubbardMeanField SCE convergence:"];
+    		Echo[Dynamic[sdpd], "HubbardMeanField final spin density:"];
+    	
+    		If[
+    			copts["Backup"],
+    			(* with backup *)
+    			glist={};
+    			date = DateString[{"Year","Month","Day","_at_","Hour","_","Minute","_","Second"}];
+    			tag = copts["BackupTag"];
+    			Switch[
+    					True,
+    					MissingQ[tag],
+    					tag = "",
+    					Not[StringQ[tag]],
+    					(* not a Missing element of Association and not a string *)
+						Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+						Throw[$Failed]
+    			];
+    	  		occnumbers = NestWhile[sce, spinconfig, 
+    			 (
+    				norm = Norm[Flatten[#2 - #1]];
+					AppendTo[rpd, norm];
+					
+					d = HubbardMFI[#2, ne, uc, U,
+        				"AccuracyGoal" -> muag,
+        				"Temperature" -> Temp,
+        				"ParamagneticTerm" -> euterm,
+        				TranslationVectors -> translationvectors,
+        				HoppingIntegrals -> hoppingintegrals,
+        				OverlappingIntegrals -> overlappingintegrals,
+        				HoppingDistances -> hoppingdistances,
+        				StrainExponent -> strain,
+        				Kpoint -> klist,
+        				Efield -> efield,
+        				Bfield -> bfield,
+        				EdgeCorrections -> edgecorrections, 
+        				HoppingDistanceDelta -> hoppingdistancedelta,
+        				SuperCellSize -> supercellsize,
+        				HamiltonianGauge -> hamiltoniangauge,
+        				ParallelEvaluation -> parallelevaluation
+        			]; 
+					AppendTo[rpdf, FreeEnergy[Join @@ (Most@First@# & /@ {d[[1]], d[[2]]}), d[[3]], Temp]];
+					
+					cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+					cpdf = ctrackfunF[rpdf, Min[rpdf], Max[rpdf]];
+					conv = Framed[Grid[{{cpd},{cpdf}}], RoundingRadius -> 7, FrameStyle -> Directive[{AbsoluteThickness[1],Black}]];
+					
+					sdpd = spindensplot[#2,Length[rpd]];
+					AppendTo[glist, Grid[{{conv,sdpd}}]];
+    				norm > 10^-ag
+    			 ) &,
+    			2, maxit](* end NestWhile *);
+    			(* save convergence data to the given path *)
+    			fname = "HubbardMeanField_SCE_"<>date<>"_"<>tag<>".gif";
+    			Export[FileNameJoin[{path2save,fname}],glist,"DisplayDurations" ->If[Length[glist]>30,30/Length[glist],1],ImageResolution->300];
+    			,
+    			(* without backup *)
+    			occnumbers = NestWhile[sce, spinconfig, 
+    			 (
+    				norm = Norm[Flatten[#2 - #1]];
+					AppendTo[rpd, norm];
+					d = HubbardMFI[#2, ne, uc, U,
+        				"AccuracyGoal" -> muag,
+        				"Temperature" -> Temp,
+        				"ParamagneticTerm" -> euterm,
+        				TranslationVectors -> translationvectors,
+        				HoppingIntegrals -> hoppingintegrals,
+        				OverlappingIntegrals -> overlappingintegrals,
+        				HoppingDistances -> hoppingdistances,
+        				StrainExponent -> strain,
+        				Kpoint -> klist,
+        				Efield -> efield,
+        				Bfield -> bfield,
+        				EdgeCorrections -> edgecorrections, 
+        				HoppingDistanceDelta -> hoppingdistancedelta,
+        				SuperCellSize -> supercellsize,
+        				HamiltonianGauge -> hamiltoniangauge,
+        				ParallelEvaluation -> parallelevaluation
+        			]; 
+					AppendTo[rpdf, FreeEnergy[Join @@ (Most@First@# & /@ {d[[1]], d[[2]]}), d[[3]], Temp]];
+					
+					cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+					cpdf = ctrackfunF[rpdf, Min[rpdf], Max[rpdf]];
+					conv = Framed[Grid[{{cpd},{cpdf}}], RoundingRadius -> 7, FrameStyle -> Directive[{AbsoluteThickness[1],Black}]];
+					sdpd = spindensplot[#2,Length[rpd]];
+    				norm > 10^-ag
+    			 ) &,
+    			2, maxit](* end NestWhile *),
+				(* neither True nor False *)
+				Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+				Throw[$Failed]
+    		](* end If Backup for cmonitor *)
+    		,
+    		(* supressed convergence tracking *)
+    		occnumbers = NestWhile[sce, spinconfig,(Norm[Flatten[#2 - #1]] > 10^-ag) &, 2, maxit](* end NestWhile *)
+        	](* end If CMonitor *);
+
+        	(* one more iteration with the found occupation numbers *)
+        	HubbardMFI[occnumbers, ne, uc, U,
+        		"AccuracyGoal" -> muag,
+        		"Temperature" -> Temp,
+        		"ParamagneticTerm" -> euterm,
+        		TranslationVectors -> translationvectors,
+        		HoppingIntegrals -> hoppingintegrals,
+        		OverlappingIntegrals -> overlappingintegrals,
+        		HoppingDistances -> hoppingdistances,
+        		StrainExponent -> strain,
+        		Kpoint -> klist,
+        		Efield -> efield,
+        		Bfield -> bfield,
+        		EdgeCorrections -> edgecorrections, 
+        		HoppingDistanceDelta -> hoppingdistancedelta,
+        		SuperCellSize -> supercellsize,
+        		HamiltonianGauge -> hamiltoniangauge,
+        		ParallelEvaluation -> parallelevaluation
+        	],
+        "SingleShot",
+        HubbardMFI[spinconfig, ne, uc, U,
+        	"AccuracyGoal" -> muag,
+        	"Temperature" -> Temp,
+        	"ParamagneticTerm" -> euterm,
+        	TranslationVectors -> translationvectors,
+        	HoppingIntegrals -> hoppingintegrals,
+        	OverlappingIntegrals -> overlappingintegrals,
+        	HoppingDistances -> hoppingdistances,
+        	StrainExponent -> strain,
+        	Kpoint -> klist,
+        	Efield -> efield,
+        	Bfield -> bfield,
+        	EdgeCorrections -> edgecorrections, 
+        	HoppingDistanceDelta -> hoppingdistancedelta,
+        	SuperCellSize -> supercellsize,
+        	HamiltonianGauge -> hamiltoniangauge,
+        	ParallelEvaluation -> parallelevaluation
+        ],
+        "NMinimize",
+        (* Global optimization goes here *)
+    
+        (* cost function for occupation numbers *)
+	    costfun[occDo_?(VectorQ[#, NumericQ] &), occUp_?(VectorQ[#, NumericQ] &)] := Block[
+   			{
+    			bdUp, bdDo, mu
+    		},
+    	
+   			{bdUp, bdDo, mu} = HubbardMFI[{occDo, occUp}, ne, uc, U,
+     			"AccuracyGoal" -> muag,
+     			"Temperature" -> Temp,
+     			"ParamagneticTerm" -> euterm,
+     			TranslationVectors -> translationvectors,
+     			HoppingIntegrals -> hoppingintegrals,
+     			OverlappingIntegrals -> overlappingintegrals,
+     			HoppingDistances -> hoppingdistances,
+     			StrainExponent -> strain,
+     			Kpoint -> klist,
+     			Efield -> efield,
+     			Bfield -> bfield,
+     			EdgeCorrections -> edgecorrections,
+     			HoppingDistanceDelta -> hoppingdistancedelta,
+     			SuperCellSize -> supercellsize,
+     			HamiltonianGauge -> hamiltoniangauge,
+     			ParallelEvaluation -> parallelevaluation
+    	][[1;;3]];
+    	
+    	FreeEnergy[Join @@ (Most@First@# & /@ {bdUp, bdDo}), mu, Temp]
+        ];    
+          	    
+  	    {vx, vy} = Transpose[Table[{Unique["x"], Unique["y"]}, {i, len}]]; 	
+  	    vars = Flatten[{vx,vy}];
+  	    (*conds = VectorLessEqual[{0,vx}] && VectorLessEqual[{vx, spinconfig[[1]]}] && VectorLessEqual[{0,vy}] &&  VectorLessEqual[{vy, spinconfig[[2]]}];*)
+  	    conds = And@@Table[0 <= vars[[i]] <= 1,{i,2 len}];
+  	    
+  	    If[
+    		cmonitor,
+    		(* convergence tracking *)
+			ctrackfun = Framed[ListPlot[#1, 
+				PlotRange -> {{0, 1.1 maxit},{0.95 #2, 1.05 #3}},
+				PlotStyle -> Directive[{AbsoluteThickness[0.5], Dashed, Black}], 
+				PlotLabel -> "Free energy F convergence", 
+				ImagePadding -> {{60, 10}, {20, 10}}, 
+				ImageSize -> 0.75 {300, 200},
+				GridLines -> {{{maxit,Directive[{Dashed, AbsoluteThickness[1], Opacity[1], Red}]}},None},
+				AxesStyle -> Directive[{AbsoluteThickness[0.5], Opacity[0.5], Black}],
+				Mesh -> All,
+				Joined -> True
+			], RoundingRadius -> 7, FrameStyle -> Directive[{AbsoluteThickness[1],Black}]] &;
+					
+        	(* dynamical tracking *)    	
+    		rpd = {};
+    		(* scoped by Module *)
+			cpd = "";
+			sdpd = spindensplot[spinconfig,Length[rpd]];
+    		(*==================*)
+			Echo[sdpd, "HubbardMeanField initial spin density:"];
+			Echo[Dynamic[cpd], "HubbardMeanField GO convergence:"];
+    		Echo[Dynamic[sdpd], "HubbardMeanField final spin density:"];
+    	
+ 	    	If[
+    			copts["Backup"],
+    			(* with backup *)
+    			glist={};
+    			date = DateString[{"Year","Month","Day","_at_","Hour","_","Minute","_","Second"}];
+    			
+    			tag = copts["BackupTag"];
+    			Switch[
+    					True,
+    					MissingQ[tag],
+    					tag = "",
+    					Not[StringQ[tag]],
+    					(* not a Missing element of Association and not a string *)
+						Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+						Throw[$Failed]
+    			];
+    	  		
+    		
+    			res = NMinimize[{costfun[vx, vy], conds}, vars,	Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit,
+    			StepMonitor :> (AppendTo[rpd, costfun[vx,vy]];
+    						cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+							sdpd = spindensplot[{vx,vy},Length[rpd]];
+							AppendTo[glist, Grid[{{cpd,sdpd}}]]
+							)
+    			];
+    			(* save convergence data to the given path *)
+    			fname = "HubbardMeanField_GO_"<>date<>"_"<>tag<>".gif";
+    			Export[FileNameJoin[{path2save,fname}],glist,"DisplayDurations" ->If[Length[glist]>30,30/Length[glist],1],ImageResolution->300];
+    			,
+    			(* without backup *)
+    			res = NMinimize[{costfun[vx, vy], conds}, vars,	Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit,
+    			StepMonitor :> (AppendTo[rpd, costfun[vx,vy]];
+    						cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+							sdpd = spindensplot[{vx,vy},Length[rpd]]
+							)
+    			],
+				(* neither True nor False *)
+				Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+				Throw[$Failed]
+    		](* end If Backup for cmonitor *),
+    		(* supressed convergence tracking *)
+    		res = NMinimize[{costfun[vx, vy], conds}, vars, Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit]
+        ](* end If CMonitor *);
+        Print[res];
+        occnumbers = {vx,vy}/.res[[2]];
+        Remove[Evaluate@vars];
+
+        (* one more iteration with the found occupation numbers *)
+        HubbardMFI[occnumbers, ne, uc, U,
+    		"AccuracyGoal" -> muag,
+    		"Temperature" -> Temp,
+    		"ParamagneticTerm" -> euterm,
+    		TranslationVectors -> translationvectors,
+    		HoppingIntegrals -> hoppingintegrals,
+    		OverlappingIntegrals -> overlappingintegrals,
+    		HoppingDistances -> hoppingdistances,
+    		StrainExponent -> strain,
+    		Kpoint -> klist,
+    		Efield -> efield,
+    		Bfield -> bfield,
+    		EdgeCorrections -> edgecorrections, 
+    		HoppingDistanceDelta -> hoppingdistancedelta,
+    		SuperCellSize -> supercellsize,
+    		HamiltonianGauge -> hamiltoniangauge,
+    		ParallelEvaluation -> parallelevaluation
+        ],
+        "NMinimize+SCE",
+        (* Global optimization with self-consistent evaluation goes here *)
+    
+        (* function for the self-consistent evaluation (sce) *)
+   	    sce = HubbardMFI[#, ne, uc, U,
+        	"AccuracyGoal" -> muag,
+        	"Temperature" -> Temp,
+        	"ParamagneticTerm" -> euterm,
+        	TranslationVectors -> translationvectors,
+        	HoppingIntegrals -> hoppingintegrals,
+        	OverlappingIntegrals -> overlappingintegrals,
+        	HoppingDistances -> hoppingdistances,
+        	StrainExponent -> strain,
+        	Kpoint -> klist,
+        	Efield -> efield,
+        	Bfield -> bfield,
+        	EdgeCorrections -> edgecorrections, 
+        	HoppingDistanceDelta -> hoppingdistancedelta,
+        	SuperCellSize -> supercellsize,
+        	HamiltonianGauge -> hamiltoniangauge,
+        	ParallelEvaluation -> parallelevaluation
+        ][[4]] &;
+   	    (* sce output structure *)
+   	    (* res = {bdup, bddo, mu, occnumbers} *)
+
+    
+        (* cost function for occupation numbers *)
+	    costfun[occDo_?(VectorQ[#, NumericQ] &), occUp_?(VectorQ[#, NumericQ] &)] := Block[
+   			{
+    			occ, bdUp, bdDo, mu
+    		},
+    	
+    		occ = NestWhile[sce, {occDo, occUp}, (Norm[Flatten[#2 - #1]] > 10^-ag) &, 2, maxit](* end NestWhile *);
+   		
+   			{bdUp, bdDo, mu} = HubbardMFI[occ, ne, uc, U,
+     			"AccuracyGoal" -> muag,
+     			"Temperature" -> Temp,
+     			"ParamagneticTerm" -> euterm,
+     			TranslationVectors -> translationvectors,
+     			HoppingIntegrals -> hoppingintegrals,
+     			OverlappingIntegrals -> overlappingintegrals,
+     			HoppingDistances -> hoppingdistances,
+     			StrainExponent -> strain,
+     			Kpoint -> klist,
+     			Efield -> efield,
+     			Bfield -> bfield,
+     			EdgeCorrections -> edgecorrections,
+     			HoppingDistanceDelta -> hoppingdistancedelta,
+     			SuperCellSize -> supercellsize,
+     			HamiltonianGauge -> hamiltoniangauge,
+     			ParallelEvaluation -> parallelevaluation
+    	][[1;;3]];
+    	
+    	FreeEnergy[Join @@ (Most@First@# & /@ {bdUp, bdDo}), mu, Temp]
+        ];
+    	
+        {vx, vy} = Transpose[Table[{Unique["x"], Unique["y"]}, {i, len}]];
+  	    vars = Flatten[{vx,vy}];
+  	    (*conds = VectorLessEqual[{0,vx}] && VectorLessEqual[{vx, spinconfig[[1]]}] && VectorLessEqual[{0,vy}] &&  VectorLessEqual[{vy, spinconfig[[2]]}];*)
+  	    conds = And@@Table[0 <= vars[[i]] <= 1,{i,2 len}];
+    
+        If[
+    		cmonitor,
+    		(* convergence tracking *)
+			ctrackfun = Framed[ListPlot[#1, 
+				PlotRange -> {{0, 1.1 maxit},{0.95 #2, 1.05 #3}},
+				PlotStyle -> Directive[{AbsoluteThickness[0.5], Dashed, Black}], 
+				PlotLabel -> "Free energy F convergence", 
+				ImagePadding -> {{60, 10}, {20, 10}}, 
+				ImageSize -> 0.75 {300, 200},
+				GridLines -> {{{maxit,Directive[{Dashed, AbsoluteThickness[1], Opacity[1], Red}]}},None},
+				AxesStyle -> Directive[{AbsoluteThickness[0.5], Opacity[0.5], Black}],
+				Mesh -> All,
+				Joined -> True
+			], RoundingRadius -> 7, FrameStyle -> Directive[{AbsoluteThickness[1],Black}]] &;
+        
+        	(* dynamical tracking *)  	
+    		rpd = {};
+			(* scoped with Module *)
+			cpd = "";
+    		sdpd = spindensplot[spinconfig,Length[rpd]];
+			(*====================*)
+			Echo[sdpd, "HubbardMeanField initial spin density:"];
+			Echo[Dynamic[cpd], "HubbardMeanField GO+SCE convergence:"];
+    		Echo[Dynamic[sdpd], "HubbardMeanField final spin density:"];
+    	    	 
+    		If[
+    			copts["Backup"],
+    			(* with backup *)
+    			glist={};
+    			date = DateString[{"Year","Month","Day","_at_","Hour","_","Minute","_","Second"}];
+    			
+    			tag = copts["BackupTag"];
+    			Switch[
+    					True,
+    					MissingQ[tag],
+    					tag = "",
+    					Not[StringQ[tag]],
+    					(* not a Missing element of Association and not a string *)
+						Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+						Throw[$Failed]
+    			];
+    	  		
+    				
+    			res = NMinimize[{costfun[vx, vy], conds}, vars,	Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit,
+    			StepMonitor :> (AppendTo[rpd, costfun[vx,vy]];
+    						cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+							sdpd = spindensplot[{vx,vy},Length[rpd]];
+							AppendTo[glist, Grid[{{cpd,sdpd}}]]
+							)
+    			];
+    			(* save convergence data to the given path *)
+    			fname = "HubbardMeanField_GO+SCE"<>date<>"_"<>tag<>".gif";
+    			Export[FileNameJoin[{path2save,fname}],glist,"DisplayDurations" ->If[Length[glist]>30,30/Length[glist],1],ImageResolution->300];
+    			,
+    			(* without backup *)
+    			res = NMinimize[{costfun[vx, vy], conds}, vars,	Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit,
+    			StepMonitor :> (AppendTo[rpd, costfun[vx,vy]];
+    						cpd = ctrackfun[rpd, Min[rpd], Max[rpd]];
+							sdpd = spindensplot[{vx,vy},Length[rpd]]
+							)
+    			],
+				(* neither True nor False *)
+				Message[HubbardMeanField::optfmt,copts,"\"CMonitor\""];
+				Throw[$Failed]
+    		](* end If Backup for cmonitor *)
+    		,
+    		(* supressed convergence tracking *)
+    		res = NMinimize[{costfun[vx, vy], conds}, vars, Method -> opts, AccuracyGoal -> ag, MaxIterations -> maxit]
+        ](* end If CMonitor *);
+        Print[res];
+        occnumbers = {vx,vy}/.res[[2]];
+        Remove[Evaluate@vars];
+    
+        (* one more sce run *)
+        occnumbers = NestWhile[sce, occnumbers, (Norm[Flatten[#2 - #1]] > 10^-ag) &, 2, maxit](* end NestWhile *);
+        (* one more iteration with the found occupation numbers *)
+        HubbardMFI[occnumbers, ne, uc, U,
+    		"AccuracyGoal" -> muag,
+    		"Temperature" -> Temp,
+    		"ParamagneticTerm" -> euterm,
+    		TranslationVectors -> translationvectors,
+    		HoppingIntegrals -> hoppingintegrals,
+    		OverlappingIntegrals -> overlappingintegrals,
+    		HoppingDistances -> hoppingdistances,
+    		StrainExponent -> strain,
+    		Kpoint -> klist,
+    		Efield -> efield,
+    		Bfield -> bfield,
+    		EdgeCorrections -> edgecorrections, 
+    		HoppingDistanceDelta -> hoppingdistancedelta,
+    		SuperCellSize -> supercellsize,
+    		HamiltonianGauge -> hamiltoniangauge,
+    		ParallelEvaluation -> parallelevaluation
+        ],
+        _ ,
+        Message[HubbardMeanField::optfmt,method,"Method"];
+	    Throw[$Failed]   
+    ](* end Switch Method *)
+    
+    ](* end Module *)
+](* end Block *)](* end Catch *);
+SyntaxInformation[HubbardMeanField] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
+
+
+
+  
 End[]
 
 (Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]]

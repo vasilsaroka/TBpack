@@ -823,5 +823,7 @@ End package
  ****************************************************************)
 
 
-Protect[Evaluate[$Context<>"*"]];
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]]
+
+(* Protect[Evaluate[$Context<>"*"]]; *)
 EndPackage[];

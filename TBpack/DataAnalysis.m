@@ -1,6 +1,9 @@
 (* Wolfram Language Package *)
 
 BeginPackage["TBpack`DataAnalysis`", {"TBpack`MaTeX`","TBpack`CustomTicks`"}]
+
+Unprotect[Evaluate[$Context<>"*"]]; (* taken from CustomTicks package *)
+
 (* Exported symbols added here with SymbolName::usage *)  
 
 (* Functions *)
@@ -71,7 +74,8 @@ ReadElectronicBands1D[\!\(Output \[Rule] \*StyleBox[\"form\",\"TI\"] \)] imports
 (* Options *)
 NumberOfUnitCells::usage = "Option setting the number of unit cell to be displayed.";
 PlaneProjection::usage = "Option setting the 2D plane used for displaying an object.";
-AtomEnumeration::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the atom numbers should be displayed."
+AtomEnumeration::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the atom numbers should be displayed.";
+BondEnumeration::usage = "Option taking values \*StyleBox[\"True\",\"TI\"] or \*StyleBox[\"False\",\"TI\"] specifying if the bond numbers should be displayed."; 
 AtomColor::usage = "Option setting the color of the atoms displayed in graphical objects.";
 BondColor::usage = "Option setting the color of the bonds displayed in graphical objects.";
 AtomSize::usage = "Option setting the size of atoms displayed in graphical objects.";
@@ -182,12 +186,14 @@ SyntaxInformation[ListOfBonds] = {"ArgumentsPattern" -> {_, _, OptionsPattern[]}
 (* Error messages *)
 AtomicStructure::optargmma = "Mismatch of `2`: `1`";
 AtomicStructure::argfmt = "Wrong `2` argument format: `1`";
+AtomicStructure::optfmt = "Wrong `2` option format: `1`";
 
 Options[AtomicStructure] = {
 	TBpack`BondLengthDelta -> 0.05,
 	NumberOfUnitCells -> Automatic,
 	PlaneProjection -> {1,1,1},
 	AtomEnumeration -> False,
+	BondEnumeration -> False,
 	AtomColor -> Gray,
 	BondColor -> Gray,
 	AtomSize -> 0.3,
@@ -213,16 +219,21 @@ AtomicStructure[system_List, OptionsPattern[]]:=Catch[Module[
 	
 	tdim,
 	tlen,
-	unitcell, T, a0,
-	T1,T2,T3,
-	u,v,
+	unitcell, T, a0, alen,
+	T1, T2, T3,
+	u, v, bonds, blen,
 	
-	counter = 0,
-	antiacolor,
-	antibcolor,
+	counter = 0, bcounter = 0,
+	defaultacolor = Gray,
+	defaultbcolor = Gray,
+	defaultasize = 0.3,
+	defaultbsize = 0.1,
+	assoc, el, clen,
 	
-	nd,ppbgfun,ppagfun,
-	AntiColor
+	nd, ppbgfun, ppagfun, bgfun, agfun,
+	AntiColor, 
+	hcolorQ, coloroptiontest,
+	sizeQ, sizeoptiontest
 },
 
 (* system = {unitcell,translationvectors,lattice constant} *)
@@ -260,58 +271,6 @@ If[
 	]
 ];
 
-
-(* 29/11/2024: New anti-color function that must work with Directives via substitutions *)
-AntiColor[directive_] := Module[
-  {
-   csubs
-   },
-  csubs = {
-  	RGBColor[r_, g_, b_] :> RGBColor[1 - r, 1 - g, 1 - b],
-  	GrayLevel[g_] :> GrayLevel[1 - g],
-  	Opacity[op_] :> Opacity[1-op]
-  };
-  directive/.csubs
-  ](* end Module *);   
-   
-
-nd = ToString@PaddedForm[1.0 #,{5,3},ExponentFunction->(If[-16<#<16,Null,#]&)]&; (* number display function *);
-
-(* define anti-colors that will be used for highlighting the elements on the mouse-over event *)
-antiacolor = AntiColor[acolor];
-antibcolor = AntiColor[bcolor];
-
-(* plane projection graphics functions: ppbgfun [for bonds] and ppagfun [for atoms] *)
-ppbgfun=Tooltip[
-				Mouseover[
-					{bcolor,AbsoluteThickness[10 bsize],Line[#1]},
-					{bcolor,AbsoluteThickness[30 bsize],Line[#1],antibcolor,AbsoluteThickness[10 bsize],Line[#1]}
-					](* end Mouseover *),
-				v = #1[[2]] - #1[[1]];
-				nd[Sqrt[v.v]]<>" \[Angstrom]",
-				TooltipStyle -> {Background -> White}
-			](*end Tooltip *)&;
-ppagfun=Tooltip[
-				counter++;
-				Mouseover[
-							{
-								acolor,Disk[#1[[#2]],asize],
-								If[
-									OptionValue[AtomEnumeration],
-									{tcolor,Text[Style[ToString[counter],fontsize],#1[[#2]]]},
-									{}
-								](* end If AtomicEnumeration *)
-							},
-							{
-								EdgeForm[acolor],antiacolor,Disk[#1[[#2]],asize]
-							}
-						](* end Mouseover *),
-				ToString[counter]<>": ("<>nd[(#1[[#2[[1]]]])]<>","<>nd[(#1[[#2[[2]]]])]<>") \[Angstrom]",
-				TooltipStyle->{Background->White}
-			](* end Tooltip *)&;
-
-
-
 (* generalize to 2 and 3 dimensions 12/08/2020 *)
 (*u = Flatten[Table[(# + T (i-1))&/@unitcell,{i,lim}],1];*)
 
@@ -335,54 +294,381 @@ u = Switch[
 		Flatten[Table[(#1 + (i-1) T1 + (j-1) T2 + (k-1) T3)&/@unitcell,{i,lim[[1]]},{j,lim[[2]]},{k,lim[[3]]}],3]
 ](* end Switch *);
 
-Switch[
-		projection,
-		{1,1,0}(* XY-plane projection *),
-		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
-			ppagfun[#,{1,2}]&/@u},ImageSize->imagesize],
-		{1,0,1}(* XZ-plane projection *),
-		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
-			ppagfun[#,{1,3}]&/@u},ImageSize->imagesize],
-		{0,1,1}(* YZ-plane projection *),
-		Graphics[{ppbgfun/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
-			ppagfun[#,{2,3}]&/@u},ImageSize->imagesize],
-		{1,1,1},
-		Graphics3D[{
-			Specularity[GrayLevel[1],100],
-			Tooltip[
+(* bonds for analysis *)
+If[
+	Or@@(projection === # &/@ {{1,1,0},{1,0,1},{0,1,1},{1,1,1}}),
+	bonds = ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta],
+	Message[ListOfBonds::badopt];
+    Throw[$Failed]
+] (* end If projection *);
+blen = Length[bonds];
+alen = Length[u];
+
+(* 
+analysis of acolor, bcolor, asize and bsize options and transforming them to the standard forms:
+{1-> a/bcolor_1, 2-> a/bcolor_2, ..., i->a/bcolor_i, ...}
+{1-> a/bsize_1, 2-> a/bsize_2, ..., i->a/bsize_i, ...}
+with i <= number of atoms in the structure [one or few unit cells]
+or
+{default, 1-> a/bcolor_1, 2-> a/bcolor_2, ..., i->a/bcolor_i, ...}
+{default, 1-> a/bsize_1, 2-> a/bsize_2, ..., i->a/bsize_i, ...}
+with i <= number of atoms in the structure [one or few unit cells]
+*)
+hcolorQ = (Head[#] === Directive || Head[#] === RGBColor || Head[#] === GrayLevel || Head[#] ===
+       Hue) &;
+
+coloroptiontest = If[
+	Length[#1] === 2,
+	With[
+    {no = #1[[1]], hcolor = #1[[2]]},
+    IntegerQ[no] && (no <= #2) && hcolorQ[hcolor]] 
+    ,
+    False]&;
+    
+(* AtomColor option analysis *)
+If[
+ 	hcolorQ[acolor],
+ 	(* True  *)
+ 	acolor = Association[Table[i -> acolor, {i, alen}]],
+ 	(* False *)
+ 	If[
+ 		 VectorQ[acolor, coloroptiontest[#,alen]&],
+  		(* True  *)
+  		If[
+   			Length[acolor] < alen,
+   			assoc = Association[acolor];
+   			acolor = Association[Table[
+     		(* if in the list*)
+     		el = assoc[i];
+     		If[MissingQ[el], i -> defaultacolor, i -> el]
+     		, {i, alen}]],
+     		If[
+     			Length[acolor] === alen,
+     			acolor = Association[acolor],
+   				Message[AtomicStructure::optargmma, Row[{acolor, unitcell}, " and "], "AtomColor option and the number of unit cell elements"];
+   				Throw[$Failed]
+   			](* If length = number of atoms *)
+   		](* If length < number of atoms *)
+  		,
+  		(* False *)
+  		If[
+  			hcolorQ[First[acolor]] && VectorQ[Rest[acolor], coloroptiontest[#,alen]&],
+  			(* True  *)
+  			defaultacolor = First[acolor];
+  			acolor = Rest[acolor];
+  			If[
+  		 		Length[acolor] < alen,
+  		 		assoc = Association[acolor];
+  		 		acolor = Association[Table[
+     				(* if in the list*)
+     				el = assoc[i];
+     				If[MissingQ[el], i -> defaultacolor, i -> el],
+     	 		{i, alen}]],
+     	 		If[
+     				Length[acolor] === alen,
+     				acolor = Association[acolor],
+   					Message[AtomicStructure::optargmma, Row[{acolor, unitcell}, " and "], "AtomColor option and the number of unit cell elements"];
+   					Throw[$Failed]
+   				](* If length = number of atoms *)
+   			](* If length < number of atoms *),
+  			(* False *)
+  			If[
+   				VectorQ[acolor, hcolorQ],
+   				clen = Length[acolor];
+   				acolor = Association[Table[i -> acolor[[Mod[i, clen, 1]]], {i, alen}]],
+   				Message[AtomicStructure::optfmt, acolor, "AtomColor"];
+   				Throw[$Failed]
+   			](* If a list of colors to be repeated *)
+  		](* If a list of colors with prepended default color *)
+  	](* If a list of colors *)
+ ](* If pure color *);
+
+(* BondColor option analysis *)
+If[
+ 	hcolorQ[bcolor],
+ 	(* True  *)
+ 	bcolor = Association[Table[i -> bcolor, {i, blen}]],
+ 	(* False *)
+ 	If[
+ 		 VectorQ[bcolor, coloroptiontest[#,blen]&],
+  		(* True  *)
+  		If[
+   			Length[bcolor] < blen,
+   			assoc = Association[bcolor];
+   			bcolor = Association[Table[
+     		(* if in the list*)
+     		el = assoc[i];
+     		If[MissingQ[el], i -> defaultbcolor, i -> el]
+     		, {i, blen}]],
+     		If[
+     			Length[bcolor] === blen,
+     			bcolor = Association[bcolor],
+   				Message[AtomicStructure::optargmma, Row[{bcolor, unitcell}, " and "], "BondColor option and the number of bonds in the unit cell"];
+   				Throw[$Failed]
+   			](* If lenght = number of bonds *)
+   		](* If length < number of bonds *)
+  		,
+  		(* False *)
+  		If[
+  			hcolorQ[First[bcolor]] && VectorQ[Rest[bcolor], coloroptiontest[#,blen]&],
+  			(* True  *)
+  			defaultbcolor = First[bcolor];
+  			bcolor = Rest[bcolor];
+  			If[
+  		 		Length[bcolor] < blen,
+  		 		assoc = Association[bcolor];
+  		 		bcolor = Association[Table[
+     				(* if in the list*)
+     				el = assoc[i];
+     				If[MissingQ[el], i -> defaultbcolor, i -> el],
+     	 		{i, blen}]],
+     	 		If[
+     				Length[bcolor] === blen,
+     				bcolor = Association[bcolor],
+   					Message[AtomicStructure::optargmma, Row[{bcolor, unitcell, a0}, " and "], "BondColor option and the number of bonds in the unit cell for the given lattice constant"];
+   					Throw[$Failed]
+   				](* If lenght = number of bonds *)
+   			](* If length < number of bonds *),
+  			(* False *)
+  			If[
+   				VectorQ[bcolor, hcolorQ],
+   				clen = Length[bcolor];
+   				bcolor = Association[Table[i -> bcolor[[Mod[i, clen, 1]]], {i, blen}]],
+   				Message[AtomicStructure::optfmt, bcolor, "BondColor"];
+   				Throw[$Failed]
+   			](* If a list of colors to be repeated *)
+  		](* If a list of colors with prepended default color *)
+  	](* If a list of colors *)
+ ](* If pure color *);
+
+
+sizeQ = NumberQ[#]&&(#>=0)&;
+sizeoptiontest = If[
+	Length[#1] === 2,
+	With[
+    {no = #1[[1]], size = #1[[2]]},
+    IntegerQ[no] && (no <= #2) && sizeQ[size]],
+    False] &;
+(* AtomSize option analysis *)
+If[
+ 	sizeQ[asize],
+ 	(* True  *)
+ 	asize = Association[Table[i -> asize, {i, alen}]],
+ 	(* False *)
+ 	If[
+ 		 VectorQ[asize, sizeoptiontest[#,alen]&],
+  		(* True  *)
+  		If[
+   			Length[asize] < alen,
+   			assoc = Association[asize];
+   			asize = Association[Table[
+     		(* if in the list*)
+     		el = assoc[i];
+     		If[MissingQ[el], i -> defaultasize, i -> el]
+     		, {i, alen}]],
+     		If[
+     			Length[asize] === alen,
+     			asize = Association[asize],
+   				Message[AtomicStructure::optargmma, Row[{asize, unitcell}, " and "], "AtomSize option and the number of unit cell elements"];
+   				Throw[$Failed]
+   			](* If length = number of atoms *)
+   		](* If length < number of atoms *)
+  		,
+  		(* False *)
+  		If[
+  			sizeQ[First[asize]] && VectorQ[Rest[asize], sizeoptiontest[#,alen]&],
+  			(* True  *)
+  			defaultasize = First[asize];
+  			asize = Rest[asize];
+  			If[
+  		 		Length[asize] < alen,
+  		 		assoc = Association[asize];
+  		 		asize = Association[Table[
+     				(* if in the list*)
+     				el = assoc[i];
+     				If[MissingQ[el], i -> defaultasize, i -> el],
+     	 		{i, alen}]],
+     	 		If[
+     				Length[asize] === alen,
+     				asize = Association[asize],
+   					Message[AtomicStructure::optargmma, Row[{asize, unitcell}, " and "], "AtomSize option and the number of unit cell elements"];
+   					Throw[$Failed]
+   				](* If length = number of atoms *)
+   			](* If length < number of atoms *),
+  			(* False *)
+  			If[
+   				VectorQ[asize, sizeQ],
+   				clen = Length[asize];
+   				asize = Association[Table[i -> asize[[Mod[i, clen, 1]]], {i, alen}]],
+   				Message[AtomicStructure::optfmt, asize, "AtomSize"];
+   				Throw[$Failed]
+   			](* If a list of sizes to be repeated *)
+  		](* If a list of sizes with prepended default size *)
+  	](* If a list of sizes *)
+ ](* If pure size *);
+ 
+ (* BondSize option analysis *)
+ If[
+ 	sizeQ[bsize],
+ 	(* True  *)
+ 	bsize = Association[Table[i -> bsize, {i, blen}]],
+ 	(* False *)
+ 	If[
+ 		 VectorQ[bsize, sizeoptiontest[#,blen]&],
+  		(* True  *)
+  		If[
+   			Length[bsize] < blen,
+   			assoc = Association[bsize];
+   			bsize = Association[Table[
+     		(* if in the list*)
+     		el = assoc[i];
+     		If[MissingQ[el], i -> defaultbsize, i -> el]
+     		, {i, blen}]],
+     		If[
+     			Length[bsize] === blen,
+     			bsize = Association[bsize],
+   				Message[AtomicStructure::optargmma, Row[{bsize, unitcell, a0}, " and "], "BondSize option and the number of bonds in the unit cell with the given lattice constant"];
+   				Throw[$Failed]
+   			](* If lenght = number of bonds *)
+   		](* If length < number of bonds *)
+  		,
+  		(* False *)
+  		If[
+  			sizeQ[First[bsize]] && VectorQ[Rest[bsize], sizeoptiontest[#,blen]&],
+  			(* True  *)
+  			defaultbsize = First[bsize];
+  			bsize = Rest[bsize];
+  			If[
+  		 		Length[bsize] < blen,
+  		 		assoc = Association[bsize];
+  		 		bsize = Association[Table[
+     				(* if in the list*)
+     				el = assoc[i];
+     				If[MissingQ[el], i -> defaultbsize, i -> el],
+     	 		{i, blen}]],
+     	 		If[
+     				Length[bsize] === blen,
+     				bsize = Association[bsize],
+   					Message[AtomicStructure::optargmma, Row[{bsize, unitcell, a0}, " and "], "BondSize option and the number of bonds in the unit cell for the given lattice constant"];
+   					Throw[$Failed]
+   				](* If lenght = number of bonds *)
+   			](* If length < number of bonds *),
+  			(* False *)
+  			If[
+   				VectorQ[bsize, sizeQ],
+   				clen = Length[bsize];
+   				bsize = Association[Table[i -> bsize[[Mod[i, clen, 1]]], {i, blen}]],
+   				Message[AtomicStructure::optfmt, bsize, "BondSize"];
+   				Throw[$Failed]
+   			](* If a list of sizes to be repeated *)
+  		](* If a list of sizes with prepended default size *)
+  	](* If a list of sizes *)
+ ](* If pure size *);
+
+
+(* 29/11/2024: New anti-color function that must work with Directives via substitutions *)
+AntiColor[directive_] := Module[
+  {
+   csubs
+   },
+  csubs = {
+  	RGBColor[r_, g_, b_] :> RGBColor[1 - r, 1 - g, 1 - b],
+  	GrayLevel[g_] :> GrayLevel[1 - g],
+  	Opacity[op_] :> Opacity[1-op]
+  };
+  directive/.csubs
+  ](* end Module *);   
+   
+
+nd = ToString@PaddedForm[1.0 #,{5,3},ExponentFunction->(If[-16<#<16,Null,#]&)]&; (* number display function *);
+
+(* plane projection graphics functions: ppbgfun [for bonds] and ppagfun [for atoms] *)
+ppbgfun=Tooltip[
+				bcounter++;
+				Mouseover[
+					{
+						bcolor[bcounter],AbsoluteThickness[10 bsize[bcounter]],Line[#1],
+						If[
+								OptionValue[BondEnumeration],
+								{AntiColor[tcolor],Text[Style[ToString[bcounter],(3/4)*fontsize],(#1[[2]] + #1[[1]])/2]},
+								{}
+						](* end If BondEnumeration *)
+					},
+					{bcolor[bcounter],AbsoluteThickness[30 bsize[bcounter]],Line[#1],AntiColor[bcolor[bcounter]],AbsoluteThickness[10 bsize[bcounter]],Line[#1]}
+					](* end Mouseover *),
+				v = #1[[2]] - #1[[1]];
+				ToString[bcounter]<>": "<>nd[Sqrt[v.v]]<>" \[Angstrom]",
+				TooltipStyle -> {Background -> White}
+			](*end Tooltip *)&;
+ppagfun=Tooltip[
 				counter++;
 				Mouseover[
 							{
-								acolor,Sphere[#,asize],
+								acolor[counter],Disk[#1[[#2]],asize[counter]],
 								If[
 									OptionValue[AtomEnumeration],
-									{tcolor,Text[Style[counter,fontsize],#]},
+									{tcolor,Text[Style[ToString[counter],fontsize],#1[[#2]]]},
 									{}
 								](* end If AtomicEnumeration *)
 							},
 							{
-								antiacolor,Sphere[#,asize]
+								EdgeForm[acolor[counter]],AntiColor[acolor[counter]],Disk[#1[[#2]],asize[counter]]
+							}
+						](* end Mouseover *),
+				ToString[counter]<>": ("<>nd[(#1[[#2[[1]]]])]<>","<>nd[(#1[[#2[[2]]]])]<>") \[Angstrom]",
+				TooltipStyle->{Background->White}
+			](* end Tooltip *)&;
+			
+bgfun=Tooltip[
+				bcounter++;
+				Mouseover[
+					{
+						bcolor[bcounter],Tube[#,bsize[bcounter]],
+						If[
+									OptionValue[BondEnumeration],
+									{AntiColor[tcolor],Text[Style[bcounter,(3/4)*fontsize],(#[[2]] + #[[1]])/2]},
+									{}
+						](* end If BondEnumeration *)
+					},
+					{AntiColor[bcolor[bcounter]],Tube[#,bsize[bcounter]]}
+					](* end Mouseover *),
+					v = #[[2]] - #[[1]];
+					ToString[bcounter]<>": "<>nd[Sqrt[v.v]]<>" \[Angstrom]",
+					TooltipStyle -> {Background -> White}
+			](* end Tooltip *)&;
+			
+agfun=Tooltip[
+				counter++;
+				Mouseover[
+							{
+								acolor[counter],Sphere[#,asize[counter]],
+								If[
+									OptionValue[AtomEnumeration],
+									{tcolor,Text[Style[counter,fontsize],#]},
+									{}
+								](* end If AtomEnumeration *)
+							},
+							{
+								AntiColor[acolor[counter]],Sphere[#,asize[counter]]
 							}
 						](* end Mouseover *)
 				,ToString[counter]<>": ("<>nd[#[[1]]]<>","<>nd[#[[2]]]<>","<>nd[#[[3]]]<>") \[Angstrom]",
 				TooltipStyle -> {Background -> White}
-			](* end Tooltip *)&/@u,
-			Tooltip[
-				Mouseover[
-					{bcolor,Tube[#,bsize]},
-					{antibcolor,Tube[#,bsize]}
-					](* end Mouseover *),
-							v = #[[2]] - #[[1]];
-							nd[Sqrt[v.v]]<>" \[Angstrom]",
-							TooltipStyle -> {Background -> White }
-			](* end Tooltip *)&/@ListOfBonds[u, a0, PlaneProjection->projection, BondLengthDelta->bondlengthdelta]
-			},
+			](* end Tooltip *)&;
+
+Switch[
+		projection,
+		{1,1,0}(* XY-plane projection *),
+		Graphics[{ppbgfun/@bonds, ppagfun[#,{1,2}]&/@u},ImageSize->imagesize],
+		{1,0,1}(* XZ-plane projection *),
+		Graphics[{ppbgfun/@bonds, ppagfun[#,{1,3}]&/@u},ImageSize->imagesize],
+		{0,1,1}(* YZ-plane projection *),
+		Graphics[{ppbgfun/@bonds, ppagfun[#,{2,3}]&/@u},ImageSize->imagesize],
+		{1,1,1},
+		Graphics3D[{Specularity[GrayLevel[1],100], agfun/@u, bgfun/@bonds},
 			Boxed->False,
 			Lighting-> "Neutral",
-			ImageSize->imagesize],
-		_,
-		Message[ListOfBonds::badopt];
-    	Throw[$Failed]
+			ImageSize->imagesize]
 ](* end Switch *)
 ](* end Module *)](* end Catch *);
 SyntaxInformation[AtomicStructure] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
@@ -444,7 +730,7 @@ ReciprocalVectors[listofvectors_] := Catch[
 
 
 
-
+(* Can be replaced with a proper Fermi level calculation for the given number of electrons per unit cell *)
 (* Error messages *)
 FermiEnergy::arg1str = "The \!\(\*StyleBox[\"Most\",\"TI\"]\) part of the argument of \!\(\*StyleBox[\"FermiEnergy\",\nFontSlant->\"Italic\"]\) must be a numeric matrix.";
 
@@ -513,7 +799,8 @@ EnergyGap[bands_List] := Catch[
 
 
 (* standard colors *)
-TBpackPalette = {
+TBpackPalette = ColorData[3, "ColorList"];
+(*{
 	RGBColor[1, 0, 0],
 	RGBColor[0, 1, 1], 
 	RGBColor[0.8738063654339829, 0.5624850137259609, 0.03917956167261294], 
@@ -524,7 +811,7 @@ TBpackPalette = {
    	RGBColor[0.9770006819085308, 0.5786086505796104, 0.5094258099947662], 
    	RGBColor[0.21151508704203614`, 0.997254589585209, 0.8216256808736591], 
    	RGBColor[0.7884849129579639, 0.0027454104147910385`, 0.17837431912634094`]
-};
+};*)
 
 
 (* plotting  electronic bands *)
@@ -877,9 +1164,7 @@ PlotGrid[l_?MatrixQ, OptionsPattern[]] := Catch[Module[
    
    nx, ny,
    widths, heights,
-   positions,
-   
-   graphicsQ
+   positions
 },
    
   (* test functions *)
@@ -1001,7 +1286,7 @@ ReadElectronicBands1D[OptionsPattern[]] := Block[
     	(* unit cell *)
     	ToExpression[data[[pos + 2 ;; pos2 - 1]]],
     	(* translation vector *)
-    	ToExpression[data[[pos2 + 1]]],
+    	{ToExpression[data[[pos2 + 1]]]},
     	(* lattice constant *)
     	ToExpression[data[[pos3 + 2, 4]]]
     	},
@@ -1154,5 +1439,7 @@ ReadElectronicBands1D[OptionsPattern[]] := Block[
 SyntaxInformation[ReadElectronicBands1D] = {"ArgumentsPattern" -> {OptionsPattern[]}};
 
 End[] (* End Private Context *)
+
+(Attributes[#] = {Protected, ReadProtected}) & /@ Names[Evaluate[$Context<>"*"]] 
 
 EndPackage[]
