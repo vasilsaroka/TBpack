@@ -1,6 +1,6 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/vasilsaroka/TBpack/all.svg)](https://github.com/vasilsaroka/TBpack/releases)
 [![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads-pre/vasilsaroka/TBpack/latest/total?label=downloads%20latest)](https://github.com/vasilsaroka/TBpack/releases)
-[![GitHub Downloads (all assets, specific tag)](https://img.shields.io/github/downloads/vasilsaroka/TBpack/v0.5.2/total?label=downloads%20v0.5.2)](https://github.com/vasilsaroka/TBpack/releases/tag/v0.5.2)
+[![GitHub Downloads (all assets, specific tag)](https://img.shields.io/github/downloads/vasilsaroka/TBpack/v0.6.0/total?label=downloads%20v0.6.0)](https://github.com/vasilsaroka/TBpack/releases/tag/v0.6.0)
 [![Github All Releases](https://img.shields.io/github/downloads/vasilsaroka/TBpack/total?label=downloads%20all)](https://github.com/vasilsaroka/TBpack/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Support TBpack](https://img.shields.io/static/v1?label=support&message=5$&color=green&style=flat&logo=paypal)](https://paypal.me/vasilsaroka?locale.x=en_GB)
@@ -9,7 +9,7 @@
 Tight-binding calculations in Mathematica
 
 ## Installation guide
- - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpack/TBpackPro_Logo.png" alt="TBpackPro_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
+ - **The recommended option for TBpack paclet management in Mathematica 11.3+** is to use the [resource function](https://resources.wolframcloud.com/FunctionRepository/resources/InstallTBpack): [<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/TBpackPro_Logo.png" alt="TBpackPro_Logo"/>](https://paypal.me/vasilsaroka?locale.x=en_GB)
  
    To install the latest version of the TBpack from this GitHub repo, evaluate
    
@@ -115,23 +115,13 @@ Tight-binding calculations in Mathematica
  
  **Note:** Compilation to C code is used in TBpack to speed up optical absorption spectra calculations. See [how to make Mathematica working with C compiler on Windows](https://sites.google.com/view/vasilsaroka/wolfram-mathematica). If compiler is not available Mathematica will run uncompiled function.
 
-## TBpack for fun
-[<img align="right" src="https://github.com/vasilsaroka/TBpack/blob/master/Games/HOMOLUMOQuantumGame/HOMOLUMOQuantumGame.png" alt="HOMOLUMOQuantumGame" width="250"/>](https://t.me/HOMO_LUMO_Quantum_Game_bot)
-
-**TBpack** application is fast enough to be used in games and Telegram bots. 
-
-Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO Quantum Game: [@HOMO_LUMO_Quantum_Game_bot](https://t.me/HOMO_LUMO_Quantum_Game_bot) **\***. Use `/rules` to see the rules of the game or have a look at our sample [game video](https://www.youtube.com/watch?v=DUy22OKLgvs) on YouTube.
-
-**\*** *For now the game is not accessible due to being in the process of updating. Sorry for this inconvenience. You will be able to try it soon with new features.*
-
-
 ## TBpack for WLJS Notebooks - Electron application
    The [Electron application](https://github.com/JerryI/wolfram-js-frontend/releases) is an open-source javascript-based cross-platform graphical user interface for running Wolfram Language code via a [Wolfram Engine](https://www.wolfram.com/engine/). It is an actively developed [project](https://github.com/JerryI/wolfram-js-frontend) that is getting popularity due to its simplicity and ability to combine Wolfram Language with Javescript and Markdown. While WLJS notebooks are not superior to the original Mathematica notebooks, they do have some features such as gpt-based copilot, powerful command palette system, and enhanced animation capbilitites that may transform them into a useful companion if not a real contender of original notebooks. 
    
-   We have release a special patch v0.5.1 of TBpack that can be installed into the Electron application.  
+   We have release a special patch v0.6.0 of TBpack that can be installed into the Electron application.  
    ### Installation guide
    - Install [Wolfram Engine](https://www.wolfram.com/engine/) (14.0 or higher)
-   - Install [Electron application](https://jerryi.github.io/wljs-docs/) (2.5.6 or higher)
+   - Install [Electron application](https://jerryi.github.io/wljs-docs/) (2.8.9 or higher)
    - Proceed to an automated installation of TBpack:
 
      Copy-paste the below function into a WLSJ notebook cell. Evaluate the cell, for example by pressing `Shift+Enter`, to make the definition of this function known to the Wolfram Engine. In the next cell, type `InstallTBpackIn2Electron[]` and evaluate it.
@@ -141,7 +131,7 @@ Put your knowledge and luck under ultimate test with Hostess Monica in HOMO-LUMO
            {
               method=OptionValue[Method],
               pacletsrepository, tbpackdirectory, message1, message2, jsonreleases, info, pos, url, message, tempfile, 
-              version = "v0.5.1" (* special TBpack patch for Electron *),
+              version = "v0.6.0" (* special TBpack patch for Electron *),
               giturl = "https://api.github.com/repos/vasilsaroka/TBpack/releases",
               deletedirectory
            },
