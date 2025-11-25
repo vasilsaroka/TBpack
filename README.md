@@ -201,7 +201,7 @@ Tight-binding calculations in Mathematica
          InstallTBpackIn2Electron[Mehtod->"Uninstall"]
 
    - Manual installation of TBpack is possible (try only if automated option above has failed):
-      - Download `.paclet` file of the [TBpack patch released](https://github.com/vasilsaroka/TBpack/releases/tag/v0.5.1) for the Electron application.
+      - Download `.paclet` file of the [TBpack patch released](https://github.com/vasilsaroka/TBpack/releases/tag/v0.6.0) for the Electron application.
       - Extract the paclet file into the installation folder by evaluating in the Electron application cell the following line:
 
             ExtractPacletArchive["path2paclet",FileNameJoin[$InitialDirectory,"wl_packages"]]
